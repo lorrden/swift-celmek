@@ -1,9 +1,8 @@
 import XCTest
 
-import vsop87_tests
-import time_tests
+import swift_celmekTests
 
 var tests = [XCTestCaseEntry]()
-tests += vsop87_tests.allTests()
-tests += time_tests.allTests()
+tests += swift_celmekTests.__allTests()
+
 XCTMain(tests)
