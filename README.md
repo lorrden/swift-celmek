@@ -8,6 +8,7 @@ The celmek library implements several astronomical algorithms.
 | --- | --- 
 | VSOP87 | Done
 | ELP2000 82b | Done
+| Goffin2000 | Done
 
 ## License
 
