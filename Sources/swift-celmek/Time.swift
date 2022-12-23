@@ -23,16 +23,26 @@ import Darwin
 #endif
 
 fileprivate let month_length : [Int] = [31, 28, 31, 30, 31, 30,
-                                   31, 31, 30, 31, 30, 31];
-fileprivate let month_length_leap : [Int]  = [31, 29, 31, 30, 31, 30,
                                         31, 31, 30, 31, 30, 31];
+fileprivate let month_length_leap : [Int]  = [31, 29, 31, 30, 31, 30,
+                                              31, 31, 30, 31, 30, 31];
 
 fileprivate let month_offset : [Int]  = [  0,  31,  59,  90, 120, 151,
-                                   181, 212, 243, 273, 304, 334];
+                                           181, 212, 243, 273, 304, 334];
 fileprivate let month_offset_leap : [Int]  = [  0,  31,  60,  91, 121, 152,
-                                        182, 213, 244, 274, 305, 335];
+                                                182, 213, 244, 274, 305, 335];
 
+// Ordered in work week order, but numbered to simplify calculations
+public enum Weekday : Int8 {
+  case Monday = 1
+  case Tuesday = 2
+  case Wednesday = 3
+  case Thursday = 4
+  case Friday = 5
+  case Saturday = 6
+  case Sunday = 0
 
+}
 public enum Month : Int32 {
   case January = 1;
   case February = 2;
@@ -54,31 +64,31 @@ public struct Date {
   var day: UInt8;
   
   /*
-  init?(packedDate str: String)
-  {
-    // I, J, K designate 1800, 1900 and 2000, we assume this is consistent
-    // in the future
-    var year = (str[str.startIndex].unicodeScalars.first!.value - Character("I").unicodeScalars.first!.value) * 100 + 1800;
-    year += 10 * (str[str.index(str.startIndex, offsetBy:1)].unicodeScalars.first!.value - Character("0").unicodeScalars.first!.value);
-    year += str[str.index(str.startIndex, offsetBy:2)].unicodeScalars.first!.value - Character("0").unicodeScalars.first!.value;
-    var month = -1;
-    if str[str.index(str.startIndex, offestBy:3)].isASCII && str[str.index(str.startIndex, offsetBy:3)].isNumber {
-      month = str[str.index(str.startIndex, offsetBy:3)].unicodeScalars.first!.value - Character("0").unicodeScalars.first!.value;
-    } else {
-      month = str[str.index(str.startIndex, offsetBy:3)] - "A" + 10;
-    }
-    var day = -1;
-    if str[str.index(str.startIndex, offestBy:4)].isASCII && str[str.index(str.startIndex, offestBy:4)].isNumber {
-      day = str[str.index(str.startIndex, offestBy:4)] - Character("0").unicodeScalars.first!.value;
-    } else {
-      day = str[str.index(str.startIndex, offestBy:4)] - Character("A").unicodeScalars.first!.value + 10;
-    }
-
-    self.year = year;
-    self.month = month;
-    self.day = day;
-  }
-*/
+   init?(packedDate str: String)
+   {
+   // I, J, K designate 1800, 1900 and 2000, we assume this is consistent
+   // in the future
+   var year = (str[str.startIndex].unicodeScalars.first!.value - Character("I").unicodeScalars.first!.value) * 100 + 1800;
+   year += 10 * (str[str.index(str.startIndex, offsetBy:1)].unicodeScalars.first!.value - Character("0").unicodeScalars.first!.value);
+   year += str[str.index(str.startIndex, offsetBy:2)].unicodeScalars.first!.value - Character("0").unicodeScalars.first!.value;
+   var month = -1;
+   if str[str.index(str.startIndex, offestBy:3)].isASCII && str[str.index(str.startIndex, offsetBy:3)].isNumber {
+   month = str[str.index(str.startIndex, offsetBy:3)].unicodeScalars.first!.value - Character("0").unicodeScalars.first!.value;
+   } else {
+   month = str[str.index(str.startIndex, offsetBy:3)] - "A" + 10;
+   }
+   var day = -1;
+   if str[str.index(str.startIndex, offestBy:4)].isASCII && str[str.index(str.startIndex, offestBy:4)].isNumber {
+   day = str[str.index(str.startIndex, offestBy:4)] - Character("0").unicodeScalars.first!.value;
+   } else {
+   day = str[str.index(str.startIndex, offestBy:4)] - Character("A").unicodeScalars.first!.value + 10;
+   }
+   
+   self.year = year;
+   self.month = month;
+   self.day = day;
+   }
+   */
   func
   isValid() -> Bool
   {
@@ -106,10 +116,10 @@ public struct Time {
     if (hh < 24 && mm < 60 && 0.0 <= sec && sec < 61.0) {
       return true;
     }
-
+    
     return false;
   }
-
+  
 }
 
 public struct DateTime {
@@ -120,13 +130,13 @@ public struct DateTime {
   {
     return date.isValid() && time.isValid();
   }
-
+  
   init?(isoDate str: String)
   {
-//    var year:Int32 = 0, month:Int32 = 1, day:UInt8 = 1, hour:UInt8 = 0, minute:UInt8 = 0;
-//    var tz : Character = "\0"; var dummy: Character;
-//    var tz_h_offset:UInt8 = 0, tz_m_offset:UInt8 = 0;
-//    var secs: Double = 0.0;
+    //    var year:Int32 = 0, month:Int32 = 1, day:UInt8 = 1, hour:UInt8 = 0, minute:UInt8 = 0;
+    //    var tz : Character = "\0"; var dummy: Character;
+    //    var tz_h_offset:UInt8 = 0, tz_m_offset:UInt8 = 0;
+    //    var secs: Double = 0.0;
     var dateTimeComps: [String];
     if str.firstIndex(of: "T") !=  nil {
       dateTimeComps = str.components(separatedBy: "T")
@@ -155,11 +165,11 @@ public struct DateTime {
     guard let mmAsMonth = Month(rawValue: mm) else {
       return nil
     }
-
+    
     if (dd < 1) {
       return nil;
     }
-
+    
     if (isLeapYear(yyyy)) {
       if (dd > month_length_leap[Int(mmAsMonth.rawValue)-1]) {
         return nil;
@@ -169,9 +179,9 @@ public struct DateTime {
         return nil;
       }
     }
-
+    
     date = Date(year: yyyy, month: mmAsMonth, day: dd)
-
+    
     if dateTimeComps.count == 2 {
       // Parse time
       let timeComps = dateTimeComps[1].components(separatedBy: ":")
@@ -196,46 +206,46 @@ public struct DateTime {
       if secs >= 61 { // Leapseconds
         return nil
       }
-
+      
       time = Time(hh: hh, mm: mm, sec: secs)
     } else {
       time = Time(hh: 0, mm: 0, sec: 0)
     }
-
+    
 #if false
     
     if (i == 4) {
       var hhmm_bytes = 0, sec_bytes = 0;
-
+      
       var j = sscanf(str + iso_date_bytes, "%d:%d%n", &hour, &minute, &hhmm_bytes);
       j = sscanf(str + iso_date_bytes + hhmm_bytes, ":%lf%n", &secs, &sec_bytes);
-
+      
       j = sscanf(str + iso_date_bytes + hhmm_bytes + sec_bytes, "%c%d:%d",
-             &tz, &tz_h_offset, &tz_m_offset);
-
+                 &tz, &tz_h_offset, &tz_m_offset);
+      
     }
-
-
+    
+    
     if (tz == "+") {
       time.hh -= tz_h_offset;
       time.mm -= tz_m_offset;
     }
-
+    
     if (tz == "-") {
       time.hh += tz_h_offset;
       time.mm -= tz_m_offset;
     }
-
+    
     if (time.sec >= 60.0) {
       time.mm += UInt8(time.sec / 60.0);
       time.sec = fmod(time.sec, 60.0);
     }
-
+    
     if (time.mm >= 60) {
       time.hh += time.mm / 60;
       time.mm = time.mm % 60;
     }
-
+    
     if (time.hh >= 24) {
       date.day += time.hh / 24;
       time.hh = time.hh % 24;
@@ -279,7 +289,7 @@ func
 cm_ttToTdb(tt: Double)->Double
 {
   let g = cm_degToRad(357.53) + cm_degToRad(0.9856003) * ( tt - 2451545.0 );
-
+  
   return tt + (0.001658 * sin( g ) + 0.000014 * sin( 2*g ))/CM_SEC_PER_JD;
 }
 
