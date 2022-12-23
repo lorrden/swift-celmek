@@ -16,6 +16,22 @@
 // limitations under the License.
 //
 
+let DEGREES_PER_HOUR : Double = 15.0
+let SECONDS_PER_HOUR : Double = 3600.0
+let MINUTES_PER_HOUR : Double = 60.0
+let MINUTES_OF_ARC_PER_DEGREE : Double = 60.0
+let SECONDS_OF_ARC_PER_DEGREE : Double = 3600.0
+let DAYS_PER_JULIAN_CENTURY: Double = 36525.0
+let GREGORIAN_INTRODUCTION_YEAR: Int = 1583
+let MJD_JD_DIFFERENCE: Double = 2400000.5
+
+let EARTH_EQUATORIAL_RADIUS_KM: Double = 6378.14
+let EARTH_POLAR_RADIUS_KM: Double = 6356.755
+let EARTH_FLATTENING: Double = 1/298.257
+let EARTH_COMPRESSION: Double = 0.99664719
+let EARTH_ECCENTRICITY: Double = 0.08181922
+
+
 let CM_2PI : Double = 6.283185307179586476925287
 
 // See IAU2009 at http://maia.usno.navy.mil/NSFA/IAU2009_consts.html
