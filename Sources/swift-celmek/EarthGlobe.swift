@@ -60,37 +60,37 @@ func radiusOfCurvatureOfMeridian(geographicalLat: Double) -> Double {
 }
 
 func geodesicDistanceFast(p0: GeographicCoordinate, p1: GeographicCoordinate) -> Double {
-  let L1 = p0.longitude
-  let 𝜑1 = p0.latitude
+  let L₁ = p0.longitude
+  let 𝜑₁ = p0.latitude
   
-  let L2 = p1.longitude
-  let 𝜑2 = p1.latitude
+  let L₂ = p1.longitude
+  let 𝜑₂ = p1.latitude
 
-  let d = acos(sin(𝜑1) * sin(𝜑2) + cos(𝜑1) * cos(𝜑2) * cos(L1-L2))
+  let d = acos(sin(𝜑₁) * sin(𝜑₂) + cos(𝜑₁) * cos(𝜑₂) * cos(L₁-L₂))
   let s = 6371.0 * d
   return s
 }
 
 func geodesicDistance(p0: GeographicCoordinate, p1: GeographicCoordinate) -> Double {
-  let L1 = p0.longitude
-  let 𝜑1 = p0.latitude
+  let L₁ = p0.longitude
+  let 𝜑₁ = p0.latitude
   
-  let L2 = p1.longitude
-  let 𝜑2 = p1.latitude
+  let L₂ = p1.longitude
+  let 𝜑₂ = p1.latitude
 
-  let F = (𝜑1 + 𝜑2)/2
-  let G = (𝜑1 - 𝜑2)/2
-  let 𝜆 = (L1 - L2) / 2
+  let F = (𝜑₁ + 𝜑₂) / 2
+  let G = (𝜑₁ - 𝜑₂) / 2
+  let 𝜆 = (L₁ - L₂) / 2
   
-  let sin2G = sin(G)*sin(G)
-  let cos2𝜆 = cos(𝜆)*cos(𝜆)
-  let cos2F = cos(F)*cos(F)
-  let sin2𝜆 = sin(𝜆)*sin(𝜆)
-  let cos2G = cos(G)*cos(G)
-  let sin2F = sin(F)*sin(F)
+  let sin²G = sin(G) * sin(G)
+  let cos²𝜆 = cos(𝜆) * cos(𝜆)
+  let cos²F = cos(F) * cos(F)
+  let sin²𝜆 = sin(𝜆) * sin(𝜆)
+  let cos²G = cos(G) * cos(G)
+  let sin²F = sin(F) * sin(F)
 
-  let S = sin2G * cos2𝜆 + cos2F * sin2𝜆
-  let C = cos2G * cos2𝜆 + sin2F * sin2𝜆
+  let S = sin²G * cos²𝜆 + cos²F * sin²𝜆
+  let C = cos²G * cos²𝜆 + sin²F * sin²𝜆
   let tan𝜔 = sqrt(S/C)
   let 𝜔 = atan(tan𝜔)
   let R = sqrt(S*C)/𝜔
@@ -98,12 +98,11 @@ func geodesicDistance(p0: GeographicCoordinate, p1: GeographicCoordinate) -> Dou
   let a = EARTH_EQUATORIAL_RADIUS_KM
   
   let D = 2 * 𝜔 * a
-  let H1 = (3 * R - 1) / (2 * C)
-  let H2 = (3 * R + 1) / (2 * S)
+  let H₁ = (3 * R - 1) / (2 * C)
+  let H₂ = (3 * R + 1) / (2 * S)
   
   let f = EARTH_FLATTENING
 
-  let s = D * (1 + f * H1 * sin2F * cos2G - f * H2 * cos2F * sin2G)
+  let s = D * (1 + f * H₁ * sin²F * cos²G - f * H₂ * cos²F * sin²G)
   return s
 }
-
