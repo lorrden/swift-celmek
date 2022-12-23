@@ -21,17 +21,13 @@ import XCTest
 
 final class elp2000_82b_tests : XCTestCase {
   func testELP2000() {
-
+    
     let res = cm_elp2000_82b(2448724.5);
     
     XCTAssertEqual(res.x, cm_degToRad(133.162659), accuracy: 0.00000002)
     XCTAssertEqual(res.y, cm_degToRad(-3.229127), accuracy: 0.000000005)
     XCTAssertEqual(res.z, 368409.7e3, accuracy: 100.0)
   }
-
-  static var allTests = [
-    ("testELP2000", testELP2000),
-  ]
 }
 
 

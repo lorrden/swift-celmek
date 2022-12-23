@@ -138,7 +138,7 @@ final class vsop87_tests: XCTestCase {
     }
     
   }
-
+  
   func testVenus() {
     let testValues: [(Double,(Double,Double,Double), (Double,Double,Double))] = [
       (2451545.0,
@@ -256,7 +256,7 @@ final class vsop87_tests: XCTestCase {
     }
     
   }
-
+  
   func testMars() {
     let testValues: [(Double,(Double,Double,Double), (Double,Double,Double))] = [
       (2451545.0,
@@ -314,7 +314,7 @@ final class vsop87_tests: XCTestCase {
     }
     
   }
- 
+  
   func testJupiter() {
     let testValues: [(Double,(Double,Double,Double), (Double,Double,Double))] = [
       (2451545.0,
@@ -511,49 +511,35 @@ final class vsop87_tests: XCTestCase {
       (2268920.0,
        (11.1089045478, -28.0532332601, 0.3218555594),
        (0.0028983275,  0.0011726188,  -0.0000908352)),
-       
-       (2232395.0,
-        ( 8.0258639138,  28.7261896414,   -0.7760204278),
-        (-0.0030424860,  0.0008636876,  0.0000522034)),
-       
-       (2195870.0,
-        (-24.6233894507, -17.6544160439, 0.9297188987),
-        (0.0018093571,  -0.0025335175,  0.0000105589)),
-       
-       (2159345.0,
-        (29.8297729719,  -2.0298541972,   -0.6440952021),
-        (0.0001916960,  0.0031491386,  -0.0000692459)),
-       
-       (2122820.0,
-        (-22.7959876638,  19.5945850298, 0.1205430330),
-        (-0.0020656054,  -0.0023624426,  0.0000961274))
-      ];
-        
-      for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-        let ((x,y,z), (vx,vy,vz), jd) = neptune.pos_at_jd(jd: ejd)
-        XCTAssertEqual(x, ex, accuracy: 0.0000000001);
-        XCTAssertEqual(y, ey, accuracy: 0.0000000001);
-        XCTAssertEqual(z, ez, accuracy: 0.0000000001);
-        XCTAssertEqual(vx,evx, accuracy: 0.0000001);
-        XCTAssertEqual(vy,evy, accuracy: 0.0000001)
-        XCTAssertEqual(vz,evz, accuracy: 0.0000001);
-        XCTAssertEqual(jd,ejd)
-        
-      }
+      
+      (2232395.0,
+       ( 8.0258639138,  28.7261896414,   -0.7760204278),
+       (-0.0030424860,  0.0008636876,  0.0000522034)),
+      
+      (2195870.0,
+       (-24.6233894507, -17.6544160439, 0.9297188987),
+       (0.0018093571,  -0.0025335175,  0.0000105589)),
+      
+      (2159345.0,
+       (29.8297729719,  -2.0298541972,   -0.6440952021),
+       (0.0001916960,  0.0031491386,  -0.0000692459)),
+      
+      (2122820.0,
+       (-22.7959876638,  19.5945850298, 0.1205430330),
+       (-0.0020656054,  -0.0023624426,  0.0000961274))
+    ];
     
+    for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
+      let ((x,y,z), (vx,vy,vz), jd) = neptune.pos_at_jd(jd: ejd)
+      XCTAssertEqual(x, ex, accuracy: 0.0000000001);
+      XCTAssertEqual(y, ey, accuracy: 0.0000000001);
+      XCTAssertEqual(z, ez, accuracy: 0.0000000001);
+      XCTAssertEqual(vx,evx, accuracy: 0.0000001);
+      XCTAssertEqual(vy,evy, accuracy: 0.0000001)
+      XCTAssertEqual(vz,evz, accuracy: 0.0000001);
+      XCTAssertEqual(jd,ejd)
+      
     }
-  
-  static var allTests = [
-    ("testSun", testSun),
-    ("testMercury", testMercury),
-    ("testVenus", testVenus),
-    ("testEarth", testEarth),
-    ("testMars", testMars),
-    ("testJupiter", testJupiter),
-    ("testSaturn", testSaturn),
-    ("testUranus", testUranus),
-    ("testEarth", testNeptune),
-  ]
+    
+  }
 }
-
-

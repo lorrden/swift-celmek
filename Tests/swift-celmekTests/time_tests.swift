@@ -26,7 +26,7 @@ final class time_tests: XCTestCase {
     XCTAssertEqual(dt0!.date.year, 2020)
     XCTAssertEqual(dt0!.date.month, Month.December)
     XCTAssertEqual(dt0!.date.day, 12)
-
+    
     let dt1 = DateTime(isoDate: "2020-0-12")
     XCTAssertNil(dt1)
     
@@ -39,11 +39,6 @@ final class time_tests: XCTestCase {
     XCTAssertFalse(isLeapYear(2001))
     XCTAssertFalse(isLeapYear(1999))
   }
-
-  static var allTests = [
-    ("testDateTime", testDateTime),
-    ("testIsLeap", testIsLeap),
-  ]
 }
 
 

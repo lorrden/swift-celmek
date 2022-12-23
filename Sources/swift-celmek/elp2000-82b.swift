@@ -207,8 +207,8 @@ fileprivate func
 cm_elp2000_82b_Lprime(_ T: Double) -> Double
 {
   let Lp: Double = ELP_218_3164591_RAD + ELP_481267_88134236_RAD * T -
-    ELP_0_0013268_RAD * T * T + T * T * T * ELP_RCP_538841_0_RAD -
-    T * T * T * T * ELP_RCP_65194000_0_RAD;
+  ELP_0_0013268_RAD * T * T + T * T * T * ELP_RCP_538841_0_RAD -
+  T * T * T * T * ELP_RCP_65194000_0_RAD;
   return clamp_degs(Lp);
 }
 
@@ -222,8 +222,8 @@ fileprivate func
 cm_elp2000_82b_D(_ T: Double) -> Double
 {
   let D : Double = ELP_297_8502042_RAD + ELP_445267_1115168_RAD * T -
-    ELP_0_0016300_RAD * T * T + T * T * T * ELP_RCP_545868_0_RAD -
-    T * T * T * T * ELP_RCP_113065000_0_RAD;
+  ELP_0_0016300_RAD * T * T + T * T * T * ELP_RCP_545868_0_RAD -
+  T * T * T * T * ELP_RCP_113065000_0_RAD;
   return clamp_degs(D);
 }
 
@@ -236,7 +236,7 @@ fileprivate func
 cm_elp2000_82b_M(_ T: Double) -> Double
 {
   let M: Double = ELP_357_5291092_RAD + ELP_35999_0502909_RAD * T -
-    ELP_0_0001536_RAD * T * T + T * T * T * ELP_RCP_24490000_0_RAD;
+  ELP_0_0001536_RAD * T * T + T * T * T * ELP_RCP_24490000_0_RAD;
   return clamp_degs(M);
 }
 
@@ -250,8 +250,8 @@ fileprivate func
 cm_elp2000_82b_Mprime(_ T: Double) -> Double
 {
   let Mp: Double = ELP_134_9634114_RAD + ELP_477198_8676313_RAD * T +
-    ELP_0_0089970_RAD * T * T + T * T * T * ELP_RCP_69699_0_RAD -
-    T * T * T * T * ELP_RCP_14712000_0_RAD;
+  ELP_0_0089970_RAD * T * T + T * T * T * ELP_RCP_69699_0_RAD -
+  T * T * T * T * ELP_RCP_14712000_0_RAD;
   return clamp_degs(Mp);
 }
 
@@ -265,8 +265,8 @@ fileprivate func
 cm_elp2000_82b_F(_ T: Double) -> Double
 {
   let F: Double = ELP_93_2720993_RAD + ELP_483202_0175273_RAD * T -
-    ELP_0_0034029_RAD * T * T - T * T * T * ELP_RCP_3526000_0_RAD +
-    T * T * T * T * ELP_RCP_863310000_0_RAD;
+  ELP_0_0034029_RAD * T * T - T * T * T * ELP_RCP_3526000_0_RAD +
+  T * T * T * T * ELP_RCP_863310000_0_RAD;
   return clamp_degs(F);
 }
 

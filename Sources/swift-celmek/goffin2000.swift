@@ -104,26 +104,26 @@ goffin2000(_ jde: Double) -> SIMD3<Double>
   let J =  PLUTO_34_35_RAD + PLUTO_3034_9057_RAD * T;
   let S =  PLUTO_50_08_RAD + PLUTO_1222_1138_RAD * T;
   let P =  PLUTO_238_96_RAD +  PLUTO_144_9600_RAD * T;
-
+  
   var longitude = 0.0, latitude = 0.0, rad = 0.0;
-
+  
   for term in terms {
     let arg = term.j * J + term.s * S + term.p * P;
-
+    
     longitude += term.long_a * sin(arg) + term.long_b * cos(arg);
     latitude += term.lat_a * sin(arg) + term.lat_b * cos(arg);
     rad += term.rad_a * sin(arg) + term.rad_b * cos(arg);
   }
-
+  
   longitude += PLUTO_238_956785_RAD + PLUTO_144_96_RAD * T;
   latitude -= PLUTO_3_908202_RAD;
   rad += 40.7247248;
-
+  
   // We now have heliocentric equatorial coordinates for J2000
   // We need to convert these to rectangular coordinates. One problem is that
   // This method results in heliocentric coordinates, these need to be
   // translated by the sun
-
+  
   // TODO: To barycentric
   return SIMD3<Double>(longitude, latitude, rad);
 }

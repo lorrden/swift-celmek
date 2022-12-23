@@ -21,17 +21,13 @@ import XCTest
 
 final class goffin2000_tests : XCTestCase {
   func testGoffin2000() {
-
+    
     let res = goffin2000(2448908.5);
     
     XCTAssertEqual(res.x, cm_degToRad(232.74009), accuracy:  0.0000005);
     XCTAssertEqual(res.y, cm_degToRad(14.58769), accuracy:  0.0000005);
     XCTAssertEqual(res.z, 29.711383, accuracy: 0.000001);
   }
-
-  static var allTests = [
-    ("testGoffin2000", testGoffin2000),
-  ]
 }
 
 
