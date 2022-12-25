@@ -106,8 +106,35 @@ extension RightAscension {
 @frozen
 public struct GeographicCoordinate {
   var latitude: Double
-  var longitude: Double
+  var longitude: Double // Positive in westward direction
 }
+
+@frozen
+public struct HorizontalCoordinate {
+  var altitude: Double
+  var azimuth: Double // From south, westward
+}
+
+
+@frozen
+public struct EquatorialCoordinate {
+  var rightAscension: Double
+  var declination: Double
+}
+
+
+@frozen
+public struct EclipticCoordinate {
+  var latitude: Double
+  var longitude: Double // From vernal equinox
+}
+
+@frozen
+public struct GalacticCoordinate {
+  var latitude: Double
+  var longitude: Double // From vernal equinox
+}
+
 
 struct AngleOfArc {
   var degrees: Double
