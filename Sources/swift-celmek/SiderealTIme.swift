@@ -18,6 +18,15 @@
 
 import Foundation
 
+func normalize(radians: Double) -> Double {
+  let tmp = radians.remainder(dividingBy: 2.0 * .pi)
+  if tmp < 0.0 {
+    return tmp + 2.0 * .pi
+  }
+  return tmp
+}
+
+
 func normalize(degrees: Double) -> Double {
   let tmp = degrees.remainder(dividingBy: 360.0)
   if tmp < 0.0 {
@@ -52,12 +61,12 @@ func normalize(hours: Int) -> Int {
 
 
 
-func meanSideralTimeUT0(jd: Double) -> RightAscension {
+func meanSideralTimeUT0(jd: Double) -> HourAngle {
   let jd_ = floor(jd) + 0.5
   let T =  (jd_ - 2451545) / 36525
-  let ra0 = RightAscension(hours: 6, minutes: 41, seconds: 50.54841)
+  let ra0 = HourAngle(hours: 6, minutes: 41, seconds: 50.54841)
   
-  let ra1 = RightAscension(seconds: 8640184.812866 * T + 0.093104 * T * T - 0.0000062 * T * T * T)
+  let ra1 = HourAngle(seconds: 8640184.812866 * T + 0.093104 * T * T - 0.0000062 * T * T * T)
 
   let result = ra0 + ra1
   return result

@@ -97,12 +97,12 @@ extension GalacticCoordinate {
     let 𝛿 = equatorial.declination
     let 𝛿₁₉₅₀ = B1950_DECLINATION_NORTH_POLE
 
-    let x = atan2(sin(𝛼₁₉₅₀ - 𝛼), (cos(𝛼₁₉₅₀ - 𝛼) * sin(𝛿₁₉₅₀) - tan(𝛿) * cos(𝛿₁₉₅₀)))
+    let x = atan2(sin(𝛼₁₉₅₀ - 𝛼), cos(𝛼₁₉₅₀ - 𝛼) * sin(𝛿₁₉₅₀) - tan(𝛿) * cos(𝛿₁₉₅₀))
     let l = 303.0.toRad() - x
     let sinb = sin(𝛿) * sin(𝛿₁₉₅₀) + cos(𝛿) * cos(𝛿₁₉₅₀) * cos(𝛼₁₉₅₀ - 𝛼)
     let b = asin(sinb)
 
-    self.longitude = l
+    self.longitude = normalize(radians: l)
     self.latitude = b
   }
 }

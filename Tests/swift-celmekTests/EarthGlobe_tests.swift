@@ -53,24 +53,24 @@ final class EarthGlobe_tests : XCTestCase {
   
   func testGeodesicDistanceFast() {
     let paris = GeographicCoordinate(
-      latitude: AngleOfArc(degrees: 48.0, minutes: 50, seconds: 11).toRad(),
-      longitude: AngleOfArc(degrees: -2.0, minutes: 20, seconds: 14).toRad())
+      latitude: AngleOfArc(degrees: 48, minutes: 50, seconds: 11).toRad(),
+      longitude: AngleOfArc(degrees: -2, minutes: 20, seconds: 14).toRad())
     
     let washington = GeographicCoordinate(
-      latitude: AngleOfArc(degrees: 38.0, minutes: 55, seconds: 17).toRad(),
-      longitude: AngleOfArc(degrees: 77.0, minutes: 3, seconds: 56).toRad())
+      latitude: AngleOfArc(degrees: 38, minutes: 55, seconds: 17).toRad(),
+      longitude: AngleOfArc(degrees: 77, minutes: 3, seconds: 56).toRad())
     let s = geodesicDistanceFast(p0: paris, p1: washington)
     XCTAssertEqual(s, 6166, accuracy: 0.5)
   }
 
   func testGeodesicDistance() {
     let paris = GeographicCoordinate(
-      latitude: AngleOfArc(degrees: 48.0, minutes: 50, seconds: 11).toRad(),
-      longitude: AngleOfArc(degrees: -2.0, minutes: 20, seconds: 14).toRad())
+      latitude: AngleOfArc(degrees: 48, minutes: 50, seconds: 11).toRad(),
+      longitude: AngleOfArc(degrees: -2, minutes: 20, seconds: 14).toRad())
     
     let washington = GeographicCoordinate(
-      latitude: AngleOfArc(degrees: 38.0, minutes: 55, seconds: 17).toRad(),
-      longitude: AngleOfArc(degrees: 77.0, minutes: 3, seconds: 56).toRad())
+      latitude: AngleOfArc(degrees: 38, minutes: 55, seconds: 17).toRad(),
+      longitude: AngleOfArc(degrees: 77, minutes: 3, seconds: 56).toRad())
     let s = geodesicDistance(p0: paris, p1: washington)
     XCTAssertEqual(s, 6181.63, accuracy: 0.005)
   }

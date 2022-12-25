@@ -49,14 +49,14 @@ func normalize(secondsInDay: Double) -> Double {
 }
 
 
-struct RightAscension {
+struct HourAngle {
   var hours: Int
   var minutes: Int
   var seconds: Double
 }
 
 
-extension RightAscension {
+extension HourAngle {
   init(seconds: Double) {
     let tmpSeconds = normalize(secondsInDay: seconds)
     self.seconds = tmpSeconds
@@ -76,15 +76,15 @@ extension RightAscension {
     seconds = s
   }
 
-  static func +(lhs: RightAscension, rhs: RightAscension) -> RightAscension {
-    var ra = RightAscension(hours: lhs.hours + rhs.hours, minutes: lhs.minutes + rhs.minutes, seconds: lhs.seconds + rhs.seconds)
+  static func +(lhs: HourAngle, rhs: HourAngle) -> HourAngle {
+    var ha = HourAngle(hours: lhs.hours + rhs.hours, minutes: lhs.minutes + rhs.minutes, seconds: lhs.seconds + rhs.seconds)
     
-    ra.minutes += Int(ra.seconds / 60)
-    ra.seconds = normalize(seconds: ra.seconds)
-    ra.hours += Int(ra.minutes / 60)
-    ra.minutes = normalize(minutes: ra.minutes)
-    ra.hours = normalize(hours: ra.hours)
-    return ra
+    ha.minutes += Int(ha.seconds / 60)
+    ha.seconds = normalize(seconds: ha.seconds)
+    ha.hours += Int(ha.minutes / 60)
+    ha.minutes = normalize(minutes: ha.minutes)
+    ha.hours = normalize(hours: ha.hours)
+    return ha
   }
 
   
@@ -137,20 +137,21 @@ public struct GalacticCoordinate {
 
 
 struct AngleOfArc {
-  var degrees: Double
-  var minutes: Double
+  var degrees: Int
+  var minutes: Int
   var seconds: Double
 }
+
 extension AngleOfArc {
   func toDeg() -> Double {
-    let totalDegrees = self.degrees.magnitude + self.minutes / MINUTES_OF_ARC_PER_DEGREE + self.seconds / SECONDS_OF_ARC_PER_DEGREE
-    if self.degrees.sign == .plus {
+    let totalDegrees = Double(abs(self.degrees)) + Double(self.minutes) / MINUTES_OF_ARC_PER_DEGREE + self.seconds / SECONDS_OF_ARC_PER_DEGREE
+    if self.degrees >= 0 {
       return totalDegrees
     } else {
       return -totalDegrees
     }
   }
-  
+
   func toRad() -> Double {
     return toDeg().toRad()
   }

@@ -41,6 +41,18 @@ final class TransformationOfCoordinates_tests : XCTestCase {
     XCTAssertEqual(eq.declination, 28.026183.toRad(), accuracy: 0.00000005)
   }
 
-  
+  func testGalacticFromEquatorial() {
+    // Meeus, p 96 exercise
+    let eq = EquatorialCoordinate(
+      rightAscension: HourAngle(hours: 17, minutes: 48, seconds: 59.74).toRad(),
+      declination: AngleOfArc(degrees: -14, minutes: 43, seconds: 8.2).toRad())
+    let gal = GalacticCoordinate(equatorial: eq)
+    
+    
+    XCTAssertEqual(gal.latitude, 6.0463.toRad(), accuracy: 0.00005)
+    XCTAssertEqual(gal.longitude, 12.9593.toRad(), accuracy: 0.00005)
+  }
+
+
 }
 

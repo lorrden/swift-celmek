@@ -39,15 +39,21 @@ final class math_tests : XCTestCase {
     XCTAssertEqual(1.0.hoursToDeg(), 15.0);
   }
   
-  func testRightAscensionToDeg() {
+  func testHourAngleToDeg() {
     // Meeus, Astronomical Algorithms 2nd edition, Example 1.a
-    let ra = RightAscension(hours: 9, minutes: 14, seconds: 55.8)
+    let ra = HourAngle(hours: 9, minutes: 14, seconds: 55.8)
     XCTAssertEqual(ra.toDeg(), 138.73250, accuracy: 0.000005);
   }
   
-  func testRightAscensionToRad() {
-    let ra = RightAscension(hours: 9, minutes: 14, seconds: 55.8)
+  func testHourAngleToRad() {
+    let ra = HourAngle(hours: 9, minutes: 14, seconds: 55.8)
     XCTAssertEqual(ra.toRad(), 2.4213389045, accuracy: 1.0e-6);
+  }
+  
+  func testAngleOfArcToDeg() {
+    let angle = AngleOfArc(degrees: -14, minutes: 43, seconds: 8.2)
+    XCTAssertEqual(angle.toDeg(), -14.718944, accuracy: 0.0000005)
+
   }
 }
 
