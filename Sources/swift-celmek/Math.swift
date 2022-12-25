@@ -15,6 +15,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+import Foundation
 
 func cm_degToRad(_ deg: Double) -> Double {
   return deg * .pi / 180.0
@@ -39,16 +40,58 @@ extension Double {
   }
 }
 
+func normalize(secondsInDay: Double) -> Double {
+  let tmp = secondsInDay.remainder(dividingBy: 3600*24)
+  if tmp < 0 {
+    return tmp + 3600*24
+  }
+  return tmp
+}
+
+
 struct RightAscension {
-  var hours: Double
-  var minutes: Double
+  var hours: Int
+  var minutes: Int
   var seconds: Double
 }
-extension RightAscension {
-  func toDeg() -> Double {
-    let totalHours = self.hours.magnitude + self.minutes / MINUTES_PER_HOUR + self.seconds / SECONDS_PER_HOUR
 
-    if self.hours.sign == .plus {
+
+extension RightAscension {
+  init(seconds: Double) {
+    let tmpSeconds = normalize(secondsInDay: seconds)
+    self.seconds = tmpSeconds
+    self.minutes = Int(tmpSeconds / 60)
+    self.hours = self.minutes / 60
+    self.minutes = normalize(minutes: self.minutes)
+    self.seconds = normalize(seconds: self.seconds)
+  }
+  
+  init(degrees: Double) {
+    let h = degrees / DEGREES_PER_HOUR
+    let m = modf(h).1 * 60.0
+    let s = modf(m).1 * 60.0
+
+    hours = Int(h)
+    minutes = Int(m)
+    seconds = s
+  }
+
+  static func +(lhs: RightAscension, rhs: RightAscension) -> RightAscension {
+    var ra = RightAscension(hours: lhs.hours + rhs.hours, minutes: lhs.minutes + rhs.minutes, seconds: lhs.seconds + rhs.seconds)
+    
+    ra.minutes += Int(ra.seconds / 60)
+    ra.seconds = normalize(seconds: ra.seconds)
+    ra.hours += Int(ra.minutes / 60)
+    ra.minutes = normalize(minutes: ra.minutes)
+    ra.hours = normalize(hours: ra.hours)
+    return ra
+  }
+
+  
+  func toDeg() -> Double {
+    let totalHours = Double(abs(self.hours)) + Double(self.minutes) / MINUTES_PER_HOUR + self.seconds / SECONDS_PER_HOUR
+
+    if self.hours >= 0 {
       return totalHours.hoursToDeg()
     } else {
       return -totalHours.hoursToDeg()
