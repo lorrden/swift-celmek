@@ -180,3 +180,9 @@ extension Double {
   }
 }
 
+func jd0(year: Int) -> Double {
+  let Y = Double(year - 1)
+  let A = floor(Y/100)
+  let JD0 = floor(365.25 * Y) - A + floor(A/4) + 1721424.5
+  return JD0
+}

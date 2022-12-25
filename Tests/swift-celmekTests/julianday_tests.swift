@@ -117,5 +117,11 @@ final class jd_tests : XCTestCase {
     XCTAssertEqual(date.years(), 1999.1, accuracy: 0.01)
   }
 
+  func testJD0() {
+    let jd0_1999 = jd0(year: 1999)
+    let greg0_1999 = GregorianDate(year: 1999, month: .January, day: 0.0)
+    let jd0_expect = greg0_1999.toJD()
+    XCTAssertEqual(jd0_1999, jd0_expect)
+  }
 }
 
