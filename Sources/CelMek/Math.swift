@@ -22,6 +22,15 @@ func cm_radToDeg(_ rad: Double) -> Double {
 }
 
 extension Double {
+  var mdeg: Double {
+    return self / 1000.0 * (.pi / 180.0)
+  }
+  var udeg: Double {
+    return self.µdeg
+  }
+  var µdeg: Double {
+    return self / 1000_000.0 * (.pi / 180.0)
+  }
   var deg: Double {
     return self * (.pi / 180.0)
   }
