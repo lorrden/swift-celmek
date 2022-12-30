@@ -17,7 +17,7 @@
 //
 
 import XCTest
-@testable import swift_celmek;
+@testable import CelMek;
 
 final class TransformationOfCoordinates_tests : XCTestCase {
   func testEclipticalFromEquatorial() {
@@ -41,6 +41,7 @@ final class TransformationOfCoordinates_tests : XCTestCase {
     XCTAssertEqual(eq.declination, 28.026183.toRad(), accuracy: 0.00000005)
   }
 
+  // TODO: Add example 13.b when nutations have been implemented
   func testGalacticFromEquatorial() {
     // Meeus, p 96 exercise
     let eq = EquatorialCoordinate(

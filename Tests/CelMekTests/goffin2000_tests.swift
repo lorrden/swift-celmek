@@ -17,27 +17,16 @@
 //
 
 import XCTest
-@testable import swift_celmek;
+@testable import CelMek;
 
-final class time_tests: XCTestCase {
-  func testDateTime() {
-    let dt0 = DateTime(isoDate: "2020-12-12")
-    XCTAssertNotNil(dt0)
-    XCTAssertEqual(dt0!.date.year, 2020)
-    XCTAssertEqual(dt0!.date.month, Month.December)
-    XCTAssertEqual(dt0!.date.day, 12)
+final class goffin2000_tests : XCTestCase {
+  func testGoffin2000() {
     
-    let dt1 = DateTime(isoDate: "2020-0-12")
-    XCTAssertNil(dt1)
+    let res = goffin2000(2448908.5);
     
-  }
-  func testIsLeap() {
-    XCTAssertTrue(isLeapYear(2000))
-    XCTAssertTrue(isLeapYear(1996))
-    XCTAssertTrue(isLeapYear(2004))
-    XCTAssertFalse(isLeapYear(1900))
-    XCTAssertFalse(isLeapYear(2001))
-    XCTAssertFalse(isLeapYear(1999))
+    XCTAssertEqual(res.x, cm_degToRad(232.74009), accuracy:  0.0000005);
+    XCTAssertEqual(res.y, cm_degToRad(14.58769), accuracy:  0.0000005);
+    XCTAssertEqual(res.z, 29.711383, accuracy: 0.000001);
   }
 }
 

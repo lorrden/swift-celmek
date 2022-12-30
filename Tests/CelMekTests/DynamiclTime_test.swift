@@ -17,19 +17,25 @@
 //
 
 import XCTest
-@testable import swift_celmek;
+@testable import CelMek;
 
-final class elp2000_82b_tests : XCTestCase {
-  func testELP2000() {
-    
-    let res = cm_elp2000_82b(2448724.5);
-    
-    XCTAssertEqual(res.x, cm_degToRad(133.162659), accuracy: 0.00000002)
-    XCTAssertEqual(res.y, cm_degToRad(-3.229127), accuracy: 0.000000005)
-    XCTAssertEqual(res.z, 368409.7e3, accuracy: 100.0)
+final class DynamicalTime_tests : XCTestCase {
+  func testDynamicalTime() {
+    // Meeus, p 78
+    let date0 = GregorianDate(year: 1990, month: .January, day: 27)
+    let dt0 = deltaT(year: date0.years())
+    XCTAssertEqual(dt0, 57, accuracy: 0.1)
+
+
+    // Meeus, example 10.a
+    let date1 = GregorianDate(year: 1977, month: .February, day: 18)
+    let dt1 = deltaT(year: date1.years())
+    XCTAssertEqual(dt1, 48, accuracy: 0.4)
+
+
+    // Meeus, example 10.b
+    let date2 = JulianDate(year: 333, month: .February, day: 6.3333333333)
+    let dt2 = deltaT(year: date2.years())
+    XCTAssertEqual(dt2, 6146, accuracy: 0.1)
   }
 }
-
-
-
-

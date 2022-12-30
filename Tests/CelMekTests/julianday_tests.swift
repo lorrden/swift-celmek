@@ -17,7 +17,7 @@
 //
 
 import XCTest
-@testable import swift_celmek;
+@testable import CelMek;
 
 final class jd_tests : XCTestCase {
   func testGregorianToJD() {

@@ -17,7 +17,7 @@
 //
 
 import XCTest
-@testable import swift_celmek;
+@testable import CelMek;
 
 final class vsop87_tests: XCTestCase {
   func testSun() {

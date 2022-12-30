@@ -17,17 +17,19 @@
 //
 
 import XCTest
-@testable import swift_celmek;
+@testable import CelMek;
 
-final class goffin2000_tests : XCTestCase {
-  func testGoffin2000() {
+final class elp2000_82b_tests : XCTestCase {
+  func testELP2000() {
     
-    let res = goffin2000(2448908.5);
+    let res = cm_elp2000_82b(2448724.5);
     
-    XCTAssertEqual(res.x, cm_degToRad(232.74009), accuracy:  0.0000005);
-    XCTAssertEqual(res.y, cm_degToRad(14.58769), accuracy:  0.0000005);
-    XCTAssertEqual(res.z, 29.711383, accuracy: 0.000001);
+    XCTAssertEqual(res.x, cm_degToRad(133.162659), accuracy: 0.00000002)
+    XCTAssertEqual(res.y, cm_degToRad(-3.229127), accuracy: 0.000000005)
+    XCTAssertEqual(res.z, 368409.7e3, accuracy: 100.0)
   }
 }
+
+
 
 

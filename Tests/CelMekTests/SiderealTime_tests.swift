@@ -17,7 +17,7 @@
 //
 
 import XCTest
-@testable import swift_celmek;
+@testable import CelMek;
 
 final class SiderealTime_tests : XCTestCase {
   func testSiderealTimeUT0() {

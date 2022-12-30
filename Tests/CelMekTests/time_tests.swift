@@ -17,25 +17,28 @@
 //
 
 import XCTest
-@testable import swift_celmek;
+@testable import CelMek;
 
-final class DynamicalTime_tests : XCTestCase {
-  func testDynamicalTime() {
-    // Meeus, p 78
-    let date0 = GregorianDate(year: 1990, month: .January, day: 27)
-    let dt0 = deltaT(year: date0.years())
-    XCTAssertEqual(dt0, 57, accuracy: 0.1)
-
-
-    // Meeus, example 10.a
-    let date1 = GregorianDate(year: 1977, month: .February, day: 18)
-    let dt1 = deltaT(year: date1.years())
-    XCTAssertEqual(dt1, 48, accuracy: 0.4)
-
-
-    // Meeus, example 10.b
-    let date2 = JulianDate(year: 333, month: .February, day: 6.3333333333)
-    let dt2 = deltaT(year: date2.years())
-    XCTAssertEqual(dt2, 6146, accuracy: 0.1)
+final class time_tests: XCTestCase {
+  func testDateTime() {
+    let dt0 = DateTime(isoDate: "2020-12-12")
+    XCTAssertNotNil(dt0)
+    XCTAssertEqual(dt0!.date.year, 2020)
+    XCTAssertEqual(dt0!.date.month, Month.December)
+    XCTAssertEqual(dt0!.date.day, 12)
+    
+    let dt1 = DateTime(isoDate: "2020-0-12")
+    XCTAssertNil(dt1)
+    
+  }
+  func testIsLeap() {
+    XCTAssertTrue(isLeapYear(2000))
+    XCTAssertTrue(isLeapYear(1996))
+    XCTAssertTrue(isLeapYear(2004))
+    XCTAssertFalse(isLeapYear(1900))
+    XCTAssertFalse(isLeapYear(2001))
+    XCTAssertFalse(isLeapYear(1999))
   }
 }
+
+

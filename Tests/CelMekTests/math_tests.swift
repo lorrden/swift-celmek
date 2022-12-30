@@ -17,7 +17,7 @@
 //
 
 import XCTest
-@testable import swift_celmek;
+@testable import CelMek;
 
 final class math_tests : XCTestCase {
   func testRadToDeg() {
@@ -46,6 +46,7 @@ final class math_tests : XCTestCase {
   }
   
   func testHourAngleToRad() {
+    // Meeus, p8 Example 1.a
     let ra = HourAngle(hours: 9, minutes: 14, seconds: 55.8)
     XCTAssertEqual(ra.toRad(), 2.4213389045, accuracy: 1.0e-6);
   }
