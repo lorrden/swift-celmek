@@ -137,14 +137,9 @@ extension JulianDate {
 }
 
 extension Double {
-  func toMJD() -> Double {
-    return self - MJD_JD_DIFFERENCE
-  }
-  func toJD() -> Double {
-    return self + MJD_JD_DIFFERENCE
-  }
+  var asMJD : Double { return self - MJD_JD_DIFFERENCE }
+  var asJD : Double { return self + MJD_JD_DIFFERENCE }
 }
-
 
 extension Double {
   func toGregorian() -> GregorianDate {
@@ -170,7 +165,7 @@ extension Double {
 }
 
 extension Double {
-  func weekday() -> Weekday {
+  var weekday: Weekday {
     // Meeus, p65
     // Flooring and adding 0.5 to ensure we handle all JDs, not only those starting at 0h
     // Remember that JD starts at noon, so 0.5 is midnight.

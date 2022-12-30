@@ -22,7 +22,7 @@ import XCTest
 final class EarthGlobe_tests : XCTestCase {
   func testPComp() {
     // Meeus, example 11.a
-    let (psin, pcos) = pcomp(H: 1706, geographicLat: 33.356111.toRad())
+    let (psin, pcos) = pcomp(H: 1706, geographicLat: 33.356111.deg)
     XCTAssertEqual(psin, 0.546861, accuracy: 0.0000005)
     XCTAssertEqual(pcos, 0.836339, accuracy: 0.0000005)
   }
@@ -31,11 +31,11 @@ final class EarthGlobe_tests : XCTestCase {
     // Meeus, p84
     let eqRad = radiusOfCurvatureOfMeridian(geographicalLat: 0.0)
     XCTAssertEqual(eqRad, 6335.44, accuracy: 0.005)
-    let polRad = radiusOfCurvatureOfMeridian(geographicalLat: 90.0.toRad())
+    let polRad = radiusOfCurvatureOfMeridian(geographicalLat: 90.0.deg)
     XCTAssertEqual(polRad, 6399.60, accuracy: 0.005)
     
     // Meeus, example 11.b
-    let chicagoRad = radiusOfCurvatureOfMeridian(geographicalLat: 42.0.toRad())
+    let chicagoRad = radiusOfCurvatureOfMeridian(geographicalLat: 42.0.deg)
     XCTAssertEqual(chicagoRad, 6364.033, accuracy: 0.0005)
   }
   
@@ -43,11 +43,11 @@ final class EarthGlobe_tests : XCTestCase {
     // Meeus, p84
     let eqRad = parallelOfLatitudeRadius(geographicalLat: 0.0)
     XCTAssertEqual(eqRad, EARTH_EQUATORIAL_RADIUS_KM, accuracy: 0.000005)
-    let polRad = parallelOfLatitudeRadius(geographicalLat: 90.0.toRad())
+    let polRad = parallelOfLatitudeRadius(geographicalLat: 90.0.deg)
     XCTAssertEqual(polRad, 0.0, accuracy: 0.00001)
     
     // Meeus, example 11.b
-    let chicagoRad = parallelOfLatitudeRadius(geographicalLat: 42.0.toRad())
+    let chicagoRad = parallelOfLatitudeRadius(geographicalLat: 42.0.deg)
     XCTAssertEqual(chicagoRad, 4747.001, accuracy: 0.0005)
   }
   

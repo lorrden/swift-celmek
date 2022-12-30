@@ -288,7 +288,7 @@ cm_tdbToTcb(tdb: Double) -> Double
 func
 cm_ttToTdb(tt: Double)->Double
 {
-  let g = cm_degToRad(357.53) + cm_degToRad(0.9856003) * ( tt - 2451545.0 );
+  let g = 357.53.deg + 0.9856003.deg * ( tt - 2451545.0 );
   
   return tt + (0.001658 * sin( g ) + 0.000014 * sin( 2*g ))/CM_SEC_PER_JD;
 }

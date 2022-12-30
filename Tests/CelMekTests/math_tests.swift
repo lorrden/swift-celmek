@@ -21,22 +21,22 @@ import XCTest
 
 final class math_tests : XCTestCase {
   func testRadToDeg() {
-    XCTAssertEqual(0.0.toDeg(), 0.0);
-    XCTAssertEqual(1.0.toDeg(), 57.2958, accuracy:  0.00005);
+    XCTAssertEqual(0.0.asDeg, 0.0);
+    XCTAssertEqual(1.0.asDeg, 57.2958, accuracy:  0.00005);
   }
   
   func testDegToRad() {
-    XCTAssertEqual(0.0.toRad(), 0.0);
-    XCTAssertEqual(1.0.toRad(), 0.0174533, accuracy:  0.00000005);
+    XCTAssertEqual(0.0.deg, 0.0);
+    XCTAssertEqual(1.0.deg, 0.0174533, accuracy:  0.00000005);
   }
   
   func testDegToHours() {
-    XCTAssertEqual(0.0.degToHours(), 0.0);
-    XCTAssertEqual(15.0.degToHours(), 1.0);
+    XCTAssertEqual(0.0.degAsHours, 0.0);
+    XCTAssertEqual(15.0.degAsHours, 1.0);
   }
   func testHoursToDeg() {
-    XCTAssertEqual(0.0.hoursToDeg(), 0.0);
-    XCTAssertEqual(1.0.hoursToDeg(), 15.0);
+    XCTAssertEqual(0.0.hoursAsDeg, 0.0);
+    XCTAssertEqual(1.0.hoursAsDeg, 15.0);
   }
   
   func testHourAngleToDeg() {

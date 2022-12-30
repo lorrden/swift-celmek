@@ -98,7 +98,7 @@ extension GalacticCoordinate {
     let 𝛿₁₉₅₀ = B1950_DECLINATION_NORTH_POLE
 
     let x = atan2(sin(𝛼₁₉₅₀ - 𝛼), cos(𝛼₁₉₅₀ - 𝛼) * sin(𝛿₁₉₅₀) - tan(𝛿) * cos(𝛿₁₉₅₀))
-    let l = 303.0.toRad() - x
+    let l = 303.0.deg - x
     let sinb = sin(𝛿) * sin(𝛿₁₉₅₀) + cos(𝛿) * cos(𝛿₁₉₅₀) * cos(𝛼₁₉₅₀ - 𝛼)
     let b = asin(sinb)
 
@@ -113,9 +113,9 @@ extension EquatorialCoordinate {
     let b = galactic.latitude
     let 𝛿₁₉₅₀ = B1950_DECLINATION_NORTH_POLE
 
-    let y = atan2(sin(l - 123.0.toRad()), (cos(l - 123.0.toRad()) * sin(𝛿₁₉₅₀) - tan(b) * cos(𝛿₁₉₅₀)))
-    let 𝛼 = y + 12.25.toRad()
-    let sin𝛿 = sin(b) * sin(𝛿₁₉₅₀) + cos(b) * cos(𝛿₁₉₅₀) * cos(l - 123.0.toRad())
+    let y = atan2(sin(l - 123.0.deg), (cos(l - 123.0.deg) * sin(𝛿₁₉₅₀) - tan(b) * cos(𝛿₁₉₅₀)))
+    let 𝛼 = y + 12.25.deg
+    let sin𝛿 = sin(b) * sin(𝛿₁₉₅₀) + cos(b) * cos(𝛿₁₉₅₀) * cos(l - 123.0.deg)
 
     self.rightAscension = 𝛼
     self.declination = asin(sin𝛿)

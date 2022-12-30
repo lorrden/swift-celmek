@@ -76,13 +76,13 @@ final class jd_tests : XCTestCase {
   func testMJDConversion() {
     // Meeus, p 63
     let date = GregorianDate(year: 1858, month: .November, day: 17.0)
-    XCTAssertEqual(date.toJD().toMJD(), 0.0)
+    XCTAssertEqual(date.toJD().asMJD, 0.0)
   }
   
   func testWeekday() {
     // Meeus, p65
     let date = GregorianDate(year: 1954, month: .June, day: 30.1)
-    XCTAssertEqual(date.toJD().weekday(), .Wednesday)
+    XCTAssertEqual(date.toJD().weekday, .Wednesday)
   }
   
   func testDayOfYear() {

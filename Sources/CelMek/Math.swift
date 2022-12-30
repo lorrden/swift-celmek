@@ -17,25 +17,24 @@
 //
 import Foundation
 
-func cm_degToRad(_ deg: Double) -> Double {
-  return deg * .pi / 180.0
-}
-
 func cm_radToDeg(_ rad: Double) -> Double {
   return rad * 180.0 / .pi
 }
 
 extension Double {
-  func toRad() -> Double {
+  var deg: Double {
     return self * (.pi / 180.0)
   }
-  func toDeg() -> Double {
+  var rad: Double {
+    return self
+  }
+  var asDeg: Double {
     return self * (180.0 / .pi)
   }
-  func degToHours() -> Double {
+  var degAsHours: Double {
     return self / 15.0
   }
-  func hoursToDeg() -> Double {
+  var hoursAsDeg: Double {
     return self * 15.0
   }
 }
@@ -92,14 +91,14 @@ extension HourAngle {
     let totalHours = Double(abs(self.hours)) + Double(self.minutes) / MINUTES_PER_HOUR + self.seconds / SECONDS_PER_HOUR
 
     if self.hours >= 0 {
-      return totalHours.hoursToDeg()
+      return totalHours.hoursAsDeg
     } else {
-      return -totalHours.hoursToDeg()
+      return -totalHours.hoursAsDeg
     }
   }
   
   func toRad() -> Double {
-    return toDeg().toRad()
+    return toDeg().deg
   }
 }
 
@@ -153,6 +152,6 @@ extension AngleOfArc {
   }
 
   func toRad() -> Double {
-    return toDeg().toRad()
+    return toDeg().deg
   }
 }

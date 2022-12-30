@@ -22,23 +22,23 @@ import XCTest
 final class TransformationOfCoordinates_tests : XCTestCase {
   func testEclipticalFromEquatorial() {
     // Meeus, p 95, example 13.a
-    let eq = EquatorialCoordinate(rightAscension: 116.328942.toRad(), declination: 28.026183.toRad())
+    let eq = EquatorialCoordinate(rightAscension: 116.328942.deg, declination: 28.026183.deg)
     let ecl = EclipticCoordinate(equatorial: eq, obliquityOfEcliptic: J2000_OBLIQUITY_OF_ECLIPTIC)
     
     let 𝜆 = ecl.longitude
     let 𝛽 = ecl.latitude
 
-    XCTAssertEqual(𝜆, 113.215630.toRad(), accuracy: 0.00000005)
-    XCTAssertEqual(𝛽, 6.684170.toRad(), accuracy: 0.00000005)
+    XCTAssertEqual(𝜆, 113.215630.deg, accuracy: 0.00000005)
+    XCTAssertEqual(𝛽, 6.684170.deg, accuracy: 0.00000005)
   }
   
   func testEquatorialFromEcliptical() {
     // Meeus, p 95, example 13.a
-    let ecl = EclipticCoordinate(latitude: 6.684170.toRad(), longitude: 113.215630.toRad())
+    let ecl = EclipticCoordinate(latitude: 6.684170.deg, longitude: 113.215630.deg)
     let eq = EquatorialCoordinate(ecliptic: ecl, obliquityOfEcliptic: J2000_OBLIQUITY_OF_ECLIPTIC)
 
-    XCTAssertEqual(eq.rightAscension, 116.328942.toRad(), accuracy: 0.00000005)
-    XCTAssertEqual(eq.declination, 28.026183.toRad(), accuracy: 0.00000005)
+    XCTAssertEqual(eq.rightAscension, 116.328942.deg, accuracy: 0.00000005)
+    XCTAssertEqual(eq.declination, 28.026183.deg, accuracy: 0.00000005)
   }
 
   // TODO: Add example 13.b when nutations have been implemented
@@ -50,8 +50,8 @@ final class TransformationOfCoordinates_tests : XCTestCase {
     let gal = GalacticCoordinate(equatorial: eq)
     
     
-    XCTAssertEqual(gal.latitude, 6.0463.toRad(), accuracy: 0.00005)
-    XCTAssertEqual(gal.longitude, 12.9593.toRad(), accuracy: 0.00005)
+    XCTAssertEqual(gal.latitude, 6.0463.deg, accuracy: 0.00005)
+    XCTAssertEqual(gal.longitude, 12.9593.deg, accuracy: 0.00005)
   }
 
 
