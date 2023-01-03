@@ -66,8 +66,8 @@ func geodesicDistanceFast(p0: GeographicCoordinate, p1: GeographicCoordinate) ->
   let L₂ = p1.longitude
   let 𝜑₂ = p1.latitude
 
-  let d = acos(sin(𝜑₁) * sin(𝜑₂) + cos(𝜑₁) * cos(𝜑₂) * cos(L₁-L₂))
-  let s = 6371.0 * d
+  let d = acos(sin(𝜑₁) * sin(𝜑₂) + cos(𝜑₁) * cos(𝜑₂) * cos(L₁-L₂)) // Equation 11.1
+  let s = 6371.0 * d // Equation 11.2
   return s
 }
 

@@ -52,6 +52,7 @@ final class EarthGlobe_tests : XCTestCase {
   }
   
   func testGeodesicDistanceFast() {
+    // Meeus, Example 11.c
     let paris = GeographicCoordinate(
       latitude: AngleOfArc(degrees: 48, minutes: 50, seconds: 11).toRad(),
       longitude: AngleOfArc(degrees: -2, minutes: 20, seconds: 14).toRad())
@@ -64,6 +65,7 @@ final class EarthGlobe_tests : XCTestCase {
   }
 
   func testGeodesicDistance() {
+    // Meeus, Example 11.c
     let paris = GeographicCoordinate(
       latitude: AngleOfArc(degrees: 48, minutes: 50, seconds: 11).toRad(),
       longitude: AngleOfArc(degrees: -2, minutes: 20, seconds: 14).toRad())
