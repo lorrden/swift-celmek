@@ -1,0 +1,8 @@
+name: celmek
+version: latest
+nav:
+  - modules/ROOT/nav.adoc
+asciidoc:
+  attributes:
+    bibtex-file: ../attachments/bibliography.bib
+    bibtex-style: ieee

@@ -1,0 +1,10 @@
+= Copyright
+
+== CelMek
+
+The CelMek library is copyright to Mattias Holm.
+
+== Third Party
+
+No third party libraries are used at this time.
+

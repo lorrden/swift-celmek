@@ -1,0 +1,3 @@
+* xref::index.adoc[]
+* xref::algorithms.adoc[]
+* xref::copyright.adoc[]

@@ -1,0 +1,16 @@
+= Algorithms
+:bibtex-file: ../attachments/bibliography.bib
+:bibtex-style: ieee
+
+[bibliography]
+== Bibliography
+
+bibliography::[]
+
+== Goffin 2000
+
+Goffin 2000 is described in cite:[goffin] and cite:[meeus].
+
+== VSOP87
+
+
