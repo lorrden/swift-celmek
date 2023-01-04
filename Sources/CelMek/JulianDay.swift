@@ -181,3 +181,9 @@ func jd0(year: Int) -> Double {
   let JD0 = floor(365.25 * Y) - A + floor(A/4) + 1721424.5
   return JD0
 }
+
+func julianCenturiesFromJ2000(jd: Double) -> Double {
+  // Meeus, Eq. 12.1
+  let T =  (jd - 2451545) / 36525
+  return T
+}
