@@ -150,3 +150,54 @@ extension JulianDate {
     self.init(year: X, dayInYear: Double(J))!
   }
 }
+
+extension MoslemDate {
+  init(julianDate: JulianDate) {
+    let X = julianDate.year
+    let M = Int(julianDate.month.rawValue)
+    let D = Int(julianDate.day)
+    let W = X % 4 == 0 ? 1 : 2
+    let N = 275 * M / 9 - W * (M + 9) / 12 + D - 30
+    let A = X - 623
+    let B = A / 4
+    let C = A % 4
+    let C1 = 365.2501 * Double(C)
+    var C2 = Int(C1)
+    if C1 - Double(C2) > 0.5 {
+      C2 += 1
+    }
+    let Dprime = 1461 * B + 170 + C2
+    let Q = Dprime / 10631
+    let R = Dprime % 10631
+    let J = R / 354
+    let K = R % 354
+    let O = (11 * J + 14) / 30
+    var H = 30 * Q  + J + 1
+    var JJ = K - O + N - 1
+    if JJ > 354 {
+      let CL = H % 30
+      let DL = (11 * CL + 3)  % 30
+      if DL < 19 {
+        JJ  -= 354
+        H += 1
+      } else if DL > 18 {
+        JJ  -= 355
+        H += 1
+      }
+      if JJ == 0 {
+        JJ = 355
+        H -= 1
+      }
+    }
+    let S = Int((Double(JJ) - 1) / 29.5)
+    var m = 1 + S
+    var d = Int(Double(JJ) - 29.5 * Double(S))
+    if JJ == 355 {
+      m = 12
+      d = 30
+    }
+    self.init(year: H,
+              month: MoslemMonth(rawValue: Int32(m))!,
+              day: d)
+  }
+}
