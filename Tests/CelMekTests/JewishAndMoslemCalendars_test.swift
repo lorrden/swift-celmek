@@ -51,11 +51,14 @@ final class JewishCalendar_tests : XCTestCase {
   
   func testMoslemToJulian() {
     // Meeu,s example 9.b
-    let date = JulianDate(moslemDate: MoslemDate(year: 1421, month:  .Muharram, day: 1))
+    let date = JulianDate(
+      moslemDate: MoslemDate(year: 1421,
+                             month: .Muharram,
+                             day: 1))
     
     XCTAssertEqual(date.year, 2000)
     XCTAssertEqual(date.dayOfYear(), 84.0)
-    
+
     let jd = date.toJD()
     let gregDate = jd.toGregorian()
     XCTAssertEqual(gregDate.year, 2000)
@@ -64,6 +67,7 @@ final class JewishCalendar_tests : XCTestCase {
   }
   
   func testJulianToMoslem() {
+    // Meeu,s example 9.c
     let date = MoslemDate(
       julianDate: JulianDate(year: 1991,
                              month: .July,
