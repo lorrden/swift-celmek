@@ -58,6 +58,37 @@ public enum Month : Int32 {
   case December = 12;
 }
 
+public enum JewishMonth : Int32 {
+  case Tishri = 1;
+  case Heshvan = 2;
+  case Kislev = 3;
+  case Tevet = 4;
+  case Shevat = 5;
+  case Adar = 6;
+  case Veadar = 7;
+  case Nisan = 8;
+  case Iyar = 9;
+  case Sivan = 10;
+  case Tammuz = 11;
+  case Av = 12;
+  case Elul = 13;
+}
+
+public enum MoslemMonth : Int32 {
+  case Muharram = 1;
+  case Safar = 2;
+  case RabiAlAwwal = 3;
+  case RabiAthThani = 4;
+  case JumadaLUla = 5;
+  case JumadaTTania = 6;
+  case Rajab = 7;
+  case ShaBan = 8;
+  case Ramadan = 9;
+  case Shawwal = 10;
+  case DhuLQaDa = 11;
+  case DhuLHijja = 12;
+}
+
 public struct Date {
   var year: Int32;
   var month: Month;

@@ -84,3 +84,69 @@ func daysOfJewishYear(jewishYear: Int) -> Int {
   let y1 = jewishYearStart(jewishYear: jewishYear + 1)
   return Int(y1.toJD() - y0.toJD())
 }
+
+struct MoslemDate {
+  var year: Int
+  var month: MoslemMonth
+  var day: Int
+}
+
+func moslemMonthToString(month: MoslemMonth) -> String {
+  switch month {
+  case .Muharram:
+    return "Muharram"
+  case .Safar:
+    return "Safar"
+  case .RabiAlAwwal:
+    return "Rabi'al-Awwal"
+  case .RabiAthThani:
+    return "Rabi'ath-Thani"
+  case .JumadaLUla:
+    return "Jumada l-Ula"
+  case .JumadaTTania:
+    return "Jumada t-Tania"
+  case .Rajab:
+    return "Rajab"
+  case .ShaBan:
+    return "Sha'ban"
+  case .Ramadan:
+    return "Ramadan"
+  case .Shawwal:
+    return "Shawwal"
+  case .DhuLQaDa:
+    return "Dhu l-Qa'da"
+  case .DhuLHijja:
+    return "Dhu l-Hijja"
+  }
+}
+
+extension JulianDate {
+  init(moslemDate: MoslemDate) {
+    let H = moslemDate.year
+    let M = Int(moslemDate.month.rawValue)
+    let D = moslemDate.day
+    
+    let N = D + Int(29.5001 * Double(M - 1) + 0.99)
+    let Q = H / 30
+    let R = H % 30
+    let A = (11 * R + 3) / 30
+    let W = 404 * Q + 354 * R + 208 + A
+    let Q1 = W / 1461
+    let Q2 = W % 1461
+    let G = 621 + 4 * (7 * Q + Q1)
+    let K = Int(Double(Q2) / 365.2422)
+    let E = Int(365.2422 * Double(K))
+    var J = Q2 - E + N - 1
+    var X = G + K
+    
+    if (J > 366) && (X % 4 == 0) {
+      J -= 366
+      X += 1
+    }
+    if (J > 365) && (X % 4 > 0) {
+      J -= 365
+      X += 1
+    }
+    self.init(year: X, dayInYear: Double(J))!
+  }
+}

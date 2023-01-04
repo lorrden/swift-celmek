@@ -60,6 +60,39 @@ struct JulianDate {
   var year: Int
   var month: Month
   var day: Double
+  init(year: Int, month: Month, day: Double) {
+    self.year = year
+    self.month = month
+    self.day = day
+  }
+
+  init?(year: Int, dayInYear: Double) {
+    // Meeus, p66
+    if dayInYear < 0 {
+      return nil
+    }
+    if isJulianLeapYear(year) {
+      if dayInYear >= 367 {
+        return nil
+      }
+    } else {
+      if dayInYear >= 366 {
+        return nil
+      }
+    }
+
+    let K = isJulianLeapYear(year) ? Int32(1) : Int32(2)
+    let M1 = 9 * (Double(K) + dayInYear) / 275
+    let M = dayInYear < 32 ? 1 : Int32(Double(M1) + 0.98)
+    let D1 = Int32(Double(275 * M) / 9)
+    let D2 = K * Int32(Double(M + 9) / 12)
+    let D = dayInYear - Double(D1) + Double(D2 + 30)
+    
+    self.year = year
+    self.month = Month(rawValue: M)!
+    self.day = D
+  }
+
 }
 
 
