@@ -122,6 +122,7 @@ func moslemMonthToString(month: MoslemMonth) -> String {
 
 extension JulianDate {
   init(moslemDate: MoslemDate) {
+    // Meeus, p74
     let H = moslemDate.year
     let M = Int(moslemDate.month.rawValue)
     let D = moslemDate.day
@@ -153,6 +154,7 @@ extension JulianDate {
 
 extension MoslemDate {
   init(julianDate: JulianDate) {
+    // Meeus, p75
     let X = julianDate.year
     let M = Int(julianDate.month.rawValue)
     let D = Int(julianDate.day)
