@@ -76,5 +76,24 @@ final class JewishCalendar_tests : XCTestCase {
     XCTAssertEqual(date.year, 1412)
     XCTAssertEqual(date.month, .Safar)
     XCTAssertEqual(date.day, 2)
+
+    let julianDate = JulianDate(year: 2000, dayInYear: 84.0)!
+    XCTAssertEqual(julianDate.year, 2000)
+    XCTAssertEqual(julianDate.month, .March)
+    XCTAssertEqual(julianDate.day, 24)
+    
+    let date2 = MoslemDate(julianDate: julianDate)
+    XCTAssertEqual(date2.year, 1421)
+    XCTAssertEqual(date2.month, .Muharram)
+    XCTAssertEqual(date2.day, 1)
+    // Currently incorrect
+    // Gregorian date 2023-01-04
+    // Julian date 2022-12-22
+    // Islamic date: 1444-06-11 According to Wiki
+    let date3 = MoslemDate(julianDate: JulianDate(year: 2022, month: .December, day: 22))
+    XCTAssertEqual(date3.year, 1444)
+    XCTAssertEqual(date3.month, .JumadaTTania)
+    XCTAssertEqual(date3.day, 11)
+
   }
 }

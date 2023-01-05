@@ -60,6 +60,7 @@ struct JulianDate {
   var year: Int
   var month: Month
   var day: Double
+
   init(year: Int, month: Month, day: Double) {
     self.year = year
     self.month = month
@@ -195,6 +196,24 @@ extension Double {
     let date = GregorianDate(year: year, month: Month(rawValue: month)!, day: dayInMonth)
     return date
   }
+
+  func toJulian() -> JulianDate {
+    let tmp = self + 0.5
+    let Z = modf(tmp).0
+    let F = modf(tmp).1
+    let A = Int(Z)
+    let B = Double(A + 1524)
+    let C = floor((Double(B) - 122.1) / 365.25)
+    let D = floor(365.25 * C)
+    let E = floor((B - D) / 30.6001)
+    
+    let dayInMonth = B - D - floor(30.6001 * E) + F
+    let month = Int32(E) < 14 ? Int32(E) - 1 : Int32(E) - 13
+    let year = Int(C) - (month > 2 ? 4716 : 4715)
+    let date = JulianDate(year: year, month: Month(rawValue: month)!, day: dayInMonth)
+    return date
+
+  }
 }
 
 extension Double {
@@ -220,3 +239,4 @@ func julianCenturiesFromJ2000(jd: Double) -> Double {
   let T =  (jd - 2451545) / 36525
   return T
 }
+

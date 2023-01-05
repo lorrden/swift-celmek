@@ -159,7 +159,7 @@ extension MoslemDate {
     let M = Int(julianDate.month.rawValue)
     let D = Int(julianDate.day)
     let W = X % 4 == 0 ? 1 : 2
-    let N = 275 * M / 9 - W * (M + 9) / 12 + D - 30
+    let N = 275 * M / 9 - W * ((M + 9) / 12) + D - 30
     let A = X - 623
     let B = A / 4
     let C = A % 4
@@ -178,7 +178,7 @@ extension MoslemDate {
     var JJ = K - O + N - 1
     if JJ > 354 {
       let CL = H % 30
-      let DL = (11 * CL + 3)  % 30
+      let DL = (11 * CL + 3) % 30
       if DL < 19 {
         JJ  -= 354
         H += 1
@@ -191,7 +191,7 @@ extension MoslemDate {
         H -= 1
       }
     }
-    let S = Int((Double(JJ) - 1) / 29.5)
+    let S = Int(Double(JJ - 1) / 29.5)
     var m = 1 + S
     var d = Int(Double(JJ) - 29.5 * Double(S))
     if JJ == 355 {

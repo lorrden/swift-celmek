@@ -123,5 +123,16 @@ final class jd_tests : XCTestCase {
     let jd0_expect = greg0_1999.toJD()
     XCTAssertEqual(jd0_1999, jd0_expect)
   }
+  
+  func testGregorianToJulianConversion() {
+    let gregDate = GregorianDate(year: 2023, month: .January, day: 4)
+    let jd = gregDate.toJD()
+    let julianDate = jd.toJulian()
+    
+    XCTAssertEqual(julianDate.year, 2022)
+    XCTAssertEqual(julianDate.month, .December)
+    XCTAssertEqual(julianDate.day, 22)
+
+  }
 }
 
