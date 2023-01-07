@@ -239,4 +239,3 @@ func julianCenturiesFromJ2000(jd: Double) -> Double {
   let T =  (jd - 2451545) / 36525
   return T
 }
-
