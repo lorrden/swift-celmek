@@ -20,9 +20,9 @@ import XCTest
 @testable import CelMek;
 
 final class ParallaticAngle_tests : XCTestCase {
-  func testEcliptic() {
+  func testEclipticAndHorizon() {
     // Meeus, p99
-    let (_, I0) = ecliptic(
+    let (_, I0) = eclipticAndHorizon(
       obliquityOfEcliptic: AngleOfArc(degrees: 23, minutes: 26, seconds: 0).toRad(),
       geographicLatitudeOfObserver: AngleOfArc(degrees: 48, minutes: 0, seconds: 0).toRad(),
       localSiderealTime: 90.deg)
@@ -30,7 +30,7 @@ final class ParallaticAngle_tests : XCTestCase {
     XCTAssertEqual(I0, AngleOfArc(degrees: 65, minutes: 26, seconds: 0).toRad(),
                    accuracy: 0.000000005)
     
-    let (_, I1) = ecliptic(
+    let (_, I1) = eclipticAndHorizon(
       obliquityOfEcliptic: AngleOfArc(degrees: 23, minutes: 26, seconds: 0).toRad(),
       geographicLatitudeOfObserver: AngleOfArc(degrees: 48, minutes: 0, seconds: 0).toRad(),
       localSiderealTime: 270.deg)
@@ -40,7 +40,7 @@ final class ParallaticAngle_tests : XCTestCase {
     
     
     // Meeus, Example 14.a
-    let (L, I2) = ecliptic(
+    let (L, I2) = eclipticAndHorizon(
       obliquityOfEcliptic: AngleOfArc(degrees: 23, minutes: 44, seconds: 0).toRad(),
       geographicLatitudeOfObserver: 51.deg,
       localSiderealTime: HourAngle(hours: 5, minutes: 0, seconds: 0).toRad())
@@ -50,6 +50,29 @@ final class ParallaticAngle_tests : XCTestCase {
 
     XCTAssertEqual(normalize(radians: I2), 62.deg,
                    accuracy: 0.005)
+  }
+  
+  
+  func testEclipticExtremeAngles() {
+    // Meeus, p99
+    let (I0, I1) = extremeEclipticHorizonAngles(
+      obliquityOfEcliptic: AngleOfArc(degrees: 23, minutes: 26, seconds: 0).toRad(),
+      geographicLatitudeOfObserver: AngleOfArc(degrees: 48, minutes: 0, seconds: 0).toRad())
+
+    XCTAssertEqual(I0, AngleOfArc(degrees: 65, minutes: 26, seconds: 0).toRad(),
+                   accuracy: 0.000000005)
+    XCTAssertEqual(I1, AngleOfArc(degrees: 18, minutes: 34, seconds: 0).toRad(),
+                   accuracy: 0.000000005)
+
+  }
+
+  func testAngleOfDiurnalPath() {
+    let J0 = angleOfDiurnalPath(declination: 0, geographicLatitudeOfObserver: 0.deg)
+    XCTAssertEqual(J0, 90.deg - 0.deg,
+                   accuracy: 0.000000005)
+    let J1 = angleOfDiurnalPath(declination: 0, geographicLatitudeOfObserver: 10.deg)
+    XCTAssertEqual(J1, 90.deg - 10.deg,
+                   accuracy: 0.000000005)
   }
 }
 
