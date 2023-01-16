@@ -64,7 +64,7 @@ fileprivate let dt : [(Int,Double)] = [
   (1990, 56.9), (1992, 58.3), (1994, 60.0), (1996, 61.6), (1998, 63.0),
 ]
 
-func deltaT(year: Double) -> Double {
+public func deltaT(year: Double) -> Double {
   let t = (year - 2000) / 100
   if year < 948 {
     return 2177 + 497 * t + 44.1 * t * t
