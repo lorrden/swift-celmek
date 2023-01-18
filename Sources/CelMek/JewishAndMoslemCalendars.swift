@@ -89,6 +89,12 @@ public struct MoslemDate {
   var year: Int
   var month: MoslemMonth
   var day: Int
+  
+  public init(year: Int, month: MoslemMonth, day: Int) {
+    self.year = year
+    self.month = month
+    self.day = day
+  }
 }
 
 public func moslemMonthToString(month: MoslemMonth) -> String {
