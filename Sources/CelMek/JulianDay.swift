@@ -20,9 +20,9 @@ import Foundation
 
 @frozen
 public struct GregorianDate {
-  var year: Int
-  var month: Month
-  var day: Double
+  public var year: Int
+  public var month: Month
+  public var day: Double
   
   public init(year: Int, month: Month, day: Double) {
     self.year = year
@@ -59,9 +59,9 @@ public struct GregorianDate {
 
 @frozen
 public struct JulianDate {
-  var year: Int
-  var month: Month
-  var day: Double
+  public var year: Int
+  public var month: Month
+  public var day: Double
 
   public init(year: Int, month: Month, day: Double) {
     self.year = year
@@ -95,7 +95,6 @@ public struct JulianDate {
     self.month = Month(rawValue: M)!
     self.day = D
   }
-
 }
 
 

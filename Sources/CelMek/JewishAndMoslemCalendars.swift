@@ -86,9 +86,9 @@ public func daysOfJewishYear(jewishYear: Int) -> Int {
 
 @frozen
 public struct MoslemDate {
-  var year: Int
-  var month: MoslemMonth
-  var day: Int
+  public var year: Int
+  public var month: MoslemMonth
+  public var day: Int
   
   public init(year: Int, month: MoslemMonth, day: Int) {
     self.year = year
