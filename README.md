@@ -10,6 +10,14 @@ The celmek library implements several astronomical algorithms.
 | ELP2000 82b | Done
 | Goffin2000 | Done
 
+## Status
+
+CelMek is very much in development, and the scope has grown to implement more astronomical algorithms.
+It is currently NOT in a 1.0 state, so expect that API breakage happens.
+
+A companion app for interactivelly working with this library is developed here:
+[https://github.com/lorrden/CelMek-Viewer]
+
 ## License
 
 Apache 2.0
