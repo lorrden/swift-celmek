@@ -18,7 +18,7 @@
 
 import Foundation
 
-func gregorianDateOfEaster(year: Int) -> GregorianDate {
+public func gregorianDateOfEaster(year: Int) -> GregorianDate {
   let a = year % 19
   let b = year / 100
   let c = year % 100
@@ -39,7 +39,7 @@ func gregorianDateOfEaster(year: Int) -> GregorianDate {
                        day: Double(p+1))
 }
 
-func julianDateOfEaster(year: Int) -> JulianDate {
+public func julianDateOfEaster(year: Int) -> JulianDate {
   let a = year % 4
   let b = year % 7
   let c = year % 19

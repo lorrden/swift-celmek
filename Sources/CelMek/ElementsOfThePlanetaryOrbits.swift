@@ -25,7 +25,7 @@ fileprivate func evaluate(T: Double, a0: Double, a1: Double, a2: Double, a3: Dou
   return a0 + a1 * T + a2 * T² + a3 * T³
 }
 
-struct PlanetaryOrbitalElements {
+public struct PlanetaryOrbitalElements {
   var meanLongitude : Double
   var semimajorAxis : Double
   var eccentricity : Double
@@ -227,92 +227,90 @@ fileprivate func calculateOrbitalElements(jd : Double, coefficients: PlanetaryVa
   return elements;
 }
 
-func elementsOfMercuryForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
+public func elementsOfMercuryForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: mercury_31a)
   return elements;
 }
 
-func elementsOfVenusForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
+public func elementsOfVenusForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: venus_31a)
   
   return elements;
 }
-func elementsOfEarthForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
+
+public func elementsOfEarthForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: earth_31a)
   
   return elements;
 }
-func elementsOfMarsForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
+
+public func elementsOfMarsForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: mars_31a)
   
   return elements;
 }
 
-func elementsOfJupiterForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
+public func elementsOfJupiterForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: jupiter_31a)
   
   return elements;
 }
-func elementsOfSaturnForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
+
+public func elementsOfSaturnForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: saturn_31a)
   
   return elements;
 }
-func elementsOfUranusForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
+
+public func elementsOfUranusForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: uranus_31a)
   
   return elements;
 }
-func elementsOfNeptuneForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
+
+public func elementsOfNeptuneForMeanEquinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: neptune_31a)
   
   return elements;
 }
 
-func elementsOfMercuryForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
+public func elementsOfMercuryForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: mercury_31b)
   
   return elements;
 }
 
-
-
-func elementsOfVenusForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
+public func elementsOfVenusForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: venus_31b)
   
   return elements;
 }
 
-
-
-func elementsOfEarthForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
+public func elementsOfEarthForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: earth_31b)
   
   return elements;
 }
 
-
-func elementsOfMarsForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
+public func elementsOfMarsForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: mars_31b)
   
   return elements;
 }
 
-
-
-func elementsOfJupiterForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
+public func elementsOfJupiterForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: jupiter_31b)
   
@@ -321,7 +319,7 @@ func elementsOfJupiterForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
 
 
 
-func elementsOfSaturnForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
+public func elementsOfSaturnForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: saturn_31b)
   
@@ -329,16 +327,14 @@ func elementsOfSaturnForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
 }
 
 
-func elementsOfUranusForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
+public func elementsOfUranusForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: uranus_31b)
   
   return elements;
 }
 
-
-
-func elementsOfNeptuneForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
+public func elementsOfNeptuneForJ2000Equinox(jd : Double) -> PlanetaryOrbitalElements {
   let elements = calculateOrbitalElements(jd: jd,
                                           coefficients: neptune_31b)
   

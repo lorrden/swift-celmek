@@ -17,7 +17,7 @@
 //
 import Foundation
 
-func parallacticAngle(geographicLatitudeOfObserver: Double, declination: Double, rightAscension: HourAngle) -> Double {
+public func parallacticAngle(geographicLatitudeOfObserver: Double, declination: Double, rightAscension: HourAngle) -> Double {
   // Meeus, Equation 14.1
   let 𝜑 = geographicLatitudeOfObserver
   let 𝛿 = declination
@@ -28,7 +28,7 @@ func parallacticAngle(geographicLatitudeOfObserver: Double, declination: Double,
 }
 
 // TODO: Function should have better name
-func eclipticAndHorizon(obliquityOfEcliptic: Double, geographicLatitudeOfObserver: Double, localSiderealTime: Double) -> (Double, Double){
+public func eclipticAndHorizon(obliquityOfEcliptic: Double, geographicLatitudeOfObserver: Double, localSiderealTime: Double) -> (Double, Double){
   // Meeus, Equation 14.2 and 14.3
   let 𝜑 = geographicLatitudeOfObserver
   let 𝜃 = localSiderealTime
@@ -39,7 +39,7 @@ func eclipticAndHorizon(obliquityOfEcliptic: Double, geographicLatitudeOfObserve
   return (𝜆, I)
 }
 
-func extremeEclipticHorizonAngles(obliquityOfEcliptic: Double, geographicLatitudeOfObserver: Double) -> (Double, Double) {
+public func extremeEclipticHorizonAngles(obliquityOfEcliptic: Double, geographicLatitudeOfObserver: Double) -> (Double, Double) {
   let 𝜑 = geographicLatitudeOfObserver
   let 𝜀 = obliquityOfEcliptic
 
@@ -48,7 +48,7 @@ func extremeEclipticHorizonAngles(obliquityOfEcliptic: Double, geographicLatitud
   return (I0, I1)
 }
 
-func angleBetweenNorthCelestialAndEclipticPoles(eclipticCoordinateOfStar: EclipticCoordinate, obliquityOfEcliptic: Double) -> Double {
+public func angleBetweenNorthCelestialAndEclipticPoles(eclipticCoordinateOfStar: EclipticCoordinate, obliquityOfEcliptic: Double) -> Double {
   let 𝜆 = eclipticCoordinateOfStar.longitude
   let 𝛽 = eclipticCoordinateOfStar.latitude
   let 𝜀 = obliquityOfEcliptic
@@ -57,7 +57,7 @@ func angleBetweenNorthCelestialAndEclipticPoles(eclipticCoordinateOfStar: Eclipt
   return q
 }
 
-func angleBetweenEclipticAndEastWest(eclipticLongitude: Double, obliquityOfEcliptic: Double) -> Double {
+public func angleBetweenEclipticAndEastWest(eclipticLongitude: Double, obliquityOfEcliptic: Double) -> Double {
   let 𝜆 = eclipticLongitude
   let 𝜀 = obliquityOfEcliptic
  
@@ -65,7 +65,7 @@ func angleBetweenEclipticAndEastWest(eclipticLongitude: Double, obliquityOfEclip
   return q0
 }
 
-func angleOfDiurnalPath(declination: Double, geographicLatitudeOfObserver: Double) -> Double {
+public func angleOfDiurnalPath(declination: Double, geographicLatitudeOfObserver: Double) -> Double {
   let 𝛿 = declination
   let 𝜑 = geographicLatitudeOfObserver
 

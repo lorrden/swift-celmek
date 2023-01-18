@@ -18,8 +18,7 @@
 
 import Foundation
 
-
-func jewishEaster(hebrewYear: Int, julianCalendar: Bool) -> Int {
+public func jewishEaster(hebrewYear: Int, julianCalendar: Bool) -> Int {
   let A = hebrewYear
   let X = A - 3760
   let C = X / 100
@@ -43,7 +42,7 @@ func jewishEaster(hebrewYear: Int, julianCalendar: Bool) -> Int {
   return D
 }
 
-func jewishEaster(julianYear: Int) -> JulianDate {
+public func jewishEaster(julianYear: Int) -> JulianDate {
   let X = julianYear
   let A = X + 3760
   let D = jewishEaster(hebrewYear: A, julianCalendar: true)
@@ -53,7 +52,7 @@ func jewishEaster(julianYear: Int) -> JulianDate {
 
 }
 
-func jewishEaster(gregorianYear: Int) -> GregorianDate {
+public func jewishEaster(gregorianYear: Int) -> GregorianDate {
   let X = gregorianYear
   let A = X + 3760
   let D = jewishEaster(hebrewYear: A, julianCalendar: false)
@@ -62,7 +61,7 @@ func jewishEaster(gregorianYear: Int) -> GregorianDate {
                        day: D > 31 ? Double(D - 31) : Double(D))
 }
 
-func jewishYearStart(jewishYear: Int) -> GregorianDate {
+public func jewishYearStart(jewishYear: Int) -> GregorianDate {
   let A = jewishYear
   let X = A - 3761
   let date = jewishEaster(gregorianYear: X)
@@ -71,7 +70,7 @@ func jewishYearStart(jewishYear: Int) -> GregorianDate {
   return tishri1.toGregorian()
 }
 
-func jewishYearIsCommon(jewishYear: Int) -> Bool {
+public func jewishYearIsCommon(jewishYear: Int) -> Bool {
   let a19 = jewishYear % 19
   if [0, 3, 6, 8, 11, 14, 17].contains(a19) {
     return false
@@ -79,19 +78,20 @@ func jewishYearIsCommon(jewishYear: Int) -> Bool {
   return true
 }
 
-func daysOfJewishYear(jewishYear: Int) -> Int {
+public func daysOfJewishYear(jewishYear: Int) -> Int {
   let y0 = jewishYearStart(jewishYear: jewishYear)
   let y1 = jewishYearStart(jewishYear: jewishYear + 1)
   return Int(y1.toJD() - y0.toJD())
 }
 
-struct MoslemDate {
+@frozen
+public struct MoslemDate {
   var year: Int
   var month: MoslemMonth
   var day: Int
 }
 
-func moslemMonthToString(month: MoslemMonth) -> String {
+public func moslemMonthToString(month: MoslemMonth) -> String {
   switch month {
   case .Muharram:
     return "Muharram"
@@ -121,7 +121,7 @@ func moslemMonthToString(month: MoslemMonth) -> String {
 }
 
 extension JulianDate {
-  init(moslemDate: MoslemDate) {
+  public init(moslemDate: MoslemDate) {
     // Meeus, p74
     let H = moslemDate.year
     let M = Int(moslemDate.month.rawValue)
@@ -153,7 +153,7 @@ extension JulianDate {
 }
 
 extension MoslemDate {
-  init(julianDate: JulianDate) {
+  public init(julianDate: JulianDate) {
     // Meeus, p75
     let X = julianDate.year
     let M = Int(julianDate.month.rawValue)

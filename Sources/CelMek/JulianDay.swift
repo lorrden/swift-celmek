@@ -18,17 +18,18 @@
 
 import Foundation
 
-struct GregorianDate {
+@frozen
+public struct GregorianDate {
   var year: Int
   var month: Month
   var day: Double
   
-  init(year: Int, month: Month, day: Double) {
+  public init(year: Int, month: Month, day: Double) {
     self.year = year
     self.month = month
     self.day = day
   }
-  init?(year: Int, dayInYear: Double) {
+  public init?(year: Int, dayInYear: Double) {
     // Meeus, p66
     if dayInYear < 0 {
       return nil
@@ -56,18 +57,19 @@ struct GregorianDate {
   }
 }
 
-struct JulianDate {
+@frozen
+public struct JulianDate {
   var year: Int
   var month: Month
   var day: Double
 
-  init(year: Int, month: Month, day: Double) {
+  public init(year: Int, month: Month, day: Double) {
     self.year = year
     self.month = month
     self.day = day
   }
 
-  init?(year: Int, dayInYear: Double) {
+  public init?(year: Int, dayInYear: Double) {
     // Meeus, p66
     if dayInYear < 0 {
       return nil
@@ -98,7 +100,7 @@ struct JulianDate {
 
 
 extension GregorianDate {
-  func toJD() -> Double {
+  public func toJD() -> Double {
     // Meeus, eq 7.1
     let y = month.rawValue > 2 ? year : year - 1
     
@@ -113,7 +115,7 @@ extension GregorianDate {
 }
 
 extension JulianDate {
-  func toJD() -> Double {
+  public func toJD() -> Double {
     // Meeus, eq 7.1
     let y = month.rawValue > 2 ? year : year - 1
     
@@ -124,7 +126,7 @@ extension JulianDate {
   }
 }
 
-func
+public func
 isGregorianLeapYear(_ y: Int) -> Bool
 {
   if (y % 400) == 0 {
@@ -138,7 +140,7 @@ isGregorianLeapYear(_ y: Int) -> Bool
   }
   return false
 }
-func
+public func
 isJulianLeapYear(_ y: Int) -> Bool
 {
   if (y % 4) == 0 {
@@ -149,7 +151,7 @@ isJulianLeapYear(_ y: Int) -> Bool
 
 
 extension GregorianDate {
-  func dayOfYear() -> Double {
+  public func dayOfYear() -> Double {
     // Meeus, p65
     let K = isGregorianLeapYear(year) ? Int32(1) : Int32(2)
     let N1 = 275 * month.rawValue / 9
@@ -160,7 +162,7 @@ extension GregorianDate {
 }
 
 extension JulianDate {
-  func dayOfYear() -> Double {
+  public func dayOfYear() -> Double {
     // Meeus, p65
     let K = isJulianLeapYear(year) ? Int32(1) : Int32(2)
     let N1 = 275 * month.rawValue / 9
@@ -171,12 +173,12 @@ extension JulianDate {
 }
 
 extension Double {
-  var asMJD : Double { return self - MJD_JD_DIFFERENCE }
-  var asJD : Double { return self + MJD_JD_DIFFERENCE }
+  public var asMJD : Double { return self - MJD_JD_DIFFERENCE }
+  public var asJD : Double { return self + MJD_JD_DIFFERENCE }
 }
 
 extension Double {
-  func toGregorian() -> GregorianDate {
+  public func toGregorian() -> GregorianDate {
     assert(self >= 0.0)
  
     let tmp = self + 0.5
@@ -197,7 +199,7 @@ extension Double {
     return date
   }
 
-  func toJulian() -> JulianDate {
+  public func toJulian() -> JulianDate {
     let tmp = self + 0.5
     let Z = modf(tmp).0
     let F = modf(tmp).1
@@ -217,7 +219,7 @@ extension Double {
 }
 
 extension Double {
-  var weekday: Weekday {
+  public var weekday: Weekday {
     // Meeus, p65
     // Flooring and adding 0.5 to ensure we handle all JDs, not only those starting at 0h
     // Remember that JD starts at noon, so 0.5 is midnight.
@@ -227,14 +229,14 @@ extension Double {
   }
 }
 
-func jd0(year: Int) -> Double {
+public func jd0(year: Int) -> Double {
   let Y = Double(year - 1)
   let A = floor(Y/100)
   let JD0 = floor(365.25 * Y) - A + floor(A/4) + 1721424.5
   return JD0
 }
 
-func julianCenturiesFromJ2000(jd: Double) -> Double {
+public func julianCenturiesFromJ2000(jd: Double) -> Double {
   // Meeus, Eq. 12.1
   let T =  (jd - 2451545) / 36525
   return T

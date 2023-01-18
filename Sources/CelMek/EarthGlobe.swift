@@ -18,7 +18,7 @@
 
 import Foundation
 
-func geocentricToGeographicLatitude(lat: Double) -> Double
+public func geocentricToGeographicLatitude(lat: Double) -> Double
 {
   // Meeus p81, p82
   // 𝜑: Geographical latitude
@@ -28,7 +28,7 @@ func geocentricToGeographicLatitude(lat: Double) -> Double
   
 }
 
-func geographicToGeocentricLatitude(lat: Double) -> Double
+public func geographicToGeocentricLatitude(lat: Double) -> Double
 {
   // Meeus p81, p82
   // 𝜑: Geographical latitude
@@ -38,7 +38,7 @@ func geographicToGeocentricLatitude(lat: Double) -> Double
   
 }
 
-func pcomp(H: Double, geographicLat: Double) -> (Double, Double) {
+public func pcomp(H: Double, geographicLat: Double) -> (Double, Double) {
   let u = atan((EARTH_POLAR_RADIUS_KM / EARTH_EQUATORIAL_RADIUS_KM ) * tan(geographicLat))
   let psin = EARTH_POLAR_RADIUS_KM / EARTH_EQUATORIAL_RADIUS_KM * sin(u) + H / 6378140 * sin(geographicLat)
   let pcos = cos(u) + H / 6378140 * cos(geographicLat)
@@ -46,20 +46,20 @@ func pcomp(H: Double, geographicLat: Double) -> (Double, Double) {
 }
 
 // Radius in longitudial direction
-func parallelOfLatitudeRadius(geographicalLat: Double) -> Double {
+public func parallelOfLatitudeRadius(geographicalLat: Double) -> Double {
   let a = EARTH_EQUATORIAL_RADIUS_KM
   let e = EARTH_ECCENTRICITY
   return (a * cos(geographicalLat)) / sqrt(1 - e * e * sin(geographicalLat) * sin(geographicalLat))
 }
 
 // Radius in latitudial direction
-func radiusOfCurvatureOfMeridian(geographicalLat: Double) -> Double {
+public func radiusOfCurvatureOfMeridian(geographicalLat: Double) -> Double {
   let a = EARTH_EQUATORIAL_RADIUS_KM
   let e = EARTH_ECCENTRICITY
   return (a * (1 - e * e)) / pow(1 - e * e * sin(geographicalLat) * sin(geographicalLat), 3.0/2.0)
 }
 
-func geodesicDistanceFast(p0: GeographicCoordinate, p1: GeographicCoordinate) -> Double {
+public func geodesicDistanceFast(p0: GeographicCoordinate, p1: GeographicCoordinate) -> Double {
   let L₁ = p0.longitude
   let 𝜑₁ = p0.latitude
   
@@ -71,7 +71,7 @@ func geodesicDistanceFast(p0: GeographicCoordinate, p1: GeographicCoordinate) ->
   return s
 }
 
-func geodesicDistance(p0: GeographicCoordinate, p1: GeographicCoordinate) -> Double {
+public func geodesicDistance(p0: GeographicCoordinate, p1: GeographicCoordinate) -> Double {
   let L₁ = p0.longitude
   let 𝜑₁ = p0.latitude
   

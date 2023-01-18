@@ -19,7 +19,7 @@
 import Foundation
 
 extension EclipticCoordinate {
-  init(equatorial: EquatorialCoordinate, obliquityOfEcliptic: Double) {
+  public init(equatorial: EquatorialCoordinate, obliquityOfEcliptic: Double) {
     let 𝛼 = equatorial.rightAscension
     let 𝛿 = equatorial.declination
     let 𝜀 = obliquityOfEcliptic
@@ -36,7 +36,7 @@ extension EclipticCoordinate {
 
 
 extension EquatorialCoordinate {
-  init(ecliptic: EclipticCoordinate, obliquityOfEcliptic: Double) {
+  public init(ecliptic: EclipticCoordinate, obliquityOfEcliptic: Double) {
     let 𝜆 = ecliptic.longitude
     let 𝛽 = ecliptic.latitude
     let 𝜀 = obliquityOfEcliptic
@@ -51,7 +51,7 @@ extension EquatorialCoordinate {
   }
   
   
-  init(horizontal: HorizontalCoordinate, localSiderealTime: Double, observerLatitude: Double) {
+  public init(horizontal: HorizontalCoordinate, localSiderealTime: Double, observerLatitude: Double) {
     let A = horizontal.azimuth
     let h = horizontal.altitude
     let 𝜑 = observerLatitude
@@ -67,7 +67,7 @@ extension EquatorialCoordinate {
     self.declination = 𝛿
   }
 
-  init(horizontal: HorizontalCoordinate, greenwichSiderealTime: Double, observerLatitude: Double, observerLongitude: Double) {
+  public init(horizontal: HorizontalCoordinate, greenwichSiderealTime: Double, observerLatitude: Double, observerLongitude: Double) {
     let A = horizontal.azimuth
     let h = horizontal.altitude
     let 𝜑 = observerLatitude
@@ -85,7 +85,7 @@ extension EquatorialCoordinate {
 }
 
 extension HorizontalCoordinate {
-  init(localHourAngle: Double, observerLatitude: Double, declination: Double) {
+  public init(localHourAngle: Double, observerLatitude: Double, declination: Double) {
     let 𝛿 = declination
     let H = localHourAngle
     let 𝜑 = observerLatitude
@@ -102,7 +102,7 @@ extension HorizontalCoordinate {
 
 
 extension GalacticCoordinate {
-  init(equatorial: EquatorialCoordinate) {
+  public init(equatorial: EquatorialCoordinate) {
     let 𝛼 = equatorial.rightAscension
     let 𝛼₁₉₅₀ = B1950_RIGHT_ASCENSION_NORTH_POLE
     let 𝛿 = equatorial.declination
@@ -119,7 +119,7 @@ extension GalacticCoordinate {
 }
 
 extension EquatorialCoordinate {
-  init(galactic: GalacticCoordinate) {
+  public init(galactic: GalacticCoordinate) {
     let l = galactic.longitude
     let b = galactic.latitude
     let 𝛿₁₉₅₀ = B1950_DECLINATION_NORTH_POLE

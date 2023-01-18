@@ -18,7 +18,7 @@
 
 import Foundation
 
-func meanSideralTimeUT0(jd: Double) -> HourAngle {
+public func meanSideralTimeUT0(jd: Double) -> HourAngle {
   // Meeus, Eq. 12.2
   let jd_ = floor(jd) + 0.5
   let T = julianCenturiesFromJ2000(jd: jd_)
@@ -32,8 +32,7 @@ func meanSideralTimeUT0(jd: Double) -> HourAngle {
   return result
 }
 
-
-func meanSideralTimeDegreesUT0(jd: Double) -> Double {
+public func meanSideralTimeDegreesUT0(jd: Double) -> Double {
   // Meeus, Eq. 12.3
   let jd_ = floor(jd) + 0.5
   let T = julianCenturiesFromJ2000(jd: jd_)
@@ -43,14 +42,14 @@ func meanSideralTimeDegreesUT0(jd: Double) -> Double {
   return normalize(degrees: 𝛩₀)
 }
 
-func meanSiderealTimeDegrees(jd: Double) -> Double {
+public func meanSiderealTimeDegrees(jd: Double) -> Double {
   // Meeus, Eq. 12.3 and adjustments for any time of day
   let 𝛩₀ = meanSideralTimeDegreesUT0(jd: jd)
   let 𝜃₀ = modf(jd).1
   return 𝛩₀ + 𝜃₀ * 1.00273790935
 }
 
-func meanSiderealTimeDegrees0(jd: Double) -> Double {
+public func meanSiderealTimeDegrees0(jd: Double) -> Double {
   // Meeus, Eq. 12.4
   let T = julianCenturiesFromJ2000(jd: jd)
   let T² = T * T

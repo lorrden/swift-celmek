@@ -19,7 +19,7 @@
 
 import Foundation
 
-func eccentricityOfUranus(T: Double) -> Double?
+public func eccentricityOfUranus(T: Double) -> Double?
 {
   // Meeus, Astronomical Algorithms 2nd edition, Equation 1.1
   // TODO: Test Case is missing
@@ -29,8 +29,7 @@ func eccentricityOfUranus(T: Double) -> Double?
   return 0.04638122 - 0.000027293 * T + 0.0000000789 * T * T
 }
 
-
-func geometricLongitudeOfSun(T: Double) -> Double
+public func geometricLongitudeOfSun(T: Double) -> Double
 {
   // Meeus, Astronomical Algorithms 2nd edition, Equation p16
   // TODO: Test Case is missing

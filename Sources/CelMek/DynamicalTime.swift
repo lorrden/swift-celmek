@@ -97,7 +97,7 @@ public func deltaT(year: Double) -> Double {
 
 
 extension GregorianDate {
-  func years() -> Double {
+  public func years() -> Double {
     let days = self.dayOfYear()
     if (isGregorianLeapYear(year)) {
       return Double(year) + days / 366.0
@@ -108,7 +108,7 @@ extension GregorianDate {
 }
 
 extension JulianDate {
-  func years() -> Double {
+  public func years() -> Double {
     let days = self.dayOfYear()
     if (isJulianLeapYear(year)) {
       return Double(year) + days / 366.0
