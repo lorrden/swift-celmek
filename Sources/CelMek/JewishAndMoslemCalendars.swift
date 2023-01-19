@@ -18,6 +18,64 @@
 
 import Foundation
 
+fileprivate enum JewishYearClassifier: Int {
+  case CommonDeficient = 353
+  case CommonRegular = 354
+  case CommonComplete = 355
+  case EmbolismicDeficient = 383
+  case EmbolismicRegular = 384
+  case EmbolismicComplete = 385
+}
+
+fileprivate let jewishMonthLength: [JewishYearClassifier : [Int]] = [
+  .CommonDeficient: [30,29,29,29,30,29,0,30,29,30,29,30,29],
+  .CommonRegular: [30,29,30,29,30,29,0,30,29,30,29,30,29],
+  .CommonComplete: [30,30,30,29,30,29,0,30,29,30,29,30,29],
+  .EmbolismicDeficient: [30,29,29,29,30,29,29,30,29,30,29,30,29],
+  .EmbolismicRegular: [30,29,30,29,30,29,29,30,29,30,29,30,29],
+  .EmbolismicComplete: [30,30,30,29,30,29,29,30,29,30,29,30,29],
+]
+
+extension JewishMonth: CustomStringConvertible {
+  public var description: String {
+    switch self {
+    case .Tishri: return "Tishri"
+    case .Heshvan: return "Heshvan"
+    case .Kislev: return "Kislev"
+    case .Tevet: return "Tevet"
+    case .Shevat: return "Shevat"
+    case .Adar: return "Adar"
+    case .Veadar: return "Vedar"
+    case .Nisan: return "Nisan"
+    case .Iyar: return "Iyar"
+    case .Sivan: return "Sivan"
+    case .Tammuz: return "Tammuz"
+    case .Av: return "Av"
+    case .Elul: return "Elul"
+    }
+  }
+}
+
+
+@frozen
+public struct JewishDate {
+  public var year: Int
+  public var month: JewishMonth
+  public var day: Int
+  
+  public init(year: Int, month: JewishMonth, day: Int) {
+    self.year = year
+    self.month = month
+    self.day = day
+  }
+}
+
+extension JewishDate: CustomStringConvertible {
+  public var description: String {
+    return "\(year)-\(month)-\(day)"
+  }
+}
+
 public func jewishEaster(hebrewYear: Int, julianCalendar: Bool) -> Int {
   let A = hebrewYear
   let X = A - 3760
@@ -97,32 +155,34 @@ public struct MoslemDate {
   }
 }
 
-public func moslemMonthToString(month: MoslemMonth) -> String {
-  switch month {
-  case .Muharram:
-    return "Muharram"
-  case .Safar:
-    return "Safar"
-  case .RabiAlAwwal:
-    return "Rabi'al-Awwal"
-  case .RabiAthThani:
-    return "Rabi'ath-Thani"
-  case .JumadaLUla:
-    return "Jumada l-Ula"
-  case .JumadaTTania:
-    return "Jumada t-Tania"
-  case .Rajab:
-    return "Rajab"
-  case .ShaBan:
-    return "Sha'ban"
-  case .Ramadan:
-    return "Ramadan"
-  case .Shawwal:
-    return "Shawwal"
-  case .DhuLQaDa:
-    return "Dhu l-Qa'da"
-  case .DhuLHijja:
-    return "Dhu l-Hijja"
+extension MoslemMonth: CustomStringConvertible {
+  public var description: String {
+    switch self {
+    case .Muharram:
+      return "Muharram"
+    case .Safar:
+      return "Safar"
+    case .RabiAlAwwal:
+      return "Rabi'al-Awwal"
+    case .RabiAthThani:
+      return "Rabi'ath-Thani"
+    case .JumadaLUla:
+      return "Jumada l-Ula"
+    case .JumadaTTania:
+      return "Jumada t-Tania"
+    case .Rajab:
+      return "Rajab"
+    case .ShaBan:
+      return "Sha'ban"
+    case .Ramadan:
+      return "Ramadan"
+    case .Shawwal:
+      return "Shawwal"
+    case .DhuLQaDa:
+      return "Dhu l-Qa'da"
+    case .DhuLHijja:
+      return "Dhu l-Hijja"
+    }
   }
 }
 
@@ -207,5 +267,12 @@ extension MoslemDate {
     self.init(year: H,
               month: MoslemMonth(rawValue: Int32(m))!,
               day: d)
+  }
+}
+
+
+extension MoslemDate: CustomStringConvertible {
+  public var description: String {
+    return "\(year)-\(month)-\(day)"
   }
 }

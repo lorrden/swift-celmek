@@ -57,6 +57,14 @@ public struct GregorianDate {
   }
 }
 
+
+extension GregorianDate: CustomStringConvertible {
+  public var description: String {
+    return "\(year)-\(month)-\(day)"
+  }
+}
+
+
 @frozen
 public struct JulianDate {
   public var year: Int
@@ -94,6 +102,11 @@ public struct JulianDate {
     self.year = year
     self.month = Month(rawValue: M)!
     self.day = D
+  }
+}
+extension JulianDate: CustomStringConvertible {
+  public var description: String {
+    return "\(year)-\(month)-\(day)"
   }
 }
 

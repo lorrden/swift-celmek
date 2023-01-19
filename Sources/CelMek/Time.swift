@@ -57,6 +57,36 @@ public enum Month : Int32 {
   case November = 11;
   case December = 12;
 }
+extension Month: CustomStringConvertible {
+  public var description: String {
+    switch self {
+    case .January:
+      return "January"
+    case .February:
+      return "February"
+    case .March:
+      return "March"
+    case .April:
+      return "April"
+    case .May:
+      return "May"
+    case .June:
+      return "June"
+    case .July:
+      return "July"
+    case .August:
+      return "August"
+    case .September:
+      return "September"
+    case .October:
+      return "October"
+    case .November:
+      return "November"
+    case .December:
+      return "December"
+    }
+  }
+}
 
 public enum JewishMonth : Int32 {
   case Tishri = 1;
