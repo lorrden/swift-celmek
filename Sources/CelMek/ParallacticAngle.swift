@@ -22,7 +22,7 @@ public func parallacticAngle(geographicLatitudeOfObserver: Double, declination: 
   let 𝜑 = geographicLatitudeOfObserver
   let 𝛿 = declination
   let H = rightAscension.toRad()
-  
+
   let q = atan2(sin(H), tan(𝜑) * cos(𝛿) - sin(𝛿) * cos(H))
   return q
 }
@@ -52,7 +52,7 @@ public func angleBetweenNorthCelestialAndEclipticPoles(eclipticCoordinateOfStar:
   let 𝜆 = eclipticCoordinateOfStar.longitude
   let 𝛽 = eclipticCoordinateOfStar.latitude
   let 𝜀 = obliquityOfEcliptic
- 
+
   let q = atan2(cos(𝜆) * tan(𝜀), sin(𝛽) * sin(𝜆) * tan(𝜀) - cos(𝛽))
   return q
 }

@@ -23,9 +23,8 @@ public func geocentricToGeographicLatitude(lat: Double) -> Double
   // Meeus p81, p82
   // 𝜑: Geographical latitude
   // 𝜑': Geocentric latidude
-  
+
   return atan(tan(lat) / ((EARTH_POLAR_RADIUS_KM * EARTH_POLAR_RADIUS_KM) / (EARTH_EQUATORIAL_RADIUS_KM * EARTH_EQUATORIAL_RADIUS_KM)))
-  
 }
 
 public func geographicToGeocentricLatitude(lat: Double) -> Double
@@ -33,9 +32,8 @@ public func geographicToGeocentricLatitude(lat: Double) -> Double
   // Meeus p81, p82
   // 𝜑: Geographical latitude
   // 𝜑': Geocentric latidude
-  
+
   return atan(((EARTH_POLAR_RADIUS_KM * EARTH_POLAR_RADIUS_KM) / (EARTH_EQUATORIAL_RADIUS_KM * EARTH_EQUATORIAL_RADIUS_KM)) * tan(lat))
-  
 }
 
 public func pcomp(H: Double, geographicLat: Double) -> (Double, Double) {
@@ -62,7 +60,7 @@ public func radiusOfCurvatureOfMeridian(geographicalLat: Double) -> Double {
 public func geodesicDistanceFast(p0: GeographicCoordinate, p1: GeographicCoordinate) -> Double {
   let L₁ = p0.longitude
   let 𝜑₁ = p0.latitude
-  
+
   let L₂ = p1.longitude
   let 𝜑₂ = p1.latitude
 
@@ -74,14 +72,14 @@ public func geodesicDistanceFast(p0: GeographicCoordinate, p1: GeographicCoordin
 public func geodesicDistance(p0: GeographicCoordinate, p1: GeographicCoordinate) -> Double {
   let L₁ = p0.longitude
   let 𝜑₁ = p0.latitude
-  
+
   let L₂ = p1.longitude
   let 𝜑₂ = p1.latitude
 
   let F = (𝜑₁ + 𝜑₂) / 2
   let G = (𝜑₁ - 𝜑₂) / 2
   let 𝜆 = (L₁ - L₂) / 2
-  
+
   let sin²G = sin(G) * sin(G)
   let cos²𝜆 = cos(𝜆) * cos(𝜆)
   let cos²F = cos(F) * cos(F)
@@ -96,11 +94,11 @@ public func geodesicDistance(p0: GeographicCoordinate, p1: GeographicCoordinate)
   let R = sqrt(S*C)/𝜔
 
   let a = EARTH_EQUATORIAL_RADIUS_KM
-  
+
   let D = 2 * 𝜔 * a
   let H₁ = (3 * R - 1) / (2 * C)
   let H₂ = (3 * R + 1) / (2 * S)
-  
+
   let f = EARTH_FLATTENING
 
   let s = D * (1 + f * H₁ * sin²F * cos²G - f * H₂ * cos²F * sin²G)

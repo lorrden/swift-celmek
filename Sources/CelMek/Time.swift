@@ -33,7 +33,7 @@ fileprivate let month_offset_leap : [Int]  = [  0,  31,  60,  91, 121, 152,
                                                 182, 213, 244, 274, 305, 335];
 
 // Ordered in work week order, but numbered to simplify calculations
-public enum Weekday : Int8 {
+public enum Weekday : Int {
   case Monday = 1
   case Tuesday = 2
   case Wednesday = 3
@@ -43,7 +43,7 @@ public enum Weekday : Int8 {
   case Sunday = 0
 
 }
-public enum Month : Int32 {
+public enum Month : Int {
   case January = 1;
   case February = 2;
   case March = 3;
@@ -88,7 +88,7 @@ extension Month: CustomStringConvertible {
   }
 }
 
-public enum JewishMonth : Int32 {
+public enum JewishMonth : Int {
   case Tishri = 1;
   case Heshvan = 2;
   case Kislev = 3;
@@ -104,7 +104,7 @@ public enum JewishMonth : Int32 {
   case Elul = 13;
 }
 
-public enum MoslemMonth : Int32 {
+public enum MoslemMonth : Int {
   case Muharram = 1;
   case Safar = 2;
   case RabiAlAwwal = 3;
@@ -191,7 +191,7 @@ public struct DateTime {
   {
     return date.isValid() && time.isValid();
   }
-  
+
   init?(isoDate str: String)
   {
     //    var year:Int32 = 0, month:Int32 = 1, day:UInt8 = 1, hour:UInt8 = 0, minute:UInt8 = 0;
@@ -213,11 +213,11 @@ public struct DateTime {
     if dateComps.count != 3 {
       return nil
     }
-    
+
     guard let yyyy = Int32(dateComps[0]) else {
       return nil
     }
-    guard let mm = Int32(dateComps[1]) else {
+    guard let mm = Int(dateComps[1]) else {
       return nil
     }
     guard let dd = UInt8(dateComps[2]) else {

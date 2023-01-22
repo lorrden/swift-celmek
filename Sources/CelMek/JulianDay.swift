@@ -44,11 +44,11 @@ public struct GregorianDate {
       }
     }
 
-    let K = isGregorianLeapYear(year) ? Int32(1) : Int32(2)
+    let K = isGregorianLeapYear(year) ? 1 : 2
     let M1 = 9 * (Double(K) + dayInYear) / 275
-    let M = dayInYear < 32 ? 1 : Int32(Double(M1) + 0.98)
-    let D1 = Int32(Double(275 * M) / 9)
-    let D2 = K * Int32(Double(M + 9) / 12)
+    let M = dayInYear < 32 ? 1 : Int(Double(M1) + 0.98)
+    let D1 = Int(Double(275 * M) / 9)
+    let D2 = K * Int(Double(M + 9) / 12)
     let D = dayInYear - Double(D1) + Double(D2 + 30)
     
     self.year = year
@@ -92,11 +92,11 @@ public struct JulianDate {
       }
     }
 
-    let K = isJulianLeapYear(year) ? Int32(1) : Int32(2)
+    let K = isJulianLeapYear(year) ? 1 : 2
     let M1 = 9 * (Double(K) + dayInYear) / 275
-    let M = dayInYear < 32 ? 1 : Int32(Double(M1) + 0.98)
-    let D1 = Int32(Double(275 * M) / 9)
-    let D2 = K * Int32(Double(M + 9) / 12)
+    let M = dayInYear < 32 ? 1 : Int(Double(M1) + 0.98)
+    let D1 = Int(Double(275 * M) / 9)
+    let D2 = K * Int(Double(M + 9) / 12)
     let D = dayInYear - Double(D1) + Double(D2 + 30)
     
     self.year = year
@@ -165,7 +165,7 @@ isJulianLeapYear(_ y: Int) -> Bool
 extension GregorianDate {
   public func dayOfYear() -> Double {
     // Meeus, p65
-    let K = isGregorianLeapYear(year) ? Int32(1) : Int32(2)
+    let K = isGregorianLeapYear(year) ? 1 : 2
     let N1 = 275 * month.rawValue / 9
     let N2 = (K * month.rawValue + 9) / 12
     let N = Double(N1 - N2 - 30) + day
@@ -176,7 +176,7 @@ extension GregorianDate {
 extension JulianDate {
   public func dayOfYear() -> Double {
     // Meeus, p65
-    let K = isJulianLeapYear(year) ? Int32(1) : Int32(2)
+    let K = isJulianLeapYear(year) ? 1 : 2
     let N1 = 275 * month.rawValue / 9
     let N2 = (K * month.rawValue + 9) / 12
     let N = Double(N1 - N2 - 30) + day
@@ -205,7 +205,7 @@ extension Double {
     let E = floor((B - D) / 30.6001)
     
     let dayInMonth = B - D - floor(30.6001 * E) + F
-    let month = Int32(E) < 14 ? Int32(E) - 1 : Int32(E) - 13
+    let month = Int(E) < 14 ? Int(E) - 1 : Int(E) - 13
     let year = Int(C) - (month > 2 ? 4716 : 4715)
     let date = GregorianDate(year: year, month: Month(rawValue: month)!, day: dayInMonth)
     return date
@@ -222,7 +222,7 @@ extension Double {
     let E = floor((B - D) / 30.6001)
     
     let dayInMonth = B - D - floor(30.6001 * E) + F
-    let month = Int32(E) < 14 ? Int32(E) - 1 : Int32(E) - 13
+    let month = Int(E) < 14 ? Int(E) - 1 : Int(E) - 13
     let year = Int(C) - (month > 2 ? 4716 : 4715)
     let date = JulianDate(year: year, month: Month(rawValue: month)!, day: dayInMonth)
     return date
@@ -236,7 +236,7 @@ extension Double {
     // Flooring and adding 0.5 to ensure we handle all JDs, not only those starting at 0h
     // Remember that JD starts at noon, so 0.5 is midnight.
     let adjustedJD = floor(self) + 0.5 + 1.5
-    let weekdayNumber = Int8(adjustedJD.remainder(dividingBy: 7))
+    let weekdayNumber = Int(adjustedJD.remainder(dividingBy: 7))
     return Weekday(rawValue: weekdayNumber)!
   }
 }

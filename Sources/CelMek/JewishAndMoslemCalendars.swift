@@ -265,7 +265,7 @@ extension MoslemDate {
       d = 30
     }
     self.init(year: H,
-              month: MoslemMonth(rawValue: Int32(m))!,
+              month: MoslemMonth(rawValue: m)!,
               day: d)
   }
 }

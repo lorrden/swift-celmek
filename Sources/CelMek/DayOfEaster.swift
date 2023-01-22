@@ -35,7 +35,7 @@ public func gregorianDateOfEaster(year: Int) -> GregorianDate {
   let p = (h + l - 7 * m + 114) % 31
   
   return GregorianDate(year: year,
-                       month: Month(rawValue: Int32(n))!,
+                       month: Month(rawValue: n)!,
                        day: Double(p+1))
 }
 
@@ -49,6 +49,6 @@ public func julianDateOfEaster(year: Int) -> JulianDate {
   let g = (d + e + 114) % 31
   
   return JulianDate(year: year,
-                    month: Month(rawValue: Int32(f))!,
+                    month: Month(rawValue: f)!,
                     day: Double(g+1))
 }

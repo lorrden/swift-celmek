@@ -25,7 +25,7 @@ public func meanSideralTimeUT0(jd: Double) -> HourAngle {
   let T² = T * T
   let T³ = T * T * T
   let ra0 = HourAngle(hours: 6, minutes: 41, seconds: 50.54841)
-  
+
   let ra1 = HourAngle(seconds: 8640184.812866 * T + 0.093104 * T² - 0.0000062 * T³)
 
   let result = ra0 + ra1

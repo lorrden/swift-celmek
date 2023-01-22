@@ -109,7 +109,7 @@ extension HourAngle {
     self.minutes = normalize(minutes: self.minutes)
     self.seconds = normalize(seconds: self.seconds)
   }
-  
+
   public init(degrees: Double) {
     let h = degrees / DEGREES_PER_HOUR
     let m = modf(h).1 * 60.0
@@ -122,7 +122,7 @@ extension HourAngle {
 
   public static func +(lhs: HourAngle, rhs: HourAngle) -> HourAngle {
     var ha = HourAngle(hours: lhs.hours + rhs.hours, minutes: lhs.minutes + rhs.minutes, seconds: lhs.seconds + rhs.seconds)
-    
+
     ha.minutes += Int(ha.seconds / 60)
     ha.seconds = normalize(seconds: ha.seconds)
     ha.hours += Int(ha.minutes / 60)
@@ -131,7 +131,6 @@ extension HourAngle {
     return ha
   }
 
-  
   public func toDeg() -> Double {
     let totalHours = Double(abs(self.hours)) + Double(self.minutes) / MINUTES_PER_HOUR + self.seconds / SECONDS_PER_HOUR
 
@@ -141,7 +140,7 @@ extension HourAngle {
       return -totalHours.hoursAsDeg
     }
   }
-  
+
   func toRad() -> Double {
     return toDeg().deg
   }

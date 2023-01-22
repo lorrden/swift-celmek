@@ -23,12 +23,12 @@ extension EclipticCoordinate {
     let 𝛼 = equatorial.rightAscension
     let 𝛿 = equatorial.declination
     let 𝜀 = obliquityOfEcliptic
-    
+
     let 𝜆 = atan2(sin(𝛼) * cos(𝜀) + tan(𝛿) * sin(𝜀), cos(𝛼))
     let sin𝛽 = sin(𝛿) * cos(𝜀) - cos(𝛿) * sin(𝜀) * sin(𝛼)
-    
+
     let 𝛽 = asin(sin𝛽)
-    
+
     latitude = 𝛽
     longitude = 𝜆
   }
@@ -75,7 +75,7 @@ extension EquatorialCoordinate {
     let L = observerLongitude
     let H = atan2(sin(A), (cos(A) * sin(𝜑) + tan(h) * cos(𝜑)))
     let sin𝛿 = sin(𝜑) * sin(h) - cos(𝜑) * cos(h) * cos(A)
-    
+
     let 𝛿 = asin(sin𝛿)
     let 𝛼 = 𝜃₀ - L - H
 

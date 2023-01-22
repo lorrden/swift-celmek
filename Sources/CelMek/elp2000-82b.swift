@@ -26,7 +26,7 @@ fileprivate struct LongDistTerm {
   var F: Double
   var zl: Double;
   var zr: Double;
-  
+
   init(_ D: Double, _ M: Double, _ M_prime: Double, _ F: Double, _ zl: Double, _ zr: Double) {
     self.D = D
     self.M = M
@@ -322,7 +322,7 @@ public func
 cm_elp2000_82b(_ jde:Double) -> SIMD3<Double>
 {
   let T = cm_elp2000_82b_T(jde);
-  
+
   // Compute parameters in degrees.
   // Mean longitude . mean equinox of the date, incl light delay
   let Lprime = cm_elp2000_82b_Lprime(T);
@@ -330,48 +330,47 @@ cm_elp2000_82b(_ jde:Double) -> SIMD3<Double>
   let D = cm_elp2000_82b_D(T);
   // Sun's mean anomaly
   let M = cm_elp2000_82b_M(T);
-  
+
   // Moon's mean anomaly
   let Mprime = cm_elp2000_82b_Mprime(T);
   // Moon's argument of latitude
   let F = cm_elp2000_82b_F(T);
-  
+
   let A1 = cm_elp2000_82b_A1(T);
   let A2 = cm_elp2000_82b_A2(T);
   let A3 = cm_elp2000_82b_A3(T);
-  
+
   // Decreasing eccentricity of earth orbit around sun
   let E = cm_elp2000_82b_E(T);
-  
+
   var zl = 0.0;
   var zb = 0.0;
   var zr = 0.0;
-  
+
   for term in long_dist_terms {
     var arg = term.D * D;
     arg += term.M * M;
     arg += term.M_prime * Mprime;
     arg += term.F * F;
     arg = fmod(fmod(arg, 2.0 * .pi) + 2.0 * .pi, 2.0 * .pi);
-    
+
     var Eprime = 1.0;
     if (fabs(term.M) == 2.0) {
       Eprime = E * E;
     } else if (fabs(term.M) == 1.0) {
       Eprime = E;
-      
     }
-    
+
     zl += term.zl * sin(arg) * Eprime;
     zr += term.zr * cos(arg) * Eprime;
   }
-  
+
   for term in lat_terms {
     var arg = term.D * D;
     arg += term.M * M;
     arg += term.M_prime * Mprime;
     arg += term.F * F;
-    
+
     var Eprime = 1.0;
     if (fabs(term.M) == 2.0) {
       Eprime = E * E;
@@ -381,29 +380,29 @@ cm_elp2000_82b(_ jde:Double) -> SIMD3<Double>
     arg = fmod(fmod(arg, 2.0 * .pi) + 2.0 * .pi, 2.0 * .pi);
     zb += term.zb * sin(arg) * Eprime;
   }
-  
+
   zl += ELP_3958_0_RAD * sin(A1);
   zl += ELP_1962_0_RAD * sin(Lprime - F);  // Flattening
   zl += ELP_318_0_RAD * sin(A2);           // Jupiter
-  
+
   zb -= ELP_2235_0_RAD * sin(Lprime);  // Flattening
   zb += ELP_382_0_RAD * sin(A3);
   zb += ELP_175_0_RAD * sin(A1 - F);           // Venus
   zb += ELP_175_0_RAD * sin(A1 + F);           // Venus
   zb += ELP_127_0_RAD * sin(Lprime - Mprime);  // Flattening
   zb -= ELP_115_0_RAD * sin(Lprime + Mprime);  // Flattening
-  
+
   // To avoid divisions, the table cooefs need to be updated
   let lambda = Lprime + zl;      // / 1000000.0;  // Degrees
   let beta = zb;                 // / 1000000.0;             // Degrees
   let delta = 385000.56e3 + zr;  /// 1000.0;//  / 1000.0;   // km
-  
+
   //  printf("Zl = %f should be -1127527 +/- epsilon\n", zl); // -1127527
   //  printf("Zb = %f should be -3229127 +/- epsilon\n", zb); // -3229127
   //  printf("Zr = %f should be -16590875 +/- epsilon\n", zr); // -16590875
-  
+
   // printf("%f %f %f\n", lambda, beta, delta);
   let res = SIMD3<Double>(fmod(lambda, 2.0 * .pi), fmod(beta, .pi), delta)
-  
+
   return res;
 }
