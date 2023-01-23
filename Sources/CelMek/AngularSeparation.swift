@@ -26,9 +26,11 @@ fileprivate func angularSeparation(a0: Double, b0: Double, a1: Double, b1: Doubl
   let 𝛼₂ = a1
   let 𝛿₂ = b1
 
-  let d = acos(sin(𝛿₁) * sin(𝛿₂) + cos(𝛿₁) * cos(𝛿₂) * cos(𝛼₁ - 𝛼₂))
+  let x = cos(𝛿₁) * sin(𝛿₂) - sin(𝛿₁) * cos(𝛿₂) * cos(𝛼₂ - 𝛼₁)
+  let y = cos(𝛿₂) * sin(𝛼₂ - 𝛼₁)
+  let z = sin(𝛿₁) * sin(𝛿₂) + cos(𝛿₁) * cos(𝛿₂) * cos(𝛼₂ - 𝛼₁)
+  let d = atan(sqrt(x*x + y*y) / z)
   return d
-
 }
 
 func angularSeparation(_ c1:EquatorialCoordinate, _ c2: EquatorialCoordinate) -> Double {
