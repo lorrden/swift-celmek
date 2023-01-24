@@ -34,12 +34,25 @@ fileprivate func angularSeparation(a0: Double, b0: Double, a1: Double, b1: Doubl
   return d
 }
 
-func angularSeparation(_ c1:EquatorialCoordinate, _ c2: EquatorialCoordinate) -> Double {
+public func angularSeparation(_ c1:EquatorialCoordinate, _ c2: EquatorialCoordinate) -> Double {
   return angularSeparation(a0: c1.rightAscension, b0: c1.declination,
                            a1: c2.rightAscension, b1: c2.declination)
 }
 
-func angularSeparation(_ c1:EclipticCoordinate, _ c2: EclipticCoordinate) -> Double {
+public func angularSeparation(_ c1:EclipticCoordinate, _ c2: EclipticCoordinate) -> Double {
   return angularSeparation(a0: c1.longitude, b0: c1.latitude,
                            a1: c2.longitude, b1: c2.latitude)
+}
+
+
+public func relativePositionAngle(_ c1:EquatorialCoordinate, _ c2: EquatorialCoordinate) -> Double {
+  // Equation, p116
+
+  let 𝛼₁ = c1.rightAscension
+  let 𝛿₁ = c1.declination
+  let 𝛼₂ = c2.rightAscension
+  let 𝛿₂ = c2.declination
+  let deltaA = 𝛼₁  - 𝛼₂
+
+  return atan2(sin(deltaA), cos(𝛿₂) * tan(𝛿₁) - sin(𝛿₂) * cos(deltaA))
 }
