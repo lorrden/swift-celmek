@@ -48,3 +48,33 @@ public func smallestCircle(_ p1: EquatorialCoordinate,
   let e = (a + b + c) * (a + b - c) * (b + c - a) * (a + c - b)
   return d / sqrt(e)
 }
+
+public func smallestCircle(_ p1: EclipticCoordinate,
+                           _ p2: EclipticCoordinate,
+                           _ p3: EclipticCoordinate) -> Double {
+  let x = angularSeparation(p1, p2)
+  let y = angularSeparation(p1, p3)
+  let z = angularSeparation(p2, p3)
+
+  var a, b, c: Double
+  if x >= y && x >= z {
+    a = x
+    b = y
+    c = z
+  } else if y >= x && y >= z {
+    a = y
+    b = x
+    c = z
+  } else {
+    a = z
+    b = x
+    c = y
+  }
+
+  if a >= sqrt(b*b + c*c) {
+    return a
+  }
+  let d = 2 * a * b * c
+  let e = (a + b + c) * (a + b - c) * (b + c - a) * (a + c - b)
+  return d / sqrt(e)
+}
