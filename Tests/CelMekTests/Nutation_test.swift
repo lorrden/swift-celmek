@@ -23,15 +23,15 @@ final class Nutation_tests : XCTestCase {
   func testFastNutation() {
     // Meeus, example 22.a
     let (x, y) = fastNutation(jd: 2446895.5)
-    XCTAssertEqual(x, -3.788.arcsec, accuracy: 0.5)
-    XCTAssertEqual(y, 9.443.arcsec, accuracy: 0.5)
+    XCTAssertEqual(x, -3.788.arcsec, accuracy: 0.00001)
+    XCTAssertEqual(y, 9.443.arcsec, accuracy: 0.00001)
   }
 
   func testNutation() {
     // Meeus, example 22.a
     let (x, y) = nutation(jd: 2446895.5)
-    XCTAssertEqual(x, -3.788.arcsec, accuracy: 0.00005)
-    XCTAssertEqual(y, 9.443.arcsec, accuracy: 0.00005)
+    XCTAssertEqual(x, -3.788.arcsec, accuracy: 0.00001)
+    XCTAssertEqual(y, 9.443.arcsec, accuracy: 0.00001)
   }
 }
 
