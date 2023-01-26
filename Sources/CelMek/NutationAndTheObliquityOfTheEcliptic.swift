@@ -164,3 +164,39 @@ public func nutation(jd: Double) -> (Double, Double) {
   return (x.arcsec, y.arcsec)
 }
 
+public func fastMeanObliquityOfTheEcliptic(jd: Double) -> Double {
+  let T = julianCenturiesFromJ2000(jd: jd)
+  let T2 = T * T
+  let T3 = T * T * T
+  let e0 = AngleOfArc(degrees: 23, minutes: 26, seconds: 21.448).toRad() - 46.8150.arcsec * T - 0.00059.arcsec * T2 + 0.001813.arcsec * T3
+  return e0
+}
+
+public func meanObliquityOfTheEcliptic(jd: Double) -> Double {
+  let T = julianCenturiesFromJ2000(jd: jd)
+  let U = T / 100
+  let U2 = U * U
+  let U3 = U2 * U
+  let U4 = U2 * U2
+  let U5 = U4 * U
+  let U6 = U3 * U3
+  let U7 = U6 * U
+  let U8 = U4 * U4
+  let U9 = U8 * U
+  let U10 = U5 * U5
+
+
+  let a = AngleOfArc(degrees: 23, minutes: 26, seconds: 21.448).toRad()
+  let b = -4680.93 * U
+    - 1.55 * U2
+    + 1999.25 * U3
+    - 51.38 * U4
+    - 249.67 * U5
+    - 39.05 * U6
+    + 7.12 * U7
+    + 27.87 * U8
+    + 5.79 * U9
+    + 2.45 * U10
+  let e0 = a + b.arcsec
+  return e0
+}
