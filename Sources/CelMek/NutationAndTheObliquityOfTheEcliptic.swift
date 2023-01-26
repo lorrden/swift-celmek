@@ -200,3 +200,15 @@ public func meanObliquityOfTheEcliptic(jd: Double) -> Double {
   let e0 = a + b.arcsec
   return e0
 }
+
+public func fastTrueObliquityOfTheEcliptic(jd: Double) -> Double {
+  let (_, ed) = fastNutation(jd: jd)
+  let e0 = fastMeanObliquityOfTheEcliptic(jd: jd)
+  return e0 + ed
+}
+
+public func trueObliquityOfTheEcliptic(jd: Double) -> Double {
+  let (_, ed) = nutation(jd: jd)
+  let e0 = meanObliquityOfTheEcliptic(jd: jd)
+  return e0 + ed
+}
