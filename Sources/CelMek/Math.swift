@@ -33,6 +33,10 @@ extension Double {
   public var rad: Double {
     return self
   }
+  public var arcsec: Double {
+    return (self / SECONDS_OF_ARC_PER_DEGREE).deg
+  }
+
   public var asDeg: Double {
     return self * (180.0 / .pi)
   }
