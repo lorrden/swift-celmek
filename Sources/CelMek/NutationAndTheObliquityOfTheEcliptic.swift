@@ -165,6 +165,7 @@ public func nutation(jd: Double) -> (Double, Double) {
 }
 
 public func fastMeanObliquityOfTheEcliptic(jd: Double) -> Double {
+  // Meeus, Equation 22.2
   let T = julianCenturiesFromJ2000(jd: jd)
   let T2 = T * T
   let T3 = T * T * T
@@ -173,6 +174,7 @@ public func fastMeanObliquityOfTheEcliptic(jd: Double) -> Double {
 }
 
 public func meanObliquityOfTheEcliptic(jd: Double) -> Double {
+  // Meeus, Equation 22.3
   let T = julianCenturiesFromJ2000(jd: jd)
   let U = T / 100
   let U2 = U * U
