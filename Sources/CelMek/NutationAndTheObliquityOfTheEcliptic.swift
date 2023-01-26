@@ -38,15 +38,21 @@ fileprivate func longitudeOfAscendingNodeOfMoonsMeanOrbitOnEcliptic(T: Double) -
   return normalize(degrees: 125.04452 - 1934.136261*T + 0.0020708*T*T + T*T*T/(450000))
 }
 
+@frozen
+public struct Nutation {
+  let nutationInLongitude: Double
+  let nutationInObliquity: Double
+}
+
 // Returns nutation in longitude and nutation in obliquity
-public func fastNutation(jd: Double) -> (Double, Double) {
+public func fastNutation(jd: Double) -> Nutation {
   let T = julianCenturiesFromJ2000(jd: jd)
   let Omega = longitudeOfAscendingNodeOfMoonsMeanOrbitOnEcliptic(T: T).deg
   let L = normalize(degrees: (280.4665 + 36000.7698*T))
   let Lprime = normalize(degrees: (218.3165 + 481267.8813 * T)).deg
   let x = (-17.20 * sin(Omega)) - 1.32 * sin(2*L) - 0.23 * sin(2*Lprime) + 0.21 * sin(2*Omega)
   let y = 9.20 * cos(Omega) + 0.57 * cos(2*L) + 0.10 * cos(2*Lprime) - 0.09 * cos(2*Omega)
-  return (x.arcsec, y.arcsec)
+  return Nutation(nutationInLongitude: x.arcsec, nutationInObliquity: y.arcsec)
 }
 
 fileprivate struct NutationCoefficient {
@@ -142,7 +148,7 @@ fileprivate let nutationCoefficients: [NutationCoefficient] = [
 ]
 
 // Returns nutation in longitude and nutation in obliquity
-public func nutation(jd: Double) -> (Double, Double) {
+public func nutation(jd: Double) -> Nutation {
   let T = julianCenturiesFromJ2000(jd: jd)
   let D = meanElongationOfTheMoonFromTheSun(T: T)
   let M = meanAnomalyOfTheSun(T: T)
@@ -161,7 +167,7 @@ public func nutation(jd: Double) -> (Double, Double) {
   x *= 0.0001
   y *= 0.0001
 
-  return (x.arcsec, y.arcsec)
+  return Nutation(nutationInLongitude: x.arcsec, nutationInObliquity: y.arcsec)
 }
 
 public func fastMeanObliquityOfTheEcliptic(jd: Double) -> Double {
@@ -204,13 +210,15 @@ public func meanObliquityOfTheEcliptic(jd: Double) -> Double {
 }
 
 public func fastTrueObliquityOfTheEcliptic(jd: Double) -> Double {
-  let (_, ed) = fastNutation(jd: jd)
+  let nut = fastNutation(jd: jd)
+  let ed = nut.nutationInObliquity
   let e0 = fastMeanObliquityOfTheEcliptic(jd: jd)
   return e0 + ed
 }
 
 public func trueObliquityOfTheEcliptic(jd: Double) -> Double {
-  let (_, ed) = nutation(jd: jd)
+  let nut = nutation(jd: jd)
+  let ed = nut.nutationInObliquity
   let e0 = meanObliquityOfTheEcliptic(jd: jd)
   return e0 + ed
 }

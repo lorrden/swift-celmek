@@ -22,10 +22,10 @@ import XCTest
 final class Nutation_tests : XCTestCase {
   func testFastNutation() {
     // Meeus, example 22.a
-    let (x, y) = fastNutation(jd: 2446895.5)
+    let nut = fastNutation(jd: 2446895.5)
     let e0 = fastMeanObliquityOfTheEcliptic(jd: 2446895.5)
-    XCTAssertEqual(x, -3.788.arcsec, accuracy: 0.00001)
-    XCTAssertEqual(y, 9.443.arcsec, accuracy: 0.00001)
+    XCTAssertEqual(nut.nutationInLongitude, -3.788.arcsec, accuracy: 0.00001)
+    XCTAssertEqual(nut.nutationInObliquity, 9.443.arcsec, accuracy: 0.00001)
     XCTAssertEqual(e0, AngleOfArc(degrees: 23, minutes: 26, seconds: 27.407).toRad(),
                    accuracy: 0.00001)
 
@@ -36,10 +36,10 @@ final class Nutation_tests : XCTestCase {
 
   func testNutation() {
     // Meeus, example 22.a
-    let (x, y) = nutation(jd: 2446895.5)
+    let nut = nutation(jd: 2446895.5)
     let e0 = meanObliquityOfTheEcliptic(jd: 2446895.5)
-    XCTAssertEqual(x, -3.788.arcsec, accuracy: 0.000000001)
-    XCTAssertEqual(y, 9.443.arcsec, accuracy: 0.00000001)
+    XCTAssertEqual(nut.nutationInLongitude, -3.788.arcsec, accuracy: 0.000000001)
+    XCTAssertEqual(nut.nutationInObliquity, 9.443.arcsec, accuracy: 0.00000001)
     XCTAssertEqual(e0, AngleOfArc(degrees: 23, minutes: 26, seconds: 27.407).toRad(),
                    accuracy: 0.00000001)
     let e = trueObliquityOfTheEcliptic(jd: 2446895.5)
