@@ -46,6 +46,10 @@ extension Double {
   public var hoursAsDeg: Double {
     return self * 15.0
   }
+  public var asArcSec: Double {
+    return self.asDeg * SECONDS_OF_ARC_PER_DEGREE
+  }
+
 }
 
 public func normalize(secondsInDay: Double) -> Double {

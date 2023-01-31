@@ -58,9 +58,42 @@ public func meanSiderealTimeDegrees0(jd: Double) -> Double {
   return normalize(degrees: 𝜃₀)
 }
 
+public func apparentSiderealTimeCorrection(jd: Double) -> Double {
+  let 𝜖0 = meanObliquityOfTheEcliptic(jd: jd)
+  let nut = nutation(jd: jd)
+  let 𝛥_𝜓 = nut.nutationInLongitude
+  let 𝜖 = 𝜖0 + nut.nutationInObliquity
+  let correction = 𝛥_𝜓 * cos(𝜖) / 15
+  return correction
+}
+
+public func apparentSiderealTimeCorrectionSec(jd: Double) -> Double {
+  let 𝜖0 = meanObliquityOfTheEcliptic(jd: jd)
+  let nut = nutation(jd: jd)
+  let 𝛥_𝜓 = nut.nutationInLongitude.asArcSec
+  let 𝜖 = 𝜖0 + nut.nutationInObliquity
+  let correction = 𝛥_𝜓 * cos(𝜖) / 15
+  return correction
+}
+
 func apparentSiderealTimeDegrees(jd: Double) -> Double {
   // Meeus, Eq.
-  let 𝛥_𝜓 = 0.0
-  let 𝜖 = 0.0
-  return 0.0
+  let Theta0 = meanSiderealTimeDegrees(jd: jd)
+  let correction = apparentSiderealTimeCorrection(jd: jd)
+  return Theta0 + correction.asDeg
+}
+
+func apparentSiderealTimeDegreesUT0(jd: Double) -> Double {
+  // Meeus, Eq.
+  let correction = apparentSiderealTimeCorrection(jd: jd)
+  let Theta0 = meanSiderealTimeDegrees0(jd: jd)
+  return Theta0 + correction.asDeg
+}
+
+func apparentSiderealTimeUT0(jd: Double) -> HourAngle {
+  // Meeus, Eq.
+  let correction = apparentSiderealTimeCorrectionSec(jd: jd)
+  var Theta0 = meanSideralTimeUT0(jd: jd)
+  Theta0.seconds += correction
+  return Theta0
 }

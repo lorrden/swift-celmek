@@ -41,4 +41,28 @@ final class SiderealTime_tests : XCTestCase {
     XCTAssertEqual(ra.seconds, 57.0896, accuracy: 0.00005)
   }
 
+  func testSiderealTimeCorrection() {
+    // Meeus, example 12.a
+    let correction = apparentSiderealTimeCorrection(jd: 2446895.5)
+    XCTAssertEqual(correction, -0.2317.arcsec, accuracy: 0.00005)
+  }
+
+
+  func testApparentSiderealTimeUT0() {
+    // Meeus, example 12.a
+    // TODO: Calculate also apperent time
+    let 𝛩₀ = apparentSiderealTimeUT0(jd: 2446895.5)
+    let expected = HourAngle(hours: 13, minutes: 10, seconds: 46.1351).toDeg()
+    XCTAssertEqual(𝛩₀.toDeg(), expected, accuracy: 0.000005)
+    XCTAssertEqual(𝛩₀.hours, 13)
+    XCTAssertEqual(𝛩₀.minutes, 10)
+    XCTAssertEqual(𝛩₀.seconds, 46.1351, accuracy: 0.00005)
+  }
+
+  func testApparentSiderealTimeDegreesUT0() {
+    // Meeus, example 12.a
+    let 𝛩₀ = apparentSiderealTimeDegreesUT0(jd: 2446895.5)
+    let expected = HourAngle(hours: 13, minutes: 10, seconds: 46.1351).toDeg()
+    XCTAssertEqual(𝛩₀, expected, accuracy: 0.005)
+  }
 }
