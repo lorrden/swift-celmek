@@ -34,17 +34,32 @@ fileprivate func angularSeparation(a0: Double, b0: Double, a1: Double, b1: Doubl
   return d
 }
 
+/// Compute angular separtion between equatorial coordinates as defined in Meeus, p115
+/// - Parameters:
+///   - c1: Coordinate 1
+///   - c2: Coordinate 2
+/// - Returns: Returns the angular separtion in radians
 public func angularSeparation(_ c1:EquatorialCoordinate, _ c2: EquatorialCoordinate) -> Double {
   return angularSeparation(a0: c1.rightAscension, b0: c1.declination,
                            a1: c2.rightAscension, b1: c2.declination)
 }
 
+/// Compute angular separation between ecliptic coordinates as defined in Meeus, p115
+/// - Parameters:
+///   - c1: Coordinate 1
+///   - c2: Coordinate 2
+/// - Returns: Angular separation in radians
 public func angularSeparation(_ c1:EclipticCoordinate, _ c2: EclipticCoordinate) -> Double {
   return angularSeparation(a0: c1.longitude, b0: c1.latitude,
                            a1: c2.longitude, b1: c2.latitude)
 }
 
 
+/// Compute relative positionl angle as specified in Meeus, p116
+/// - Parameters:
+///   - c1: Coordinate 1
+///   - c2: Coordinate 2
+/// - Returns: Relative position angle in radians
 public func relativePositionAngle(_ c1:EquatorialCoordinate, _ c2: EquatorialCoordinate) -> Double {
   // Equation, p116
 

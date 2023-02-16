@@ -18,6 +18,12 @@
 
 import Foundation
 
+/// Date of easter in Gregorian calendar
+///
+/// Easter day is the first Sunday after the Full Moon that happens on or after the March Equinox.
+/// The method assumes that it is the ecclestial full moon, and Equinox is assumed to be on March 21.
+/// - Parameter year: Year in Gregorian Calendar
+/// - Returns: Gregorian date with easter day of the year
 public func gregorianDateOfEaster(year: Int) -> GregorianDate {
   let a = year % 19
   let b = year / 100
@@ -39,6 +45,12 @@ public func gregorianDateOfEaster(year: Int) -> GregorianDate {
                        day: Double(p+1))
 }
 
+/// Date of easter in Julian calendar
+///
+/// Easter day is the first Sunday after the Full Moon that happens on or after the March Equinox.
+/// The method assumes that it is the ecclestial full moon, and Equinox is assumed to be on March 21.
+/// - Parameter year: Year in Julian Calendar
+/// - Returns: Julian date with easter day of the year
 public func julianDateOfEaster(year: Int) -> JulianDate {
   let a = year % 4
   let b = year % 7
