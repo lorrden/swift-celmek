@@ -16,4 +16,8 @@
 // limitations under the License.
 //
 
-import Foundation
+public let moon = PlanetaryBody(name: "Moon",
+                                diameter: 3474800, mass: 10759000,
+                                semiMajorAxis: 384399, orbitalPeriod: 27.321661,
+                                eccentricity: 0.0549, inclination: 5.145)
+

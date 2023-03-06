@@ -17,22 +17,37 @@
 //
 
 let miranda = PlanetaryBody(name: "Miranda",
-                            diameter: 471.6, mass: 6400e16,
-                            semiMajorAxis: 129390, orbitalPeriod: 1.41348,
-                            eccentricity: 0.0013, inclination: 4.232)
+                            diameter: 471.6.km,
+                            mass: 6400e16,
+                            semiMajorAxis: 129390.km,
+                            orbitalPeriod: 1.41348,
+                            eccentricity: 0.0013,
+                            inclination: 4.232.deg)
 let ariel = PlanetaryBody(name: "Ariel",
-                          diameter: 1157.8, mass: 125100e16,
-                          semiMajorAxis: 191020, orbitalPeriod: 2.52038,
-                          eccentricity: 0.0012, inclination: 0.260)
+                          diameter: 1157.8.km,
+                          mass: 125100e16,
+                          semiMajorAxis: 191020.km,
+                          orbitalPeriod: 2.52038,
+                          eccentricity: 0.0012,
+                          inclination: 0.260.deg)
 let umbriel = PlanetaryBody(name: "Umbriel",
-                            diameter: 1169.4, mass: 127500e16,
-                            semiMajorAxis: 266300, orbitalPeriod: 4.14418,
-                            eccentricity: 0.0039, inclination: 0.205)
+                            diameter: 1169.4.km,
+                            mass: 127500e16,
+                            semiMajorAxis: 266300.km,
+                            orbitalPeriod: 4.14418,
+                            eccentricity: 0.0039,
+                            inclination: 0.205.deg)
 let titania = PlanetaryBody(name: "Titania",
-                            diameter: 1576.8, mass: 340000e16,
-                            semiMajorAxis: 435910, orbitalPeriod: 8.70587,
-                            eccentricity: 0.0011, inclination: 0.340)
+                            diameter: 1576.8.km,
+                            mass: 340000e16,
+                            semiMajorAxis: 435910.km,
+                            orbitalPeriod: 8.70587,
+                            eccentricity: 0.0011,
+                            inclination: 0.340.deg)
 let oberon = PlanetaryBody(name: "Oberon",
-                           diameter: 1522.8, mass: 307600e16,
-                           semiMajorAxis: 583520, orbitalPeriod: 13.4632,
-                           eccentricity: 0.0014, inclination: 0.058)
+                           diameter: 1522.8.km,
+                           mass: 307600e16,
+                           semiMajorAxis: 583520.km,
+                           orbitalPeriod: 13.4632,
+                           eccentricity: 0.0014,
+                           inclination: 0.058.deg)

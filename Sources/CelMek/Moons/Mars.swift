@@ -17,10 +17,16 @@
 //
 
 public let phobos = IrregularPlanetaryBody(name: "Phobos",
-                                           dimensions: SIMD3(27,21.6,18.8), mass: 10.7e15,
-                                           semiMajorAxis: 42656, orbitalPeriod: 7.66/24.0,
-                                           eccentricity: 0.0151, inclination: 1.093)
+                                           dimensions: SIMD3(27.km,21.6.km,18.8.km),
+                                           mass: 10.7e15,
+                                           semiMajorAxis: 42656.km,
+                                           orbitalPeriod: 7.66/24.0,
+                                           eccentricity: 0.0151,
+                                           inclination: 1.093.deg)
 public let deimos = IrregularPlanetaryBody(name: "Deimos",
-                                           dimensions: SIMD3(10,12,16), mass: 1.5e15,
-                                           semiMajorAxis: 23460, orbitalPeriod: 30.31/24.0,
-                                           eccentricity: 0.00033, inclination: 0.93)
+                                           dimensions: SIMD3(10.km,12.km,16.km),
+                                           mass: 1.5e15,
+                                           semiMajorAxis: 23460.km,
+                                           orbitalPeriod: 30.31/24.0,
+                                           eccentricity: 0.00033,
+                                           inclination: 0.93.deg)

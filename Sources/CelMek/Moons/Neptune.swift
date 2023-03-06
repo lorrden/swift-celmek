@@ -16,11 +16,17 @@
 // limitations under the License.
 //
 
-let triton = PlanetaryBody(name: "Triton",
-                           diameter: 2705.2, mass: 2139000e16,
-                           semiMajorAxis: 354759, orbitalPeriod: -5.8769,
-                           eccentricity: 0.0000, inclination: 156.865)
-let nereid = PlanetaryBody(name: "Nereid",
-                           diameter: 357, mass: 2400e16,
-                           semiMajorAxis: 5504000, orbitalPeriod: 360.14,
-                           eccentricity: 0.749, inclination: 5.8)
+public let triton = PlanetaryBody(name: "Triton",
+                                  diameter: 2705.2.km,
+                                  mass: 2139000e16,
+                                  semiMajorAxis: 354759.km,
+                                  orbitalPeriod: -5.8769,
+                                  eccentricity: 0.0000,
+                                  inclination: 156.865.deg)
+public let nereid = PlanetaryBody(name: "Nereid",
+                                  diameter: 357.km,
+                                  mass: 2400e16,
+                                  semiMajorAxis: 5504000.km,
+                                  orbitalPeriod: 360.14,
+                                  eccentricity: 0.749,
+                                  inclination: 5.8.deg)

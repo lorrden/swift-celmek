@@ -52,6 +52,12 @@ extension Double {
 
 }
 
+extension Double {
+  public var km: Double {
+    return self * 1000.0
+  }
+}
+
 public func normalize(secondsInDay: Double) -> Double {
   let tmp = secondsInDay.remainder(dividingBy: 3600*24)
   if tmp < 0 {

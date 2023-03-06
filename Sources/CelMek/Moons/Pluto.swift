@@ -36,28 +36,46 @@ public struct IrregularPlanetaryBody {
 }
 
 public let pluto = PlanetaryBody(name: "Pluto",
-                                 diameter: 2376.6, mass: 1305e19,
-                          semiMajorAxis: 2035, orbitalPeriod: 6.38723,
-                          eccentricity: 0.0022, inclination: 0.001)
+                                 diameter: 2376.6.km,
+                                 mass: 1305e19,
+                                 semiMajorAxis: 2035.km,
+                                 orbitalPeriod: 6.38723,
+                                 eccentricity: 0.0022,
+                                 inclination: 0.001.deg)
 public let charon = PlanetaryBody(name: "Charon",
-                                  diameter: 1212.0, mass: 158.7e19,
-                                  semiMajorAxis: 17536, orbitalPeriod: 6.38723,
-                                  eccentricity: 0.0022, inclination: 0.080)
+                                  diameter: 1212.0.km,
+                                  mass: 158.7e19,
+                                  semiMajorAxis: 17536.km,
+                                  orbitalPeriod: 6.38723,
+                                  eccentricity: 0.0022,
+                                  inclination: 0.080.deg)
 
 public let styx = IrregularPlanetaryBody(name: "Styx",
-                                         dimensions: SIMD3(16,9,8), mass: 0.00075e19,
-                                         semiMajorAxis: 42656, orbitalPeriod: 20.16155,
-                                         eccentricity: 0.00579, inclination: 0.81)
+                                         dimensions: SIMD3(16.km,9.km,8.km),
+                                         mass: 0.00075e19,
+                                         semiMajorAxis: 42656.km,
+                                         orbitalPeriod: 20.16155,
+                                         eccentricity: 0.00579,
+                                         inclination: 0.81.deg)
 
 public let nix = IrregularPlanetaryBody(name: "Nix",
-                                        dimensions: SIMD3(49.8,33.2,31.1), mass: 0.005e19,
-                                        semiMajorAxis: 48694, orbitalPeriod: 24.85463,
-                                        eccentricity: 0.00204, inclination: 0.133)
+                                        dimensions: SIMD3(49.8.km,33.2.km,31.1.km),
+                                        mass: 0.005e19,
+                                        semiMajorAxis: 48694.km,
+                                        orbitalPeriod: 24.85463,
+                                        eccentricity: 0.00204,
+                                        inclination: 0.133.deg)
 public let kerberos = IrregularPlanetaryBody(name: "Kerberos",
-                                             dimensions: SIMD3(19,10,9), mass: 0.0016e19,
-                                             semiMajorAxis: 57783, orbitalPeriod: 32.16756,
-                                             eccentricity: 0.00328, inclination: 0.389)
+                                             dimensions: SIMD3(19.km,10.km,9.km),
+                                             mass: 0.0016e19,
+                                             semiMajorAxis: 57783.km,
+                                             orbitalPeriod: 32.16756,
+                                             eccentricity: 0.00328,
+                                             inclination: 0.389.deg)
 public let hydra = IrregularPlanetaryBody(name: "Hydra",
-                                          dimensions: SIMD3(50.9,36.1,30.9), mass: 0.005e19,
-                                          semiMajorAxis: 64738, orbitalPeriod: 38.20177,
-                                          eccentricity: 0.00586, inclination: 0.242)
+                                          dimensions: SIMD3(50.9.km,36.1.km,30.9.km),
+                                          mass: 0.005e19,
+                                          semiMajorAxis: 64738.km,
+                                          orbitalPeriod: 38.20177,
+                                          eccentricity: 0.00586,
+                                          inclination: 0.242.deg)
