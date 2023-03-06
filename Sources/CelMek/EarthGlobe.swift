@@ -23,7 +23,6 @@ public func geocentricToGeographicLatitude(lat: Double) -> Double
   // Meeus p81, p82
   // 𝜑: Geographical latitude
   // 𝜑': Geocentric latidude
-
   return atan(tan(lat) / ((EARTH_POLAR_RADIUS_KM * EARTH_POLAR_RADIUS_KM) / (EARTH_EQUATORIAL_RADIUS_KM * EARTH_EQUATORIAL_RADIUS_KM)))
 }
 
