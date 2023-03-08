@@ -27,7 +27,7 @@ public class vsop87_body {
     terms_y = ty;
     terms_z = tz;
   }
-  public func position(jd : Double) -> ((Double,Double,Double), (Double,Double,Double), Double)
+  public func position(jd : Double) -> (SIMD3<Double>, SIMD3<Double>, Double)
   {
     let t = (jd - 2451545.0) / 365250.0;
 
@@ -101,8 +101,8 @@ public class vsop87_body {
     (2.0 * T[1] * z[2] - T[2] * vz[2]) + (3.0 * T[2] * z[3] - T[3] * vz[3]) +
     (4.0 * T[3] * z[4] - T[4] * vz[4]) + (5.0 * T[4] * z[5] - T[5] * vz[5]);
 
-    let pos = (px, py, pz);
-    let vel = (velx/365250.0, vely/365250.0,  velz/365250.0);
+    let pos = SIMD3<Double>(px, py, pz);
+    let vel = SIMD3<Double>(velx/365250.0, vely/365250.0,  velz/365250.0);
     return (pos, vel, jd);
   }
 }
