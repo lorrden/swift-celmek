@@ -67,7 +67,7 @@ final class vsop87_tests: XCTestCase {
     
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let ((x,y,z), (vx,vy,vz), jd) = sun.pos_at_jd(jd: ejd)
+      let ((x,y,z), (vx,vy,vz), jd) = sun.position(jd: ejd)
       XCTAssertEqual(x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(z, ez, accuracy: 0.0000000001);
@@ -126,7 +126,7 @@ final class vsop87_tests: XCTestCase {
     ];
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let ((x,y,z), (vx,vy,vz), jd) = mercury.pos_at_jd(jd: ejd)
+      let ((x,y,z), (vx,vy,vz), jd) = mercury.position(jd: ejd)
       XCTAssertEqual(x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(z, ez, accuracy: 0.0000000001);
@@ -184,7 +184,7 @@ final class vsop87_tests: XCTestCase {
     ];
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let ((x,y,z), (vx,vy,vz), jd) = venus.pos_at_jd(jd: ejd)
+      let ((x,y,z), (vx,vy,vz), jd) = venus.position(jd: ejd)
       XCTAssertEqual(x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(z, ez, accuracy: 0.0000000001);
@@ -244,7 +244,7 @@ final class vsop87_tests: XCTestCase {
        (-0.0167963362, -0.0048924916, -0.0000121874))]
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let ((x,y,z), (vx,vy,vz), jd) = earth.pos_at_jd(jd: ejd)
+      let ((x,y,z), (vx,vy,vz), jd) = earth.position(jd: ejd)
       XCTAssertEqual(x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(z, ez, accuracy: 0.0000000001);
@@ -302,7 +302,7 @@ final class vsop87_tests: XCTestCase {
       
     ];
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let ((x,y,z), (vx,vy,vz), jd) = mars.pos_at_jd(jd: ejd)
+      let ((x,y,z), (vx,vy,vz), jd) = mars.position(jd: ejd)
       XCTAssertEqual(x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(z, ez, accuracy: 0.0000000001);
@@ -360,7 +360,7 @@ final class vsop87_tests: XCTestCase {
     ];
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let ((x,y,z), (vx,vy,vz), jd) = jupiter.pos_at_jd(jd: ejd)
+      let ((x,y,z), (vx,vy,vz), jd) = jupiter.position(jd: ejd)
       XCTAssertEqual(x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(z, ez, accuracy: 0.0000000001);
@@ -417,7 +417,7 @@ final class vsop87_tests: XCTestCase {
     ];
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let ((x,y,z), (vx,vy,vz), jd) = saturn.pos_at_jd(jd: ejd)
+      let ((x,y,z), (vx,vy,vz), jd) = saturn.position(jd: ejd)
       XCTAssertEqual(x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(z, ez, accuracy: 0.0000000001);
@@ -474,7 +474,7 @@ final class vsop87_tests: XCTestCase {
     ];
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let ((x,y,z), (vx,vy,vz), jd) = uranus.pos_at_jd(jd: ejd)
+      let ((x,y,z), (vx,vy,vz), jd) = uranus.position(jd: ejd)
       XCTAssertEqual(x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(z, ez, accuracy: 0.0000000001);
@@ -530,7 +530,7 @@ final class vsop87_tests: XCTestCase {
     ];
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let ((x,y,z), (vx,vy,vz), jd) = neptune.pos_at_jd(jd: ejd)
+      let ((x,y,z), (vx,vy,vz), jd) = neptune.position(jd: ejd)
       XCTAssertEqual(x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(z, ez, accuracy: 0.0000000001);

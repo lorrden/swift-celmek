@@ -27,7 +27,7 @@ public class vsop87_body {
     terms_y = ty;
     terms_z = tz;
   }
-  func pos_at_jd(jd : Double) -> ((Double,Double,Double), (Double,Double,Double), Double)
+  public func position(jd : Double) -> ((Double,Double,Double), (Double,Double,Double), Double)
   {
     let t = (jd - 2451545.0) / 365250.0;
 
