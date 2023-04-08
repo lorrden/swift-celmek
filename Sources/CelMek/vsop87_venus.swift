@@ -4710,6 +4710,7 @@ fileprivate let venus_z_5: [(Double,Double,Double)] = [
   (0.00000000001, 3.25850463040, 433.71173787680),
 ];
 public let venus = vsop87_body(
+  body: .vsop87_venus,
   tx:[venus_x_0, venus_x_1, venus_x_2, venus_x_3, venus_x_4, venus_x_5],
   ty:[venus_y_0, venus_y_1, venus_y_2, venus_y_3, venus_y_4, venus_y_5],
   tz:[venus_z_0, venus_z_1, venus_z_2, venus_z_3, venus_z_4, venus_z_5]

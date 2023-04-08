@@ -7925,6 +7925,7 @@ fileprivate let mercury_z_5 : [(Double,Double,Double)] = [
 ];
 
 public let mercury = vsop87_body(
+  body: .vsop87_mercury,
   tx:[mercury_x_0, mercury_x_1, mercury_x_2, mercury_x_3, mercury_x_4, mercury_x_5],
   ty:[mercury_y_0, mercury_y_1, mercury_y_2, mercury_y_3, mercury_y_4, mercury_y_5],
   tz:[mercury_z_0, mercury_z_1, mercury_z_2, mercury_z_3, mercury_z_4, mercury_z_5]

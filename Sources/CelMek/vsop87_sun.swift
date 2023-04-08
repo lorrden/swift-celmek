@@ -6640,6 +6640,7 @@ fileprivate let sun_z_5: [(Double,Double,Double)] = [
 ];
 
 public let sun = vsop87_body(
+  body: .vsop87_sun,
   tx:[sun_x_0, sun_x_1, sun_x_2, sun_x_3, sun_x_4, sun_x_5],
   ty:[sun_y_0, sun_y_1, sun_y_2, sun_y_3, sun_y_4, sun_y_5],
   tz:[sun_z_0, sun_z_1, sun_z_2, sun_z_3, sun_z_4, sun_z_5]

@@ -4597,6 +4597,7 @@ fileprivate let jupiter_z_5: [(Double,Double,Double)] = [
 ];
 
 public let jupiter = vsop87_body(
+  body: .vsop87_jupiter,
   tx:[jupiter_x_0, jupiter_x_1, jupiter_x_2, jupiter_x_3, jupiter_x_4, jupiter_x_5],
   ty:[jupiter_y_0, jupiter_y_1, jupiter_y_2, jupiter_y_3, jupiter_y_4, jupiter_y_5],
   tz:[jupiter_z_0, jupiter_z_1, jupiter_z_2, jupiter_z_3, jupiter_z_4, jupiter_z_5]

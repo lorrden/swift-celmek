@@ -2436,6 +2436,7 @@ fileprivate let neptune_z_3: [(Double,Double,Double)] = [
 ];
 
 public let neptune = vsop87_body(
+  body: .vsop87_neptune,
   tx:[neptune_x_0, neptune_x_1, neptune_x_2, neptune_x_3, neptune_x_4],
   ty:[neptune_y_0, neptune_y_1, neptune_y_2, neptune_y_3, neptune_y_4],
   tz:[neptune_z_0, neptune_z_1, neptune_z_2, neptune_z_3]

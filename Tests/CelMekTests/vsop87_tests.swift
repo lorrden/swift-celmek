@@ -67,7 +67,7 @@ final class vsop87_tests: XCTestCase {
     
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let (p, v, jd) = sun.position(jd: ejd)
+      let (p, v, jd, body) = sun.position(jd: ejd)
       XCTAssertEqual(p.x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(p.y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(p.z, ez, accuracy: 0.0000000001);
@@ -75,7 +75,8 @@ final class vsop87_tests: XCTestCase {
       XCTAssertEqual(v.y,evy, accuracy: 0.0000001)
       XCTAssertEqual(v.z,evz, accuracy: 0.0000001);
       XCTAssertEqual(jd,ejd)
-      
+      XCTAssertEqual(body, .vsop87_sun)
+
     }
     
   }
@@ -126,7 +127,7 @@ final class vsop87_tests: XCTestCase {
     ];
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let (p, v, jd) = mercury.position(jd: ejd)
+      let (p, v, jd, body) = mercury.position(jd: ejd)
       XCTAssertEqual(p.x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(p.y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(p.z, ez, accuracy: 0.0000000001);
@@ -134,7 +135,8 @@ final class vsop87_tests: XCTestCase {
       XCTAssertEqual(v.y,evy, accuracy: 0.0000001)
       XCTAssertEqual(v.z,evz, accuracy: 0.0000001);
       XCTAssertEqual(jd,ejd)
-      
+      XCTAssertEqual(body, .vsop87_mercury)
+
     }
     
   }
@@ -184,7 +186,7 @@ final class vsop87_tests: XCTestCase {
     ];
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let (p, v, jd) = venus.position(jd: ejd)
+      let (p, v, jd, body) = venus.position(jd: ejd)
       XCTAssertEqual(p.x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(p.y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(p.z, ez, accuracy: 0.0000000001);
@@ -192,7 +194,8 @@ final class vsop87_tests: XCTestCase {
       XCTAssertEqual(v.y,evy, accuracy: 0.0000001)
       XCTAssertEqual(v.z,evz, accuracy: 0.0000001);
       XCTAssertEqual(jd,ejd)
-      
+      XCTAssertEqual(body, .vsop87_venus)
+
     }
     
   }  
@@ -244,7 +247,7 @@ final class vsop87_tests: XCTestCase {
        (-0.0167963362, -0.0048924916, -0.0000121874))]
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let (p, v, jd) = earth.position(jd: ejd)
+      let (p, v, jd, body) = earth.position(jd: ejd)
       XCTAssertEqual(p.x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(p.y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(p.z, ez, accuracy: 0.0000000001);
@@ -252,7 +255,7 @@ final class vsop87_tests: XCTestCase {
       XCTAssertEqual(v.y,evy, accuracy: 0.0000001)
       XCTAssertEqual(v.z,evz, accuracy: 0.0000001);
       XCTAssertEqual(jd,ejd)
-      
+      XCTAssertEqual(body, .vsop87_earth)
     }
     
   }
@@ -302,7 +305,7 @@ final class vsop87_tests: XCTestCase {
       
     ];
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let (p, v, jd) = mars.position(jd: ejd)
+      let (p, v, jd, body) = mars.position(jd: ejd)
       XCTAssertEqual(p.x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(p.y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(p.z, ez, accuracy: 0.0000000001);
@@ -310,7 +313,7 @@ final class vsop87_tests: XCTestCase {
       XCTAssertEqual(v.y,evy, accuracy: 0.0000001)
       XCTAssertEqual(v.z,evz, accuracy: 0.0000001);
       XCTAssertEqual(jd,ejd)
-      
+      XCTAssertEqual(body, .vsop87_mars)
     }
     
   }
@@ -360,7 +363,7 @@ final class vsop87_tests: XCTestCase {
     ];
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let (p, v, jd) = jupiter.position(jd: ejd)
+      let (p, v, jd, body) = jupiter.position(jd: ejd)
       XCTAssertEqual(p.x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(p.y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(p.z, ez, accuracy: 0.0000000001);
@@ -368,7 +371,7 @@ final class vsop87_tests: XCTestCase {
       XCTAssertEqual(v.y,evy, accuracy: 0.0000001)
       XCTAssertEqual(v.z,evz, accuracy: 0.0000001);
       XCTAssertEqual(jd,ejd)
-      
+      XCTAssertEqual(body, .vsop87_jupiter)
     }
     
   }
@@ -417,7 +420,7 @@ final class vsop87_tests: XCTestCase {
     ];
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let (p, v, jd) = saturn.position(jd: ejd)
+      let (p, v, jd, body) = saturn.position(jd: ejd)
       XCTAssertEqual(p.x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(p.y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(p.z, ez, accuracy: 0.0000000001);
@@ -425,9 +428,8 @@ final class vsop87_tests: XCTestCase {
       XCTAssertEqual(v.y,evy, accuracy: 0.0000005)
       XCTAssertEqual(v.z,evz, accuracy: 0.0000001);
       XCTAssertEqual(jd,ejd)
-      
+      XCTAssertEqual(body, .vsop87_saturn)
     }
-    
   }
   func testUranus() {
     let testValues: [(Double,(Double,Double,Double), (Double,Double,Double))] = [
@@ -474,7 +476,7 @@ final class vsop87_tests: XCTestCase {
     ];
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let (p, v, jd) = uranus.position(jd: ejd)
+      let (p, v, jd, body) = uranus.position(jd: ejd)
       XCTAssertEqual(p.x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(p.y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(p.z, ez, accuracy: 0.0000000001);
@@ -482,9 +484,8 @@ final class vsop87_tests: XCTestCase {
       XCTAssertEqual(v.y,evy, accuracy: 0.0000005)
       XCTAssertEqual(v.z,evz, accuracy: 0.0000001);
       XCTAssertEqual(jd,ejd)
-      
+      XCTAssertEqual(body, .vsop87_uranus)
     }
-    
   }
   func testNeptune() {
     let testValues: [(Double,(Double,Double,Double), (Double,Double,Double))] = [
@@ -530,7 +531,7 @@ final class vsop87_tests: XCTestCase {
     ];
     
     for (ejd, (ex,ey,ez), (evx,evy,evz)) in testValues {
-      let (p, v, jd) = neptune.position(jd: ejd)
+      let (p, v, jd, body) = neptune.position(jd: ejd)
       XCTAssertEqual(p.x, ex, accuracy: 0.0000000001);
       XCTAssertEqual(p.y, ey, accuracy: 0.0000000001);
       XCTAssertEqual(p.z, ez, accuracy: 0.0000000001);
@@ -538,8 +539,7 @@ final class vsop87_tests: XCTestCase {
       XCTAssertEqual(v.y,evy, accuracy: 0.0000001)
       XCTAssertEqual(v.z,evz, accuracy: 0.0000001);
       XCTAssertEqual(jd,ejd)
-      
+      XCTAssertEqual(body, .vsop87_neptune)
     }
-    
   }
 }

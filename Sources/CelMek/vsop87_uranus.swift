@@ -5170,6 +5170,7 @@ fileprivate let uranus_z_3: [(Double,Double,Double)] = [
   (0.00000004869, 4.99593945023, 11.04570026390),
 ];
 public let uranus = vsop87_body(
+  body: .vsop87_uranus,
   tx:[uranus_x_0, uranus_x_1, uranus_x_2, uranus_x_3, uranus_x_4],
   ty:[uranus_y_0, uranus_y_1, uranus_y_2, uranus_y_3, uranus_y_4],
   tz:[uranus_z_0, uranus_z_1, uranus_z_2, uranus_z_3]

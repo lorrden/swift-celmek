@@ -7630,6 +7630,7 @@ fileprivate let mars_z_5: [(Double,Double,Double)] = [
 ];
 
 public let mars = vsop87_body(
+  body: .vsop87_mars,
   tx:[mars_x_0, mars_x_1, mars_x_2, mars_x_3, mars_x_4, mars_x_5],
   ty:[mars_y_0, mars_y_1, mars_y_2, mars_y_3, mars_y_4, mars_y_5],
   tz:[mars_z_0, mars_z_1, mars_z_2, mars_z_3, mars_z_4, mars_z_5]

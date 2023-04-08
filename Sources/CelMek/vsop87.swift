@@ -18,16 +18,30 @@
 
 import Foundation
 
+public enum vsop87_body_id {
+  case vsop87_sun
+  case vsop87_mercury
+  case vsop87_venus
+  case vsop87_earth
+  case vsop87_mars
+  case vsop87_jupiter
+  case vsop87_saturn
+  case vsop87_uranus
+  case vsop87_neptune
+}
+
 public class vsop87_body {
+  let body_id: vsop87_body_id
   let terms_x: [[(Double,Double,Double)]];
   let terms_y: [[(Double,Double,Double)]];
   let terms_z: [[(Double,Double,Double)]];
-  init(tx :[[(Double,Double,Double)]], ty:[[(Double,Double,Double)]], tz:[[(Double,Double,Double)]]) {
+  init(body: vsop87_body_id, tx :[[(Double,Double,Double)]], ty:[[(Double,Double,Double)]], tz:[[(Double,Double,Double)]]) {
+    body_id = body
     terms_x = tx;
     terms_y = ty;
     terms_z = tz;
   }
-  public func position(jd : Double) -> (SIMD3<Double>, SIMD3<Double>, Double)
+  public func position(jd : Double) -> (SIMD3<Double>, SIMD3<Double>, Double, vsop87_body_id)
   {
     let t = (jd - 2451545.0) / 365250.0;
 
@@ -103,6 +117,6 @@ public class vsop87_body {
 
     let pos = SIMD3<Double>(px, py, pz);
     let vel = SIMD3<Double>(velx/365250.0, vely/365250.0,  velz/365250.0);
-    return (pos, vel, jd);
+    return (pos, vel, jd, body_id);
   }
 }

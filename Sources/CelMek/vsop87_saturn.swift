@@ -7576,6 +7576,7 @@ fileprivate let saturn_z_5: [(Double,Double,Double)] = [
 ];
 
 public let saturn = vsop87_body(
+  body: .vsop87_saturn,
   tx:[saturn_x_0, saturn_x_1, saturn_x_2, saturn_x_3, saturn_x_4, saturn_x_5],
   ty:[saturn_y_0, saturn_y_1, saturn_y_2, saturn_y_3, saturn_y_4, saturn_y_5],
   tz:[saturn_z_0, saturn_z_1, saturn_z_2, saturn_z_3, saturn_z_4, saturn_z_5]

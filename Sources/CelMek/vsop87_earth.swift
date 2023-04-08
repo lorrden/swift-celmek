@@ -5611,6 +5611,7 @@ fileprivate let earth_z_5: [(Double,Double,Double)] = [
 ];
 
 public let earth = vsop87_body(
+  body: .vsop87_earth,
   tx:[earth_x_0, earth_x_1, earth_x_2, earth_x_3, earth_x_4, earth_x_5],
   ty:[earth_y_0, earth_y_1, earth_y_2, earth_y_3, earth_y_4, earth_y_5],
   tz:[earth_z_0, earth_z_1, earth_z_2, earth_z_3, earth_z_4, earth_z_5]
