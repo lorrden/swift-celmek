@@ -18,7 +18,7 @@
 
 import Foundation
 
-public enum vsop87_body_id {
+public enum vsop87_body_id : Int {
   case vsop87_sun
   case vsop87_mercury
   case vsop87_venus
