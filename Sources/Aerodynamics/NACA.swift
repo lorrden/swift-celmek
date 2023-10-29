@@ -23,15 +23,15 @@ import Foundation
 
 public struct NACA4 {
   public let camberPercentage: Int
-  public let maximumChamber: Int
+  public let maximumCamber: Int
   public let maximumThicknessPercentage: Int
 
-  public init(camberPercentage: Int, maximumChamber: Int, maximumThicknessPercentage: Int) {
+  public init(camberPercentage: Int, maximumCamber: Int, maximumThicknessPercentage: Int) {
     self.camberPercentage = camberPercentage
-    self.maximumChamber = maximumChamber
+    self.maximumCamber = maximumCamber
     self.maximumThicknessPercentage = maximumThicknessPercentage
   }
-  func thickness(_ x: Double) -> Double {
+  public func thickness(_ x: Double) -> Double {
     let t = Double(maximumThicknessPercentage)/100.0
     let yt = 5 * t * (0.2969 * sqrt(x) -
                       0.1260 * x -
@@ -40,9 +40,9 @@ public struct NACA4 {
                       0.1015 * x * x * x * x)
     return yt
   }
-  func meanChamberLine(_ x: Double) -> Double {
+  public func meanCamberLine(_ x: Double) -> Double {
     let m = Double(camberPercentage) / 100.0
-    let p = Double(maximumChamber) / 10.0
+    let p = Double(maximumCamber) / 10.0
 
     if 0 <= x && x <= p {
       let yc = m / (p * p) * (2 * p * x - x * x)
@@ -55,13 +55,13 @@ public struct NACA4 {
 
   public func surfaceCoord(x: Double) -> (SIMD2<Double>, SIMD2<Double>) {
     let yt = thickness(x)
-    if camberPercentage == 0 && maximumChamber == 0 {
+    if camberPercentage == 0 && maximumCamber == 0 {
       let u = SIMD2(x, yt)
       let l = SIMD2(x, -yt)
       return (u, l)
     }
 
-    let yc = meanChamberLine(x)
+    let yc = meanCamberLine(x)
     let dyx = 0.0
     let theta = atan(dyx)
     let xu = x - yt * sin(theta)
