@@ -21,7 +21,7 @@ import Foundation
 
 // NACA: 4 digits describing airfoil
 
-struct NACA4 {
+public struct NACA4 {
   var camberPercentage: Int
   var maximumChamber: Int
   var maximumThicknessPercentage: Int
@@ -48,7 +48,7 @@ struct NACA4 {
     return yc
   }
 
-  func surfaceCoord(x: Double) -> (SIMD2<Double>, SIMD2<Double>) {
+  public func surfaceCoord(x: Double) -> (SIMD2<Double>, SIMD2<Double>) {
     let yt = thickness(x)
     if camberPercentage == 0 && maximumChamber == 0 {
       let u = SIMD2(x, yt)
