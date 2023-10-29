@@ -22,9 +22,9 @@ import Foundation
 // NACA: 4 digits describing airfoil
 
 public struct NACA4 {
-  var camberPercentage: Int
-  var maximumChamber: Int
-  var maximumThicknessPercentage: Int
+  public let camberPercentage: Int
+  public let maximumChamber: Int
+  public let maximumThicknessPercentage: Int
 
   func thickness(_ x: Double) -> Double {
     let t = Double(maximumThicknessPercentage)/100.0
