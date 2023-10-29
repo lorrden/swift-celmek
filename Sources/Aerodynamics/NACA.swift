@@ -26,6 +26,11 @@ public struct NACA4 {
   public let maximumChamber: Int
   public let maximumThicknessPercentage: Int
 
+  public init(camberPercentage: Int, maximumChamber: Int, maximumThicknessPercentage: Int) {
+    self.camberPercentage = camberPercentage
+    self.maximumChamber = maximumChamber
+    self.maximumThicknessPercentage = maximumThicknessPercentage
+  }
   func thickness(_ x: Double) -> Double {
     let t = Double(maximumThicknessPercentage)/100.0
     let yt = 5 * t * (0.2969 * sqrt(x) -
