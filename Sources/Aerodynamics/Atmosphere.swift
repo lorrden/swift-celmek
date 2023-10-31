@@ -34,7 +34,9 @@ public extension Atmosphere {
 public struct EarthAtmosphere: Atmosphere {
   // Very simplified model from:
   // https://www.grc.nasa.gov/www/k-12/airplane/atmosmet.html
-
+  public init() {
+    
+  }
   public func density(at altitude: Double) -> Double {
     //let hc = altitude
     let h = altitude
