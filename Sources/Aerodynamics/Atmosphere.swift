@@ -72,7 +72,7 @@ public struct EarthAtmosphere: Atmosphere {
       let T = -56.46
       return T
     } else { // Upper stratosphere
-      let T = -131.21 * 0.00299 * h
+      let T = -131.21 + 0.00299 * h
       return T
     }
   }
