@@ -85,3 +85,11 @@ public struct EarthAtmosphere: Atmosphere {
     return 0.0
   }
 }
+
+extension Atmosphere {
+  func reynoldsNumber(at altitude: Double, forLength length: Double, atVelocity velocity: Double) -> Double {
+    // Re = density * velocity * length / viscosity
+    return self.density(at: altitude) * velocity * length / self.dynamicViscosity(at: altitude)
+  }
+}
+
