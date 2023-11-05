@@ -82,6 +82,36 @@ public struct EarthAtmosphere: Atmosphere {
     return sqrt(adibiaticIndex * pressure(at: altitude) / density(at: altitude))
   }
   public func dynamicViscosity(at altitude: Double) -> Double {
+    // Tables from https://www.engineeringtoolbox.com/standard-atmosphere-d_604.html
+    //   -1k to 10k, 1k steps
+    let dynamicViscosityTable10k = [
+      1.821, 1.789, 1.758, 1.726, 1.694, 1.661, 1.628, 1.595, 1.561, 1.527,
+      1.493, 1.458]
+    // 10k to 30k, 5k steps
+    let dynamicViscosityTable30k = [1.458, 1.422, 1.422, 1.448, 1.475]
+
+    // 30k to 80k, 10 steps
+    let dynamicViscosityTable80k = [1.475, 1.601, 1.704, 1.584, 1.438, 1.321]
+
+    if altitude <= 10000 {
+      let index = Int(altitude + 1000) / 1000
+      let weight = fmod(altitude + 1000, 1000) / 1000
+      return dynamicViscosityTable10k[index] * (1 - weight) +
+             dynamicViscosityTable10k[index + 1] * (weight)
+    } else if altitude <= 30000 {
+      let index = Int(altitude - 10000) / 5000
+      let weight = fmod(altitude - 10000, 5000) / 5000
+      return dynamicViscosityTable30k[index] * (1 - weight) +
+             dynamicViscosityTable30k[index + 1] * weight
+
+    } else if altitude <= 80000 {
+      let index = Int(altitude - 30000) / 10000
+      let weight = fmod(altitude - 30000, 10000) / 10000
+      return dynamicViscosityTable80k[index] * (1 - weight) +
+             dynamicViscosityTable80k[index + 1] * weight
+
+    }
+
     return 0.0
   }
 }
@@ -92,4 +122,3 @@ extension Atmosphere {
     return self.density(at: altitude) * velocity * length / self.dynamicViscosity(at: altitude)
   }
 }
-
