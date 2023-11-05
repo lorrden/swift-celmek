@@ -93,18 +93,18 @@ public struct EarthAtmosphere: Atmosphere {
     // 30k to 80k, 10 steps
     let dynamicViscosityTable80k = [1.475, 1.601, 1.704, 1.584, 1.438, 1.321]
 
-    if altitude <= 10000 {
+    if altitude < 10000 {
       let index = Int(altitude + 1000) / 1000
       let weight = fmod(altitude + 1000, 1000) / 1000
       return dynamicViscosityTable10k[index] * (1 - weight) +
              dynamicViscosityTable10k[index + 1] * (weight)
-    } else if altitude <= 30000 {
+    } else if altitude < 30000 {
       let index = Int(altitude - 10000) / 5000
       let weight = fmod(altitude - 10000, 5000) / 5000
       return dynamicViscosityTable30k[index] * (1 - weight) +
              dynamicViscosityTable30k[index + 1] * weight
 
-    } else if altitude <= 80000 {
+    } else if altitude < 80000 {
       let index = Int(altitude - 30000) / 10000
       let weight = fmod(altitude - 30000, 10000) / 10000
       return dynamicViscosityTable80k[index] * (1 - weight) +
