@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Accelerate
 
 struct Matrix3x3 {
   var elements: [SIMD3<Double>]
