@@ -12,11 +12,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Build
+	- name Setup Swift
       uses: swift-actions/setup-swift@v1
+    - name: Build
       run: swift build -v
     - name: Run tests
-      uses: swift-actions/setup-swift@v1
       run: swift test -v
   linux:
     runs-on: ubuntu-latest
@@ -25,9 +25,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Build
+	- name Setup Swift
       uses: swift-actions/setup-swift@v1
+    - name: Build
       run: swift build -v
     - name: Run tests
-      uses: swift-actions/setup-swift@v1
       run: swift test -v
