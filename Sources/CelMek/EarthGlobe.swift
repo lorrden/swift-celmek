@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Math
 
 public func geocentricToGeographicLatitude(lat: Double) -> Double
 {

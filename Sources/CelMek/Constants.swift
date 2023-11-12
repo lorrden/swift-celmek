@@ -15,13 +15,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+import Math
 
-let DEGREES_PER_HOUR : Double = 15.0
-let SECONDS_PER_HOUR : Double = 3600.0
-let MINUTES_PER_HOUR : Double = 60.0
-let SECONDS_PER_MINUTE : Double = 60.0
-let MINUTES_OF_ARC_PER_DEGREE : Double = 60.0
-let SECONDS_OF_ARC_PER_DEGREE : Double = 3600.0
 let DAYS_PER_JULIAN_CENTURY: Double = 36525.0
 let GREGORIAN_INTRODUCTION_YEAR: Int = 1583
 let MJD_JD_DIFFERENCE: Double = 2400000.5

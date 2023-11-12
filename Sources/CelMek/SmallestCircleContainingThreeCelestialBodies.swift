@@ -17,6 +17,8 @@
 //
 
 import Foundation
+import Math
+
 // Meeus, chapter 20
 
 public func smallestCircle(_ p1: EquatorialCoordinate,

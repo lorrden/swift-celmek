@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Math
 // Meeus, chapter 31
 
 fileprivate func evaluate(T: Double, a0: Double, a1: Double, a2: Double, a3: Double) -> Double {

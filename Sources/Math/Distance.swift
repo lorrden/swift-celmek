@@ -1,7 +1,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 //
-// Copyright 2023 Mattias Holm
+// Copyright 2020-2022 Mattias Holm
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,20 +16,9 @@
 // limitations under the License.
 //
 
-import XCTest
-@testable import CelMek;
-import Math
-
-final class angularSeparation_tests : XCTestCase {
-  func testAngularSeparation() {
-    // Meeus, Example 17.a
-    let p0 = EquatorialCoordinate(rightAscension: 213.9154.deg,
-                                  declination: 19.1825.deg)
-    let p1 = EquatorialCoordinate(rightAscension: 201.2983.deg,
-                                  declination: -11.1614.deg)
-    let d = angularSeparation(p0, p1)
-
-    XCTAssertEqual(d, 32.7930.deg, accuracy: 0.000005)
+import Foundation
+extension Double {
+  public var km: Double {
+    return self * 1000.0
   }
 }
-

@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import CelMek;
+import Math
 
 final class SmallestCircle_tests : XCTestCase {
   func testSmallestCircle() {

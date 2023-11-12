@@ -16,6 +16,7 @@
 // limitations under the License.
 //
 import Foundation
+import Math
 
 public func parallacticAngle(geographicLatitudeOfObserver: Double, declination: Double, rightAscension: HourAngle) -> Double {
   // Meeus, Equation 14.1

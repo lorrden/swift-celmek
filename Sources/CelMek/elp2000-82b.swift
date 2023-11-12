@@ -192,7 +192,7 @@ clamp_degs(_ a: Double) -> Double
 
 // Broken out of main routine for testability purposes
 fileprivate func
-cm_elp2000_82b_T(_ jde:Double) -> Double
+elp2000_82b_T(_ jde:Double) -> Double
 {
   return (jde - 2451545.0) / 36525.0;
 }
@@ -204,7 +204,7 @@ fileprivate let ELP_RCP_538841_0_RAD = (1.0 / 538841.0).deg
 fileprivate let ELP_RCP_65194000_0_RAD = (1.0 / 65194000.0).deg
 
 fileprivate func
-cm_elp2000_82b_Lprime(_ T: Double) -> Double
+elp2000_82b_Lprime(_ T: Double) -> Double
 {
   let Lp: Double = ELP_218_3164591_RAD + ELP_481267_88134236_RAD * T -
   ELP_0_0013268_RAD * T * T + T * T * T * ELP_RCP_538841_0_RAD -
@@ -219,7 +219,7 @@ fileprivate let  ELP_RCP_545868_0_RAD = (1.0 / 545868.0).deg
 fileprivate let  ELP_RCP_113065000_0_RAD = (1.0 / 113065000.0).deg
 
 fileprivate func
-cm_elp2000_82b_D(_ T: Double) -> Double
+elp2000_82b_D(_ T: Double) -> Double
 {
   let D : Double = ELP_297_8502042_RAD + ELP_445267_1115168_RAD * T -
   ELP_0_0016300_RAD * T * T + T * T * T * ELP_RCP_545868_0_RAD -
@@ -233,7 +233,7 @@ fileprivate let ELP_0_0001536_RAD = (0.0001536).deg
 fileprivate let ELP_RCP_24490000_0_RAD = (1.0 / 24490000.0).deg
 
 fileprivate func
-cm_elp2000_82b_M(_ T: Double) -> Double
+elp2000_82b_M(_ T: Double) -> Double
 {
   let M: Double = ELP_357_5291092_RAD + ELP_35999_0502909_RAD * T -
   ELP_0_0001536_RAD * T * T + T * T * T * ELP_RCP_24490000_0_RAD;
@@ -247,7 +247,7 @@ fileprivate let ELP_RCP_69699_0_RAD = (1.0 / 69699.0).deg
 fileprivate let ELP_RCP_14712000_0_RAD = (1.0 / 14712000.0).deg
 
 fileprivate func
-cm_elp2000_82b_Mprime(_ T: Double) -> Double
+elp2000_82b_Mprime(_ T: Double) -> Double
 {
   let Mp: Double = ELP_134_9634114_RAD + ELP_477198_8676313_RAD * T +
   ELP_0_0089970_RAD * T * T + T * T * T * ELP_RCP_69699_0_RAD -
@@ -262,7 +262,7 @@ fileprivate let ELP_RCP_3526000_0_RAD = (1.0 / 3526000.0).deg
 fileprivate let ELP_RCP_863310000_0_RAD = (1.0 / 863310000.0).deg
 
 fileprivate func
-cm_elp2000_82b_F(_ T: Double) -> Double
+elp2000_82b_F(_ T: Double) -> Double
 {
   let F: Double = ELP_93_2720993_RAD + ELP_483202_0175273_RAD * T -
   ELP_0_0034029_RAD * T * T - T * T * T * ELP_RCP_3526000_0_RAD +
@@ -274,7 +274,7 @@ fileprivate let ELP_119_75_RAD = (119.75).deg
 fileprivate let ELP_131_849_RAD = (131.849).deg
 
 fileprivate func
-cm_elp2000_82b_A1(_ T: Double) -> Double
+elp2000_82b_A1(_ T: Double) -> Double
 {
   let A1: Double = ELP_119_75_RAD + ELP_131_849_RAD * T;
   return clamp_degs(A1);
@@ -284,7 +284,7 @@ fileprivate let ELP_53_09_RAD = (53.09).deg
 fileprivate let ELP_479264_290_RAD = (479264.290).deg
 
 fileprivate func
-cm_elp2000_82b_A2(_ T: Double) -> Double
+elp2000_82b_A2(_ T: Double) -> Double
 {
   let A2: Double = ELP_53_09_RAD + ELP_479264_290_RAD * T;
   return clamp_degs(A2);
@@ -294,14 +294,14 @@ fileprivate let ELP_313_45_RAD = (313.45).deg
 fileprivate let ELP_481266_484_RAD = (481266.484).deg
 
 fileprivate func
-cm_elp2000_82b_A3(_ T: Double) -> Double
+elp2000_82b_A3(_ T: Double) -> Double
 {
   let A3: Double = ELP_313_45_RAD + ELP_481266_484_RAD * T;
   return clamp_degs(A3);
 }
 
 fileprivate func
-cm_elp2000_82b_E(_ T: Double) -> Double
+elp2000_82b_E(_ T: Double) -> Double
 {
   return 1.0 - 0.002516 * T - 0.0000074 * T * T;
 }
@@ -319,29 +319,29 @@ fileprivate let ELP_115_0_RAD = (115.0 * 1.0e-6).deg
 // TODO: Optimize by replacing all degree terms with radians
 
 public func
-cm_elp2000_82b(_ jde:Double) -> SIMD3<Double>
+elp2000_82b(_ jde:Double) -> SIMD3<Double>
 {
-  let T = cm_elp2000_82b_T(jde);
+  let T = elp2000_82b_T(jde);
 
   // Compute parameters in degrees.
   // Mean longitude . mean equinox of the date, incl light delay
-  let Lprime = cm_elp2000_82b_Lprime(T);
+  let Lprime = elp2000_82b_Lprime(T);
   // Mean elongation
-  let D = cm_elp2000_82b_D(T);
+  let D = elp2000_82b_D(T);
   // Sun's mean anomaly
-  let M = cm_elp2000_82b_M(T);
+  let M = elp2000_82b_M(T);
 
   // Moon's mean anomaly
-  let Mprime = cm_elp2000_82b_Mprime(T);
+  let Mprime = elp2000_82b_Mprime(T);
   // Moon's argument of latitude
-  let F = cm_elp2000_82b_F(T);
+  let F = elp2000_82b_F(T);
 
-  let A1 = cm_elp2000_82b_A1(T);
-  let A2 = cm_elp2000_82b_A2(T);
-  let A3 = cm_elp2000_82b_A3(T);
+  let A1 = elp2000_82b_A1(T);
+  let A2 = elp2000_82b_A2(T);
+  let A3 = elp2000_82b_A3(T);
 
   // Decreasing eccentricity of earth orbit around sun
-  let E = cm_elp2000_82b_E(T);
+  let E = elp2000_82b_E(T);
 
   var zl = 0.0;
   var zb = 0.0;

@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import CelMek;
+import Math
 
 final class TransformationOfCoordinates_tests : XCTestCase {
   func testEclipticalFromEquatorial() {

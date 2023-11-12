@@ -47,14 +47,14 @@ public struct ParametricAirfoil : Airfoil, Codable {
       return nil
     }
 
-    guard let name = foil["name"] as? String else {
-      print("no name")
-      return nil
-    }
-    guard let generator = foil["generated-with"] as? String else {
-      print("Generated with missing")
-      return nil
-    }
+    //guard let name = foil["name"] as? String else {
+    //  print("no name")
+    //  return nil
+    //}
+    //guard let generator = foil["generated-with"] as? String else {
+    //  print("Generated with missing")
+    //  return nil
+    //}
     guard let foilData = foil["data"] as? [[String : Any]] else {
       print("Data missing")
       return nil

@@ -18,6 +18,7 @@
 
 
 import Foundation
+import Math
 
 public func eccentricityOfUranus(T: Double) -> Double?
 {

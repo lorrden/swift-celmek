@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Math
 
 public func meanSideralTimeUT0(jd: Double) -> HourAngle {
   // Meeus, Eq. 12.2

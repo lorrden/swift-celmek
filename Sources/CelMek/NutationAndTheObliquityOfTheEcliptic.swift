@@ -17,6 +17,8 @@
 //
 
 import Foundation
+import Math
+
 // Meeus, chapter 22
 
 fileprivate func meanElongationOfTheMoonFromTheSun(T: Double) -> Double {

@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Math
 // Meeus, chapter 17
 
 fileprivate func angularSeparation(a0: Double, b0: Double, a1: Double, b1: Double) -> Double
