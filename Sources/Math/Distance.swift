@@ -16,9 +16,12 @@
 // limitations under the License.
 //
 
-import Foundation
 extension Double {
   public var km: Double {
     return self * 1000.0
+  }
+
+  public var au: Double {
+    return self * 149597870700
   }
 }
