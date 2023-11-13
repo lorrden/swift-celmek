@@ -351,7 +351,7 @@ cm_ttToTdb(tt: Double)->Double
 {
   let g = 357.53.deg + 0.9856003.deg * ( tt - 2451545.0 );
   
-  return tt + (0.001658 * sin( g ) + 0.000014 * sin( 2*g ))/CM_SEC_PER_JD;
+  return tt + (0.001658 * sin( g ) + 0.000014 * sin( 2*g ))/SEC_PER_JD;
 }
 
 func
@@ -363,24 +363,24 @@ cm_tdbToTt(tdb: Double) -> Double
 func
 cm_gpsToTai(gps: Double)->Double
 {
-  return gps + 19.0/CM_SEC_PER_JD;
+  return gps + 19.0/SEC_PER_JD;
 }
 
 func
 cm_taiToGps(tai: Double)->Double
 {
-  return tai - 19.0/CM_SEC_PER_JD;
+  return tai - 19.0/SEC_PER_JD;
 }
 
 func
 cm_taiToTt(tai: Double)->Double
 {
-  return tai + 32.184/CM_SEC_PER_JD;
+  return tai + 32.184/SEC_PER_JD;
 }
 func
 cm_ttToTai(tt: Double)->Double
 {
-  return tt - 32.184/CM_SEC_PER_JD;
+  return tt - 32.184/SEC_PER_JD;
 }
 
 func
