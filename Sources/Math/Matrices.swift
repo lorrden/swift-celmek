@@ -18,24 +18,24 @@
 
 import Foundation
 
-struct Matrix3x3 {
+public struct Matrix3x3 {
   var elements: [SIMD3<Double>]
 
-  init() {
+  public init() {
     elements = [SIMD3<Double>.zero, SIMD3<Double>.zero, SIMD3<Double>.zero]
   }
 
-  init(diagonal: SIMD3<Double>) {
+  public init(diagonal: SIMD3<Double>) {
     elements = [SIMD3<Double>.zero, SIMD3<Double>.zero, SIMD3<Double>.zero]
     self[0, 0] = diagonal.x
     self[1, 1] = diagonal.y
     self[2, 2] = diagonal.z
   }
 
-  init(rows: [SIMD3<Double>]) {
+  public init(rows: [SIMD3<Double>]) {
     elements = rows
   }
-  init(columns: [SIMD3<Double>]) {
+  public init(columns: [SIMD3<Double>]) {
     self.init()
     for i in columns.indices {
       for j in columns[i].indices {
@@ -43,23 +43,23 @@ struct Matrix3x3 {
       }
     }
   }
-  init(elements: [Double]) {
+  public init(elements: [Double]) {
     self.elements = [SIMD3<Double>(elements[0], elements[1], elements[2]),
                      SIMD3<Double>(elements[3], elements[4], elements[5]),
                      SIMD3<Double>(elements[6], elements[7], elements[8])]
   }
-  static var identity : Matrix3x3 {
+  public static var identity : Matrix3x3 {
     get {
       return Matrix3x3(diagonal: SIMD3<Double>(repeating: 1))
     }
   }
-  static var zero : Matrix3x3 {
+  public static var zero : Matrix3x3 {
     get {
       return Matrix3x3()
     }
   }
 
-  subscript(index:Int) -> SIMD3<Double> {
+  public subscript(index:Int) -> SIMD3<Double> {
     get {
       return elements[index]
     }
@@ -68,7 +68,7 @@ struct Matrix3x3 {
     }
   }
 
-  subscript(a: Int, b: Int) -> Double {
+  public subscript(a: Int, b: Int) -> Double {
     get {
       return elements[a][b]
     }
@@ -76,11 +76,11 @@ struct Matrix3x3 {
       elements[a][b] = newValue
     }
   }
-  func column(index: Int) -> SIMD3<Double> {
+  public func column(index: Int) -> SIMD3<Double> {
     return SIMD3<Double>(self[0, index], self[1, index], self[2, index])
   }
 
-  static func *(lhs: borrowing Matrix3x3, rhs: borrowing Matrix3x3) -> Matrix3x3 {
+  public static func *(lhs: borrowing Matrix3x3, rhs: borrowing Matrix3x3) -> Matrix3x3 {
     var result = Matrix3x3.zero
     for i in 0..<3 {
       let row = lhs[i]
@@ -91,7 +91,7 @@ struct Matrix3x3 {
     }
     return result
   }
-  static func *(lhs: borrowing Matrix3x3, rhs: Double) -> Matrix3x3{
+  public static func *(lhs: borrowing Matrix3x3, rhs: Double) -> Matrix3x3{
     var result = Matrix3x3(rows: [lhs[0] * rhs, lhs[1], lhs[2]])
     result[0] *= rhs
     result[1] *= rhs
@@ -99,13 +99,13 @@ struct Matrix3x3 {
     return result
   }
 
-  static func *(lhs: borrowing Matrix3x3, rhs: SIMD3<Double>) -> SIMD3<Double>{
+  public static func *(lhs: borrowing Matrix3x3, rhs: SIMD3<Double>) -> SIMD3<Double>{
     return SIMD3<Double>((lhs[0] * rhs).sum(),
                          (lhs[1] * rhs).sum(),
                          (lhs[2] * rhs).sum())
   }
 
-  var quaternion : Quaternion {
+  public var quaternion : Quaternion {
     get {
       var q = Quaternion()
       var s: Double
@@ -141,7 +141,6 @@ struct Matrix3x3 {
 
       return q;
     }
-
   }
 }
 

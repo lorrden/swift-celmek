@@ -18,45 +18,45 @@
 
 import Foundation
 
-struct Quaternion {
+public struct Quaternion {
   var elements: SIMD4<Double>
-  var x : Double { get { return elements.x } set { elements.x = newValue }}
-  var y : Double { get { return elements.y } set { elements.y = newValue }}
-  var z : Double { get { return elements.z } set { elements.z = newValue }}
-  var w : Double { get { return elements.w } set { elements.w = newValue }}
-  var vector: SIMD3<Double> { get { return SIMD3<Double>(x, y, z) } }
-  var scalar: Double { get { return w } }
-  init(x: Double, y: Double, z: Double, w: Double) {
+  public var x : Double { get { return elements.x } set { elements.x = newValue }}
+  public var y : Double { get { return elements.y } set { elements.y = newValue }}
+  public var z : Double { get { return elements.z } set { elements.z = newValue }}
+  public var w : Double { get { return elements.w } set { elements.w = newValue }}
+  public var vector: SIMD3<Double> { get { return SIMD3<Double>(x, y, z) } }
+  public var scalar: Double { get { return w } }
+  public init(x: Double, y: Double, z: Double, w: Double) {
     elements = SIMD4(x, y, z, w)
   }
 
-  init(vector: SIMD4<Double>) {
+  public init(vector: SIMD4<Double>) {
     elements = vector
   }
-  init(angle: Double, axis: SIMD3<Double>) {
+  public init(angle: Double, axis: SIMD3<Double>) {
     elements = SIMD4(axis, angle)
     let  Omega = angle * 0.5
     let sin_Omega = sin(Omega)
     let sincos = SIMD4(sin_Omega, sin_Omega, sin_Omega, cos(Omega))
     elements *= sincos
   }
-  init() {
+  public init() {
     elements = SIMD4(repeating: 0)
   }
 
 //  init(from: SIMD3<Double>, to: SIMD3<Double>) {
 //  }
-  var angle : Double {
+  public var angle : Double {
     get {
       elements.w
     }
   }
-  var axis : SIMD3<Double> {
+  public var axis : SIMD3<Double> {
     get {
       SIMD3<Double>(elements.x, elements.y, elements.z)
     }
   }
-  var matrix: Matrix3x3 {
+  public var matrix: Matrix3x3 {
     get {
 
       let n = Quaternion.dot(lhs: self, rhs: self);
@@ -74,7 +74,7 @@ struct Quaternion {
       return result
     }
   }
-  var invMatrix: Matrix3x3 {
+  public var invMatrix: Matrix3x3 {
     get {
       let n = Quaternion.dot(lhs: self, rhs: self);
       let a : Double = (n > 0) ? 2 / n : 0;
@@ -94,13 +94,13 @@ struct Quaternion {
   // inverse
   // normalized
   // length
-  var conj : Quaternion {
+  public var conj : Quaternion {
     get {
       return Quaternion(vector: elements * SIMD4<Double>(repeating: -1))
     }
   }
 
-  static func *(lhs: Quaternion, rhs: Quaternion) -> Quaternion {
+  public static func *(lhs: Quaternion, rhs: Quaternion) -> Quaternion {
     let result: Quaternion
       = Quaternion(x: lhs.x * rhs.w + lhs.w * rhs.x + lhs.y * rhs.z - lhs.z * rhs.y,
                    y: lhs.y * rhs.w + lhs.w * rhs.y + lhs.z * rhs.x - lhs.x * rhs.z,
@@ -108,33 +108,33 @@ struct Quaternion {
                    w: lhs.w * rhs.w - lhs.x * rhs.x - lhs.y * rhs.y - lhs.z * rhs.z)
     return result
   }
-  static func +(lhs: Quaternion, rhs: Quaternion) -> Quaternion {
+  public static func +(lhs: Quaternion, rhs: Quaternion) -> Quaternion {
     let result = Quaternion(vector: lhs.elements + rhs.elements)
     return result
   }
-  static func -(lhs: Quaternion, rhs: Quaternion) -> Quaternion {
+  public static func -(lhs: Quaternion, rhs: Quaternion) -> Quaternion {
     let result = Quaternion(vector: lhs.elements - rhs.elements)
     return result
   }
-  static prefix func -(lhs: Quaternion) -> Quaternion {
+  public static prefix func -(lhs: Quaternion) -> Quaternion {
     let result = Quaternion(vector: -lhs.elements)
     return result
   }
-  static func *(lhs: Quaternion, rhs: Double) -> Quaternion {
+  public static func *(lhs: Quaternion, rhs: Double) -> Quaternion {
     let result = Quaternion(vector: lhs.elements * rhs)
     return result
   }
-  static func *(lhs: Double, rhs: Quaternion) -> Quaternion {
+  public static func *(lhs: Double, rhs: Quaternion) -> Quaternion {
     let result = Quaternion(vector: lhs * rhs.elements)
     return result
   }
 
-  static func /(lhs: Quaternion, rhs: Double) -> Quaternion {
+  public static func /(lhs: Quaternion, rhs: Double) -> Quaternion {
     let result = Quaternion(vector: lhs.elements / rhs)
     return result
   }
   // slerp
-  static func slerp(lhs: Quaternion, rhs: Quaternion, t: Double) -> Quaternion {
+  public static func slerp(lhs: Quaternion, rhs: Quaternion, t: Double) -> Quaternion {
     if t >= 1 { return rhs }
     if t <= 0 { return lhs }
 
@@ -168,10 +168,10 @@ struct Quaternion {
 
   }
 
-  static func dot(lhs: Quaternion, rhs: Quaternion) -> Double {
+  public static func dot(lhs: Quaternion, rhs: Quaternion) -> Double {
     let tmp = lhs.elements * rhs.elements
     return tmp.sum()
   }
 
-  static let identity = Quaternion(x: 0, y: 0, z: 0, w: 1)
+  public static let identity = Quaternion(x: 0, y: 0, z: 0, w: 1)
 }

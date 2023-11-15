@@ -25,27 +25,27 @@ import Foundation
   Rotation, Rotational Velocity and Rotational Accelleration
  */
 
-struct Transformation {
-  var date: Double
-  var position: SIMD3<Double>
-  var velocity: SIMD3<Double>
-  var accelleration: SIMD3<Double>
+public struct Transformation {
+  public let date: Double
+  public let position: SIMD3<Double>
+  public let velocity: SIMD3<Double>
+  public let accelleration: SIMD3<Double>
 
-  var quaternion: Quaternion
-  var rotationMatrix: Matrix3x3 {
+  public let quaternion: Quaternion
+  public var rotationMatrix: Matrix3x3 {
     return quaternion.matrix
   }
-  var rotationRate: SIMD3<Double>
-  var rotationAccelleration: SIMD3<Double>
+  public let rotationRate: SIMD3<Double>
+  public let rotationAccelleration: SIMD3<Double>
 }
 
-class Frame {
+public class Frame {
   weak var parent: Frame?
   var depth: Int
-  var name: String
-  var pseudoInertial: Bool
+  public let name: String
+  public let pseudoInertial: Bool
 
-  init(parent: Frame? = nil, name: String, pseudoInertial: Bool) {
+  public init(parent: Frame? = nil, name: String, pseudoInertial: Bool) {
     self.parent = parent
     self.depth = parent == nil ? 0 : parent!.depth + 1
     self.name = name
